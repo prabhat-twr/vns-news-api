@@ -5,7 +5,8 @@
     "category": "मुख्य खबर",
     "location": "वाराणसी",
     "date": "आज",
-    "imageUrl": ""
+    "imageUrl": "https://picsum.photos/seed/vns-ghat/900/500",
+    "isBreaking": true
   },
   {
     "title": "नगर निगम ने स्वच्छता अभियान तेज किया",
@@ -13,7 +14,8 @@
     "category": "शहर",
     "location": "लंका",
     "date": "आज",
-    "imageUrl": ""
+    "imageUrl": "https://picsum.photos/seed/vns-city/900/500",
+    "isBreaking": false
   },
   {
     "title": "स्कूलों में हिंदी पठन सप्ताह की शुरुआत",
@@ -21,6 +23,52 @@
     "category": "शिक्षा",
     "location": "भेलूपुर",
     "date": "आज",
-    "imageUrl": ""
+    "imageUrl": "https://picsum.photos/seed/vns-school/900/500",
+    "isBreaking": false
+  },
+  {
+    "title": "स्थानीय बाजारों में त्योहार की रौनक",
+    "summary": "कपड़ा, मिठाई और सजावट की दुकानों पर ग्राहकों की भीड़ दिखी। व्यापारियों को इस सप्ताह बिक्री बढ़ने की उम्मीद है।",
+    "category": "व्यापार",
+    "location": "गोदौलिया",
+    "date": "आज",
+    "imageUrl": "https://picsum.photos/seed/vns-market/900/500",
+    "isBreaking": false
+  },
+  {
+    "title": "युवा खिलाड़ियों के लिए क्रिकेट चयन शिविर",
+    "summary": "जिला स्तरीय टीम के लिए खिलाड़ियों का ट्रायल अगले सप्ताह होगा। इच्छुक खिलाड़ी पहचान पत्र और खेल प्रमाणपत्र के साथ पहुंच सकते हैं।",
+    "category": "खेल",
+    "location": "सिगरा",
+    "date": "आज",
+    "imageUrl": "https://picsum.photos/seed/vns-cricket/900/500",
+    "isBreaking": false
+  },
+  {
+    "title": "अस्पतालों में मरीज सुविधा काउंटर बढ़ाए गए",
+    "summary": "ओपीडी में बढ़ती भीड़ को देखते हुए प्रमुख अस्पतालों में अतिरिक्त सहायता काउंटर शुरू किए गए। मरीजों को पंजीकरण और जांच से जुड़ी जानकारी एक ही स्थान पर मिलेगी।",
+    "category": "स्वास्थ्य",
+    "location": "कबीरचौरा",
+    "date": "आज",
+    "imageUrl": "https://picsum.photos/seed/vns-health/900/500",
+    "isBreaking": false
+  },
+  {
+    "title": "गंगा किनारे पर्यटकों के लिए नई सूचना पट्टिकाएं",
+    "summary": "पर्यटन विभाग ने घाटों पर दिशा-निर्देश, सुरक्षा नंबर और प्रमुख स्थलों की जानकारी वाली नई पट्टिकाएं लगानी शुरू की हैं।",
+    "category": "पर्यटन",
+    "location": "दशाश्वमेध",
+    "date": "आज",
+    "imageUrl": "https://picsum.photos/seed/vns-tourism/900/500",
+    "isBreaking": false
+  },
+  {
+    "title": "बिजली विभाग ने रखरखाव कार्यक्रम जारी किया",
+    "summary": "कई इलाकों में लाइन मरम्मत के कारण निर्धारित समय पर बिजली आपूर्ति प्रभावित रहेगी। विभाग ने उपभोक्ताओं से पहले से तैयारी रखने की अपील की है।",
+    "category": "जन सूचना",
+    "location": "महमूरगंज",
+    "date": "आज",
+    "imageUrl": "https://picsum.photos/seed/vns-electricity/900/500",
+    "isBreaking": false
   }
 ]
