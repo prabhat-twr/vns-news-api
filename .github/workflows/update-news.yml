@@ -1,0 +1,43 @@
+﻿name: Update local news feed
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-local-news-feed
+  cancel-in-progress: false
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Update news.json
+        run: python -X utf8 scripts/build_local_news_feed.py --per-source 8 --initial-limit 45 --max-stories 300 --output news.json
+
+      - name: Validate JSON
+        run: python -m json.tool news.json > /tmp/news.validated.json
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet -- news.json; then
+            echo "No news changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news.json
+          git commit -m "Auto update local news feed"
+          git push
