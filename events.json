@@ -1,0 +1,235 @@
+{
+  "generated_at": "2026-08-17T16:00:00+05:30",
+  "location": "Varanasi, India",
+  "window": { "start": "2026-08-17", "end": "2026-09-16" },
+  "events": [
+    {
+      "id": "nag-panchami-2026-08-17",
+      "name": "Nag Panchami",
+      "category": "religious",
+      "start": "2026-08-17T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "confirmed",
+      "date_note": null,
+      "location": {
+        "name": "Nag Kuan Temple (Kabir Chaura)",
+        "lat": 25.3045,
+        "lng": 83.00395,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Citywide snake-worship festival; the historic Nag Kuan well-temple in Kabir Chaura hosts Varanasi's best-known Nag Panchami mela.",
+      "source_url": "https://sundayguardianlive.com/india/happy-nag-panchami-2026-is-it-celebrated-on-august-17-or-18-know-the-exact-date-puja-rituals-history-auspicious-timings-significance-more-263037/",
+      "image_url": null
+    },
+    {
+      "id": "krishna-janmashtami-2026-09-04",
+      "name": "Krishna Janmashtami (Smarta / citywide observance)",
+      "category": "religious",
+      "start": "2026-09-04T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "conflicting",
+      "date_note": "Most Varanasi temples, including Kashi Vishwanath, follow the Smarta tradition (Ashtami tithi at midnight) and mark Janmashtami on Sep 4, 2026. ISKCON Varanasi and other Vaishnav temples follow sunrise Rohini-Nakshatra alignment and observe it a day later, on Sep 5 — see the separate ISKCON entry.",
+      "location": {
+        "name": "Kashi Vishwanath Temple",
+        "lat": 25.310775,
+        "lng": 83.010614,
+        "coordinate_precision": "verified"
+      },
+      "description": "Birth anniversary of Lord Krishna, marked with special midnight puja and decorations at temples across the city.",
+      "source_url": "https://www.timeanddate.com/holidays/india/janmashtami",
+      "image_url": null
+    },
+    {
+      "id": "krishna-janmashtami-iskcon-2026-09-05",
+      "name": "Krishna Janmashtami (ISKCON / Vaishnav tradition)",
+      "category": "religious",
+      "start": "2026-09-05T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "conflicting",
+      "date_note": "ISKCON and other Vaishnav-tradition temples observe Janmashtami a day after most Varanasi temples (see the Sep 4 citywide entry) because they wait for Rohini Nakshatra to align with Ashtami tithi at sunrise rather than midnight.",
+      "location": {
+        "name": "ISKCON Varanasi (Sri Sri Radha Gopal Ji Temple, Durgakund Road)",
+        "lat": 25.2936,
+        "lng": 82.9976,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Grand Vaishnav-tradition Janmashtami celebration with midnight abhishek and cultural programs at ISKCON Varanasi.",
+      "source_url": "https://www.vrindavanmathuraguide.com/tripideas/blog/krishna-janmashtami-2026",
+      "image_url": null
+    },
+    {
+      "id": "hartalika-teej-2026-09-13",
+      "name": "Hartalika Teej",
+      "category": "religious",
+      "start": "2026-09-13T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "confirmed",
+      "date_note": null,
+      "location": {
+        "name": "Kashi Vishwanath Temple",
+        "lat": 25.310775,
+        "lng": 83.010614,
+        "coordinate_precision": "verified"
+      },
+      "description": "Women's fasting festival honoring Goddess Parvati; large numbers of devotees visit Kashi Vishwanath and Shiva temples across the city for special puja.",
+      "source_url": "https://daanyam.in/festivals/2026/hartalika-teej-2026",
+      "image_url": null
+    },
+    {
+      "id": "ganesh-chaturthi-2026-09-14",
+      "name": "Ganesh Chaturthi",
+      "category": "religious",
+      "start": "2026-09-14T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "confirmed",
+      "date_note": "Marks the start of the 10-day Ganesh festival. Celebrations happen via community pandals across the old city rather than at one fixed venue; Godowlia is used here as a representative central-city pin, not a single official site.",
+      "location": {
+        "name": "Godowlia (citywide pandals hub)",
+        "lat": 25.3078,
+        "lng": 83.0086,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Start of the 10-day Ganesh festival, marked increasingly by community pandals and processions across Varanasi's old city.",
+      "source_url": "https://www.drikpanchang.com/festivals/ganesh-chaturthi/ganesh-chaturthi-date-time.html?geoname-id=1253405",
+      "image_url": null
+    },
+    {
+      "id": "harsh-o-ullas-harsh-gujral-2026-08-19",
+      "name": "Harsh'O'Ullas ft. Harsh Gujral",
+      "category": "cultural",
+      "start": "2026-08-19T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "approximate",
+      "date_note": "Listed on happeningnext.com with a date but no showtime; confirm exact time with the venue before publishing.",
+      "location": {
+        "name": "DLW Auditorium (Diesel Locomotive Works complex, Bhulanpur)",
+        "lat": 25.286394,
+        "lng": 82.962082,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Stand-up comedy show by comedian Harsh Gujral.",
+      "source_url": "https://happeningnext.com/varanasi",
+      "image_url": null
+    },
+    {
+      "id": "banaras-mega-fest-2026-08-21",
+      "name": "Banaras Mega Fest 2026",
+      "category": "cultural",
+      "start": "2026-08-21T11:00:00+05:30",
+      "end": "2026-08-23T23:00:00+05:30",
+      "all_day": false,
+      "date_confidence": "confirmed",
+      "date_note": null,
+      "location": {
+        "name": "RUDRAKSH International Cooperation & Convention Centre",
+        "lat": 25.3095,
+        "lng": 82.988,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Grand 3-day (9th edition) celebration bringing together shopping, lifestyle, food, and entertainment under one roof.",
+      "source_url": "https://allevents.in/varanasi/all",
+      "image_url": null
+    },
+    {
+      "id": "bhajan-clubbing-varanasi-2026-08-22",
+      "name": "Bhajan Clubbing Varanasi",
+      "category": "cultural",
+      "start": "2026-08-22T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "approximate",
+      "date_note": "Listed on happeningnext.com with a date but no showtime; confirm exact time with the venue before publishing.",
+      "location": {
+        "name": "Hotel Varuna, Sigra",
+        "lat": 25.318379,
+        "lng": 82.991683,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Live bhajan (devotional music) jamming night.",
+      "source_url": "https://happeningnext.com/varanasi",
+      "image_url": null
+    },
+    {
+      "id": "fake-shaadi-2026-08-23",
+      "name": "Fake Shaadi 2.0",
+      "category": "cultural",
+      "start": "2026-08-23T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "conflicting",
+      "date_note": "happeningnext.com lists this party twice with slightly different details: 'Fake Shaadi 2.0' on Aug 23 at The 3rd Floor Bar Stock Exchange (INR 1,000), and 'FAKE SHADI' on Aug 24 at 'Hotel Varuna'. Both venues are the same building (the bar is inside the hotel), so this is most likely one event listed inconsistently across the aggregator's own pages; the Aug 23 listing is used here as primary since it had more detail. Confirm the exact date with the venue.",
+      "location": {
+        "name": "The 3rd Floor Bar Stock Exchange (Hotel Varuna, Sigra)",
+        "lat": 25.318379,
+        "lng": 82.991683,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Themed 'Fake Shaadi' party night with music.",
+      "source_url": "https://happeningnext.com/varanasi",
+      "image_url": null
+    },
+    {
+      "id": "tab-tum-kahaan-the-sundeep-sharma-2026-08-30",
+      "name": "Tab Tum Kahaan The? by Sundeep Sharma",
+      "category": "cultural",
+      "start": "2026-08-30T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "approximate",
+      "date_note": "Listed on happeningnext.com with a date but no showtime; confirm exact time with the venue before publishing.",
+      "location": {
+        "name": "Hotel Varuna, Sigra",
+        "lat": 25.318379,
+        "lng": 82.991683,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Stand-up comedy show by comedian Sundeep Sharma.",
+      "source_url": "https://happeningnext.com/varanasi",
+      "image_url": null
+    },
+    {
+      "id": "jagran-film-festival-varanasi-2026-09-11",
+      "name": "Jagran Film Festival — Varanasi Chapter",
+      "category": "cultural",
+      "start": "2026-09-11T00:00:00+05:30",
+      "end": null,
+      "all_day": true,
+      "date_confidence": "approximate",
+      "date_note": "Listed on happeningnext.com with a date but no showtime; confirm exact time with the venue before publishing.",
+      "location": {
+        "name": "IP Mall (IP Cinemas, Sigra)",
+        "lat": 25.316724,
+        "lng": 82.990153,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Regional chapter of the Jagran Film Festival, screening independent and regional cinema.",
+      "source_url": "https://happeningnext.com/varanasi",
+      "image_url": null
+    },
+    {
+      "id": "food-beverage-hospitality-expo-2026-09-04",
+      "name": "Food & Beverage and Hospitality 2026",
+      "category": "tourism",
+      "start": "2026-09-04T10:00:00+05:30",
+      "end": "2026-09-06T18:00:00+05:30",
+      "all_day": false,
+      "date_confidence": "confirmed",
+      "date_note": null,
+      "location": {
+        "name": "Deendayal Hastkala Sankul (Trade Facilitation Centre)",
+        "lat": 25.38344,
+        "lng": 82.97437,
+        "coordinate_precision": "approximate"
+      },
+      "description": "Trade expo for the food, beverage, and hospitality industry at Varanasi's craft and trade centre.",
+      "source_url": "https://allevents.in/varanasi/all",
+      "image_url": null
+    }
+  ]
+}
