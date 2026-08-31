@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-08-26T17:57:00+05:30",
+  "date": "2026-08-26",
+  "location": { "name": "Varanasi, Uttar Pradesh, India", "lat": 25.3176, "lng": 82.9739 },
+  "vara": "Wednesday (Budhavara)",
+  "tithi": [
+    { "name": "Trayodashi", "paksha": "Shukla", "ends_at": "2026-08-26T07:59:00+05:30" },
+    { "name": "Chaturdashi", "paksha": "Shukla", "ends_at": null }
+  ],
+  "nakshatra": [
+    { "name": "Shravana", "ends_at": "2026-08-27T00:47:00+05:30" },
+    { "name": "Dhanishta", "ends_at": null }
+  ],
+  "yoga": [
+    { "name": "Saubhagya", "ends_at": "2026-08-26T07:56:00+05:30" },
+    { "name": "Shobhana", "ends_at": null }
+  ],
+  "karana": [
+    { "name": "Taitila", "ends_at": "2026-08-26T07:59:00+05:30" },
+    { "name": "Garaja", "ends_at": "2026-08-26T20:39:00+05:30" }
+  ],
+  "sunrise": "2026-08-26T05:36:00+05:30",
+  "sunset": "2026-08-26T18:23:00+05:30",
+  "moonrise": "2026-08-26T17:21:00+05:30",
+  "moonset": "2026-08-27T04:35:00+05:30",
+  "rahu_kaal": { "start": "2026-08-26T11:59:00+05:30", "end": "2026-08-26T13:35:00+05:30" },
+  "yamaganda_kaal": { "start": "2026-08-26T07:11:00+05:30", "end": "2026-08-26T08:47:00+05:30" },
+  "gulika_kaal": { "start": "2026-08-26T10:23:00+05:30", "end": "2026-08-26T11:59:00+05:30" },
+  "abhijit_muhurat": { "start": "2026-08-26T11:34:00+05:30", "end": "2026-08-26T12:22:00+05:30" },
+  "festivals_and_vrats": [],
+  "calculation_method": "Drik Ganita",
+  "data_source": "direct_fetch",
+  "confidence": "confirmed",
+  "source_url": "https://astrosight.ai/panchanga/varanasi"
+}

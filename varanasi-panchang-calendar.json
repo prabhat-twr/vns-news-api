@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-08-26T17:57:00+05:30",
+  "location": { "name": "Varanasi, Uttar Pradesh, India", "lat": 25.3176, "lng": 82.9739 },
+  "window": { "start": "2026-08-26", "end": "2026-09-25" },
+  "observances": [
+    {
+      "id": "shravan-purnima-vrat-2026-08-27",
+      "name": "Shravan Purnima Vrat (Satyanarayan Vrat)",
+      "type": "vrat",
+      "date": "2026-08-27",
+      "tithi": "Purnima",
+      "paksha": "Shukla",
+      "description": "Full-moon fasting day of Shravan month; Satyanarayan Puja is commonly performed.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    },
+    {
+      "id": "raksha-bandhan-2026-08-28",
+      "name": "Raksha Bandhan",
+      "type": "tyohar",
+      "date": "2026-08-28",
+      "tithi": "Purnima",
+      "paksha": "Shukla",
+      "description": "Festival celebrating the bond between brothers and sisters, marked by tying a rakhi thread; falls on Shravan Purnima.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    },
+    {
+      "id": "sankashti-chaturthi-2026-08-31",
+      "name": "Heramba Sankashti Chaturthi",
+      "type": "vrat",
+      "date": "2026-08-31",
+      "tithi": "Chaturthi",
+      "paksha": "Krishna",
+      "description": "Monthly fast for Lord Ganesha observed on the fourth day after the full moon.",
+      "date_confidence": "confirmed",
+      "source_url": "https://bhaktihub.in/september-2026-vrat-tyohar-calendar/"
+    },
+    {
+      "id": "krishna-janmashtami-2026-09-04",
+      "name": "Krishna Janmashtami",
+      "type": "both",
+      "date": "2026-09-04",
+      "tithi": "Ashtami",
+      "paksha": "Krishna",
+      "description": "Birth anniversary of Lord Krishna, observed with a day-long fast broken at midnight, followed by Dahi Handi celebrations.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    },
+    {
+      "id": "aja-ekadashi-2026-09-07",
+      "name": "Aja Ekadashi",
+      "type": "vrat",
+      "date": "2026-09-07",
+      "tithi": "Ekadashi",
+      "paksha": "Krishna",
+      "description": "Krishna Paksha Ekadashi of Bhadrapada month, observed with a fast for Lord Vishnu.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/astrology/tithi/ekadashi-2026.html"
+    },
+    {
+      "id": "bhaum-pradosh-vrat-2026-09-08",
+      "name": "Bhaum Pradosh Vrat",
+      "type": "vrat",
+      "date": "2026-09-08",
+      "tithi": "Trayodashi",
+      "paksha": "Krishna",
+      "description": "Twilight fast for Lord Shiva, falling on a Tuesday this cycle.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    },
+    {
+      "id": "masik-shivaratri-2026-09-09",
+      "name": "Masik Shivaratri",
+      "type": "vrat",
+      "date": "2026-09-09",
+      "tithi": "Chaturdashi",
+      "paksha": "Krishna",
+      "description": "Monthly night-vigil fast for Lord Shiva.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    },
+    {
+      "id": "pithori-amavasya-2026-09-10",
+      "name": "Pithori Amavasya",
+      "type": "vrat",
+      "date": "2026-09-10",
+      "tithi": "Amavasya",
+      "paksha": "Krishna",
+      "description": "New-moon day of Bhadrapada month, observed by mothers for their children's wellbeing. Sources disagree slightly on whether this falls on Sept 10 or Sept 11 local time — shown here as Sept 10.",
+      "date_confidence": "conflicting",
+      "source_url": "https://bhaktihub.in/september-2026-vrat-tyohar-calendar/"
+    },
+    {
+      "id": "hartalika-teej-2026-09-14",
+      "name": "Hartalika Teej",
+      "type": "vrat",
+      "date": "2026-09-14",
+      "tithi": "Tritiya",
+      "paksha": "Shukla",
+      "description": "Fast observed by married women for marital wellbeing, ahead of Ganesh Chaturthi.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    },
+    {
+      "id": "ganesh-chaturthi-2026-09-14",
+      "name": "Ganesh Chaturthi",
+      "type": "tyohar",
+      "date": "2026-09-14",
+      "tithi": "Chaturthi",
+      "paksha": "Shukla",
+      "description": "Festival marking the birth of Lord Ganesha; the start of a multi-day Ganesh Utsav.",
+      "date_confidence": "confirmed",
+      "source_url": "https://en.wikipedia.org/wiki/Ganesh_Chaturthi"
+    },
+    {
+      "id": "radha-ashtami-2026-09-19",
+      "name": "Radha Ashtami",
+      "type": "tyohar",
+      "date": "2026-09-19",
+      "tithi": "Ashtami",
+      "paksha": "Shukla",
+      "description": "Birth anniversary of Radha, celebrated with temple decorations and bhajans.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    },
+    {
+      "id": "parsva-ekadashi-2026-09-22",
+      "name": "Parsva Ekadashi (Parivartini Ekadashi)",
+      "type": "vrat",
+      "date": "2026-09-22",
+      "tithi": "Ekadashi",
+      "paksha": "Shukla",
+      "description": "Shukla Paksha Ekadashi of Bhadrapada month, also known as Parivartini or Vamana Ekadashi.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/astrology/tithi/ekadashi-2026.html"
+    },
+    {
+      "id": "guru-pradosh-vrat-2026-09-24",
+      "name": "Guru Pradosh Vrat",
+      "type": "vrat",
+      "date": "2026-09-24",
+      "tithi": "Trayodashi",
+      "paksha": "Shukla",
+      "description": "Twilight fast for Lord Shiva, falling on a Thursday this cycle.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    },
+    {
+      "id": "anant-chaturdashi-2026-09-25",
+      "name": "Anant Chaturdashi (Ganesh Visarjan)",
+      "type": "both",
+      "date": "2026-09-25",
+      "tithi": "Chaturdashi",
+      "paksha": "Shukla",
+      "description": "Closing day of Ganesh Utsav, marked by the immersion (visarjan) of Ganesha idols; also a fast for Lord Vishnu's Ananta form.",
+      "date_confidence": "confirmed",
+      "source_url": "https://www.prokerala.com/general/calendar/hinducalendar.html?year=2026"
+    }
+  ]
+}
