@@ -1,9 +1,11 @@
 import asyncio
 import threading
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from .agent import Assistant
 from .config import Settings
@@ -67,6 +69,11 @@ def create_app(settings=None, corpus=None):
             return app.state.assistant.ask(request)
         finally:
             app.state.slots.release()
+
+    # Serve the built frontend from the same origin when present (single-service deploys).
+    web_dir = Path(__file__).resolve().parents[1] / "frontend/dist"
+    if web_dir.is_dir():
+        app.mount("/", StaticFiles(directory=web_dir, html=True), name="web")
 
     return app
 

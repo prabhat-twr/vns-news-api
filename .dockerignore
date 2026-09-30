@@ -1,7 +1,9 @@
 .git
 .venv
 **/__pycache__
-frontend
+frontend/node_modules
+frontend/dist
+frontend/tests
 .env
 .cache
 tests
