@@ -1,0 +1,309 @@
+{
+  "mode": "bm25",
+  "cases": 24,
+  "metrics": {
+    "routing_correct": 1,
+    "recall_at_5": 0.963,
+    "mrr_at_5": 0.9722,
+    "ndcg_at_5": 0.9387,
+    "abstention_correct": 1,
+    "citation_id_validity": 1.0,
+    "latency_ms": 18.8674
+  },
+  "limitations": "Small development set, not held-out. Citation validity is structural, not semantic faithfulness. News correctness is covered by dated fixtures, not live relevance labels.",
+  "details": [
+    {
+      "question": "Why is Sarnath important?",
+      "routing_correct": true,
+      "retrieved": [
+        "sarnath-museum",
+        "tibetan-studies",
+        "sarnath"
+      ],
+      "latency_ms": 131.83379999827594,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 0.9197207891481876
+    },
+    {
+      "question": "सारनाथ में बुद्ध का प्रथम उपदेश",
+      "routing_correct": true,
+      "retrieved": [
+        "sarnath",
+        "sarnath-museum",
+        "tibetan-studies"
+      ],
+      "latency_ms": 8.590600045863539,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "What is Kashi Vishwanath Temple?",
+      "routing_correct": true,
+      "retrieved": [
+        "annapurna",
+        "vishwanath",
+        "sankatmochan",
+        "durga",
+        "bharat-mata"
+      ],
+      "latency_ms": 7.69689999287948,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "ndcg_at_5": 0.6309297535714575
+    },
+    {
+      "question": "काल भैरव को कोतवाल क्यों मानते हैं?",
+      "routing_correct": true,
+      "retrieved": [
+        "kalbhairav",
+        "jain-parshvanath",
+        "sanskrit-university",
+        "kashi-names",
+        "manikarnika"
+      ],
+      "latency_ms": 8.002500049769878,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "Banarasi silk sarees",
+      "routing_correct": true,
+      "retrieved": [
+        "silk",
+        "paan",
+        "food",
+        "weavers"
+      ],
+      "latency_ms": 6.812399951741099,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 0.8772153153380493
+    },
+    {
+      "question": "गुलाबी मीनाकारी शिल्प",
+      "routing_correct": true,
+      "retrieved": [
+        "meenakari",
+        "stone-metal",
+        "silk",
+        "plural-culture"
+      ],
+      "latency_ms": 5.273399990983307,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "Where is BHU university?",
+      "routing_correct": true,
+      "retrieved": [
+        "bhu",
+        "ravidas",
+        "sanskrit-university",
+        "vidyapith"
+      ],
+      "latency_ms": 6.156300019938499,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "संपूर्णानंद संस्कृत विश्वविद्यालय कहाँ है?",
+      "routing_correct": true,
+      "retrieved": [
+        "sanskrit-university",
+        "bhu",
+        "vidyapith"
+      ],
+      "latency_ms": 8.12230003066361,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "Tell me about Kabir Chaura",
+      "routing_correct": true,
+      "retrieved": [
+        "kabir",
+        "kabir-legend"
+      ],
+      "latency_ms": 21.30570000736043,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "बिस्मिल्लाह खान शहनाई",
+      "routing_correct": true,
+      "retrieved": [
+        "musicians"
+      ],
+      "latency_ms": 13.830299954861403,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "Dev Deepawali traditions",
+      "routing_correct": true,
+      "retrieved": [
+        "dev-deepawali",
+        "kashi-moksha",
+        "weavers",
+        "food",
+        "plural-culture"
+      ],
+      "latency_ms": 13.619599980302155,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "बनारस में प्रसिद्ध भोजन",
+      "routing_correct": true,
+      "retrieved": [
+        "food"
+      ],
+      "latency_ms": 11.69720001053065,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 0.3333333333333333,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 0.46927872602275644
+    },
+    {
+      "question": "UNESCO music designation",
+      "routing_correct": true,
+      "retrieved": [
+        "music-city",
+        "subah-banaras",
+        "guru-shishya",
+        "musicians",
+        "kabir"
+      ],
+      "latency_ms": 43.1265999795869,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "History of rebuilding ghats",
+      "routing_correct": true,
+      "retrieved": [
+        "ghat-history",
+        "assi",
+        "kashi-names",
+        "ghats",
+        "manikarnika"
+      ],
+      "latency_ms": 40.14979995554313,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "मोक्ष की धार्मिक मान्यता",
+      "routing_correct": true,
+      "retrieved": [
+        "kashi-moksha",
+        "jyotirlinga",
+        "vishwanath",
+        "manikarnika"
+      ],
+      "latency_ms": 13.592600007541478,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "Assi Ghat rivers",
+      "routing_correct": true,
+      "retrieved": [
+        "assi",
+        "manikarnika",
+        "sankatmochan",
+        "ghat-history",
+        "ghats"
+      ],
+      "latency_ms": 8.706199994776398,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "रामनगर किला",
+      "routing_correct": true,
+      "retrieved": [
+        "ramnagar"
+      ],
+      "latency_ms": 8.1103999982588,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "Tibetan studies Sarnath",
+      "routing_correct": true,
+      "retrieved": [
+        "tibetan-studies",
+        "sarnath-museum",
+        "sarnath"
+      ],
+      "latency_ms": 7.666799996513873,
+      "citation_id_validity": 1.0,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "question": "quantum spacetime superconductors",
+      "routing_correct": true,
+      "retrieved": [],
+      "latency_ms": 5.610499996691942,
+      "citation_id_validity": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "question": "penguin habitat Antarctica",
+      "routing_correct": true,
+      "retrieved": [],
+      "latency_ms": 7.443900045473129,
+      "citation_id_validity": 1.0,
+      "abstention_correct": true
+    },
+    {
+      "question": "आज की ताज़ा खबर",
+      "routing_correct": true
+    },
+    {
+      "question": "Compare flood reports",
+      "routing_correct": true
+    },
+    {
+      "question": "बाढ़ की समयरेखा",
+      "routing_correct": true
+    },
+    {
+      "question": "Latest Varanasi traffic news",
+      "routing_correct": true
+    }
+  ]
+}

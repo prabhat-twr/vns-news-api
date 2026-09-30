@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore Varanasi through cited knowledge and local news. Ask KashiAI in Hindi or English."
+    />
+    <meta name="theme-color" content="#183d39" />
+    <title>KashiAI · A city of stories, grounded in sources</title>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/" aria-label="KashiAI home"
+        ><span class="brand-icon">का</span>Kashi<span>AI</span></a
+      >
+      <nav>
+        <a href="#explore">Explore</a
+        ><button id="source-toggle" class="text-button">
+          Source library ↗</button
+        ><span class="language-tag">हिन्दी / EN</span>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" id="explore">
+        <div class="hero-copy">
+          <span class="eyebrow">VARANASI, WITH CONTEXT</span>
+          <h1>A city of stories.<br /><em>Answers with roots.</em></h1>
+          <p>
+            From the ghats to today’s headlines, explore Kashi through knowledge
+            you can trace. Ask in Hindi or English.
+          </p>
+          <div class="hero-tags">
+            <span>✦ Cited sources</span><span>◷ Date-aware news</span
+            ><span>अ Bilingual</span>
+          </div>
+        </div>
+        <div class="city-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="sky-text">काशी</div>
+          <div class="skyline">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="steps"></div>
+          <div class="river"><span></span><span></span><span></span></div>
+          <small>25.3176° N &nbsp; 82.9739° E</small>
+        </div>
+      </section>
+      <section class="workspace">
+        <div class="conversation">
+          <div class="section-heading">
+            <span class="eyebrow">YOUR WINDOW INTO KASHI</span
+            ><span id="connection" role="status">Connecting…</span>
+          </div>
+          <form id="ask-form">
+            <label for="question" class="question-label"
+              >What would you like to discover?</label
+            ><textarea
+              id="question"
+              name="question"
+              maxlength="1000"
+              minlength="2"
+              required
+              placeholder="Why is Sarnath important? / सारनाथ का क्या महत्व है?"
+            ></textarea>
+            <div class="form-bottom">
+              <label class="sr-only" for="language">Answer language</label
+              ><select id="language">
+                <option value="auto">Auto language</option>
+                <option value="hi">हिन्दी</option>
+                <option value="en">English</option></select
+              ><button class="primary" id="submit" type="submit">
+                Ask KashiAI <span>↗</span>
+              </button>
+            </div>
+            <details class="filters">
+              <summary>Focus your search <span>Route & dates</span></summary>
+              <div class="filter-grid">
+                <label
+                  >Explore<select id="route">
+                    <option value="auto">Choose automatically</option>
+                    <option value="knowledge">City knowledge</option>
+                    <option value="news">Local news</option>
+                    <option value="timeline">News timeline</option>
+                    <option value="compare">Compare news sources</option>
+                  </select></label
+                ><label>From (IST)<input id="since" type="date" /></label
+                ><label>Through (IST)<input id="until" type="date" /></label>
+              </div>
+            </details>
+          </form>
+          <div class="suggestions">
+            <button data-question="What is the history of the ghats?">
+              History of the ghats ↗</button
+            ><button data-question="बनारसी खाने में क्या प्रसिद्ध है?">
+              बनारस के स्वाद ↗</button
+            ><button data-question="Latest Varanasi news" data-route="news">
+              Latest local news ↗
+            </button>
+          </div>
+          <div id="error" role="alert" hidden></div>
+          <section id="result" hidden aria-live="polite">
+            <div class="result-heading">
+              <h2>Your answer</h2>
+              <span id="answer-mode"></span>
+            </div>
+            <p id="asked"></p>
+            <div id="answer"></div>
+            <div id="warnings"></div>
+            <h3>Follow the evidence</h3>
+            <div id="citations"></div>
+            <details class="trace">
+              <summary>How this answer was found</summary>
+              <p id="trace"></p>
+            </details>
+          </section>
+          <div id="empty" class="empty">
+            <span class="empty-icon">✳</span>
+            <div>
+              <h3>Curiosity is a good place to start.</h3>
+              <p>
+                Ask about a place, a tradition, or a story in the news.<br />Every
+                answer keeps its sources close.
+              </p>
+            </div>
+          </div>
+        </div>
+        <aside>
+          <div class="aside-title">
+            <span class="eyebrow">ONE CITY, MANY LAYERS</span><span>01—04</span>
+          </div>
+          <button
+            class="topic"
+            data-question="Tell me about Kashi Vishwanath Temple"
+          >
+            <span class="topic-icon">⌂</span
+            ><span
+              ><strong>Places & histories</strong
+              ><small>Temples, ghats and Sarnath</small></span
+            ><b>↗</b></button
+          ><button class="topic" data-question="What is Dev Deepawali?">
+            <span class="topic-icon">✺</span
+            ><span
+              ><strong>Living traditions</strong
+              ><small>Festivals, music and belief</small></span
+            ><b>↗</b></button
+          ><button
+            class="topic"
+            data-question="Tell me about Banarasi silk and crafts"
+          >
+            <span class="topic-icon">❖</span
+            ><span
+              ><strong>Made in Banaras</strong
+              ><small>Food, weaving and craft</small></span
+            ><b>↗</b></button
+          ><button
+            class="topic"
+            data-question="Latest Varanasi news"
+            data-route="news"
+          >
+            <span class="topic-icon">▤</span
+            ><span
+              ><strong>The city today</strong
+              ><small>News from vns-news-api</small></span
+            ><b>↗</b>
+          </button>
+          <div class="source-note">
+            <span class="eyebrow">CONTEXT MATTERS</span>
+            <h3>A belief, a fact,<br />or a developing story?</h3>
+            <p>
+              We label the difference. Official sources can describe traditions;
+              news reports can change. Follow the links to read in context.
+            </p>
+            <div class="legend">
+              <span>Historical fact</span><span>Official information</span
+              ><span>Religious tradition</span><span>Current news</span>
+            </div>
+          </div>
+          <div class="feed-note">
+            <span class="dot"></span>
+            <p id="freshness">Checking news availability…</p>
+          </div>
+        </aside>
+      </section>
+      <section id="library" hidden>
+        <div class="result-heading">
+          <h2>Source library</h2>
+          <button id="source-close" class="text-button">Close ×</button>
+        </div>
+        <p>
+          Brief editorial summaries, checked against official pages. This is a
+          growing collection, not an exhaustive history.
+        </p>
+        <div id="library-items"></div>
+      </section>
+    </main>
+    <footer>
+      <span class="brand-mini">KashiAI</span
+      ><span>Rooted in Kashi. Open to curiosity.</span
+      ><a
+        href="https://github.com/prabhat-twr/vns-news-api"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Open source ↗</a
+      >
+    </footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

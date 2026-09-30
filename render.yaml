@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: kashiai-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: KASHI_PROVIDER
+        value: extractive
+      - key: KASHI_EMBEDDINGS
+        value: none
+      - key: KASHI_CORS_ORIGINS
+        sync: false
