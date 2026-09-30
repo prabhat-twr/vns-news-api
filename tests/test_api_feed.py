@@ -3,6 +3,7 @@ import sys
 from dataclasses import replace
 
 import httpx
+import pytest
 from fastapi.testclient import TestClient
 
 from kashiai.api import create_app
@@ -26,19 +27,25 @@ def test_api_validation_and_citations(corpus):
         assert len(client.get("/api/sources").json()["knowledge"]) >= 40
 
 
-def test_feed_failure_preserves_index(corpus, monkeypatch):
+@pytest.mark.parametrize("uptime", [0.0, 1.0, 10000.0])
+def test_feed_failure_preserves_index(corpus, monkeypatch, uptime):
     old_index = corpus.news_index
-    old_settings = corpus.settings
-    corpus.settings = replace(old_settings, news_url="https://example.org/feed")
+    monkeypatch.setattr(corpus, "settings", replace(corpus.settings, news_url="https://example.org/feed"))
+    monkeypatch.setattr(corpus, "last_attempt", None)
+    monkeypatch.setattr(corpus, "last_error", None)
+    monkeypatch.setattr("kashiai.service.time.monotonic", lambda: uptime)
+    calls = []
 
     def fail(*args, **kwargs):
+        calls.append(True)
         raise httpx.ConnectError("offline")
 
     monkeypatch.setattr(httpx.Client, "stream", fail)
     corpus.refresh()
     assert corpus.news_index is old_index
     assert corpus.status()["error"]
-    corpus.settings = old_settings
+    corpus.refresh()
+    assert len(calls) == 1  # First refresh is immediate, retries still respect the interval.
 
 
 def test_original_generator_contract():

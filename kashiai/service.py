@@ -37,13 +37,16 @@ class Corpus:
         self.news_index = HybridRetriever(self.news, embed_model, self.reranker)
         self.lock = threading.Lock()
         self.refresh_lock = threading.Lock()
-        self.last_attempt = 0.0
+        self.last_attempt = None
         self.fetched_at = None
         self.last_error = None
         self.origin = "repository_snapshot"
 
     def refresh(self):
-        if not self.settings.news_url or time.monotonic() - self.last_attempt < self.settings.refresh_seconds:
+        if not self.settings.news_url or (
+            self.last_attempt is not None
+            and time.monotonic() - self.last_attempt < self.settings.refresh_seconds
+        ):
             return
         if not self.refresh_lock.acquire(blocking=False):
             return
