@@ -114,10 +114,9 @@ def test_uncited_background_paragraph_allowed(corpus):
     assert answer.generation_mode == "llm"
 
 
-def test_uncited_answer_is_flagged_as_general_knowledge(corpus):
+def test_uncited_general_answer_is_allowed(corpus):
     answer = Assistant(corpus, FakeModel("General background about the ghats.")).ask(AskRequest(question="Sarnath"))
     assert answer.generation_mode == "llm"
-    assert any("general background" in w for w in answer.warnings)
 
 
 def test_grouped_citations_normalised(corpus):
@@ -165,3 +164,19 @@ def test_follow_up_rewritten_and_history_sent_to_model(corpus):
 def test_standalone_question_skips_rewrite(corpus):
     answer = Assistant(corpus).ask(AskRequest(question="What is Dev Deepawali?"))
     assert not answer.trace[0].startswith("contextualize")
+
+
+def test_small_talk_gets_a_chat_reply_not_an_abstention(corpus):
+    model = RecordingModel("hello how are you", "Sab badhiya! Banaras ke baare mein kya jaanna hai? [1]")
+    answer = Assistant(corpus, model).ask(AskRequest(question="kya haal chaal ?"))
+    assert answer.generation_mode == "llm"
+    assert answer.answer == "Sab badhiya! Banaras ke baare mein kya jaanna hai?"  # stray marker removed
+    assert not answer.citations
+
+
+def test_hinglish_miss_retries_with_english_query(corpus):
+    model = RecordingModel("Sarnath Buddha first teaching", "Sarnath mein Buddha ne pehla updesh diya. [1]")
+    answer = Assistant(corpus, model).ask(AskRequest(question="kya haal chaal ?"))
+    assert answer.trace[:3] == ["route:knowledge", "rewrite:llm", "tool:search_knowledge"]
+    assert any("sarnath" in c.record.id for c in answer.citations)
+    assert "Hinglish" in model.calls[1][0].content
