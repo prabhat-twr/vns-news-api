@@ -11,12 +11,14 @@ const labels = {
   official_information: "Official information",
   religious_tradition: "Religious tradition",
   current_news: "Current news",
+  event: "Event",
 };
 const labelHi = {
   historical_fact: "ऐतिहासिक तथ्य",
   official_information: "आधिकारिक जानकारी",
   religious_tradition: "धार्मिक परंपरा",
   current_news: "समाचार रिपोर्ट",
+  event: "कार्यक्रम",
 };
 const thinking = [
   "Searching the sources…",
@@ -352,14 +354,40 @@ async function health() {
   }
 }
 
-/* ---------- source library ---------- */
+/* ---------- events & sources sheet ---------- */
+const ADMIN = "kashiai.admin";
+const categoryIcon = {
+  religious: "🪔",
+  cultural: "🎭",
+  music: "🎶",
+  food: "🍲",
+  fair: "🎡",
+  exhibition: "🖼️",
+  sports: "🏏",
+  other: "✨",
+};
+let adminKey = "";
+try {
+  adminKey = localStorage.getItem(ADMIN) || "";
+} catch {
+  adminKey = "";
+}
+
 function closeLibrary() {
   $("library").hidden = true;
   $("source-toggle").focus();
 }
-$("source-toggle").addEventListener("click", async () => {
-  $("library").hidden = false;
-  $("source-close").focus();
+function showTab(name) {
+  ["events", "sources"].forEach((t) => {
+    $(`tab-${t}`).setAttribute("aria-selected", String(t === name));
+    $(`panel-${t}`).hidden = t !== name;
+  });
+  if (name === "sources") loadSources();
+}
+$("tab-events").addEventListener("click", () => showTab("events"));
+$("tab-sources").addEventListener("click", () => showTab("sources"));
+
+async function loadSources() {
   $("library-items").textContent = "Loading sources…";
   try {
     const { knowledge } = await request("/api/sources");
@@ -380,6 +408,183 @@ $("source-toggle").addEventListener("click", async () => {
     $("library-items").textContent =
       "The source library isn't available right now. Please try again.";
   }
+}
+
+const todayIST = () =>
+  new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
+function eventDate(start) {
+  // Date-only strings are calendar days in Varanasi; never shift them by timezone.
+  const day = start.length === 10 ? new Date(start + "T00:00:00+05:30") : new Date(start);
+  const opts = { timeZone: "Asia/Kolkata" };
+  return {
+    day: day.toLocaleDateString("en-IN", { ...opts, day: "numeric" }),
+    month: day.toLocaleDateString("en-IN", { ...opts, month: "short" }),
+    full:
+      start.length === 10
+        ? day.toLocaleDateString("en-IN", { ...opts, weekday: "short", day: "numeric", month: "short", year: "numeric" })
+        : day.toLocaleString("en-IN", { ...opts, weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }),
+    iso: day.toLocaleDateString("en-CA", opts),
+  };
+}
+
+function eventCard(ev) {
+  const when = eventDate(ev.start);
+  const card = element("article", null, "event-card");
+  const date = element("div", null, "event-date");
+  date.append(element("b", when.day), element("span", when.month));
+  const body = element("div", null, "event-body");
+  const title = element("h3", null);
+  title.append(element("span", categoryIcon[ev.category] || "✨", "event-emoji"), document.createTextNode(ev.name));
+  body.append(title);
+  const metaBits = [when.full];
+  if (ev.end) metaBits.push("until " + eventDate(ev.end).full);
+  if (ev.venue) metaBits.push(ev.venue);
+  body.append(element("small", metaBits.join(" · ")));
+  if (ev.description) body.append(element("p", ev.description));
+  const actions = element("div", null, "event-actions");
+  const askBtn = element("button", "Ask KashiAI ↗", "ghost");
+  askBtn.type = "button";
+  askBtn.addEventListener("click", () => {
+    closeLibrary();
+    ask(`Tell me about ${ev.name}`);
+  });
+  actions.append(askBtn);
+  if (ev.source_url) actions.append(safeLink(ev.source_url, "Link", "ghost"));
+  if (ev.editable && adminKey) {
+    const del = element("button", "Delete", "ghost danger");
+    del.type = "button";
+    del.addEventListener("click", async () => {
+      if (!confirm(`Delete “${ev.name}”?`)) return;
+      del.disabled = true;
+      try {
+        const res = await fetch(API + "/api/events/" + encodeURIComponent(ev.id), {
+          method: "DELETE",
+          headers: { "X-Admin-Key": adminKey },
+        });
+        if (!res.ok) throw new Error(await errorText(res));
+        loadEvents();
+      } catch (e) {
+        del.disabled = false;
+        alert(e.message);
+      }
+    });
+    actions.append(del);
+  }
+  body.append(actions);
+  card.append(date, body);
+  return card;
+}
+
+async function errorText(res) {
+  try {
+    const body = await res.json();
+    if (typeof body.detail === "string") return body.detail;
+    if (Array.isArray(body.detail) && body.detail[0])
+      return String(body.detail[0].msg || "Please check the form.").replace(/^Value error, /, "");
+  } catch {
+    /* fall through */
+  }
+  return "Something went wrong. Please try again.";
+}
+
+async function loadEvents() {
+  const list = $("event-list");
+  list.textContent = "Loading events…";
+  try {
+    const data = await request("/api/events");
+    $("add-event-toggle").hidden = !data.editing_enabled;
+    const today = todayIST();
+    const upcoming = data.events.filter((e) => eventDate(e.end || e.start).iso >= today);
+    const past = data.events.filter((e) => eventDate(e.end || e.start).iso < today).reverse();
+    const children = [];
+    if (data.error) children.push(element("p", data.error, "note"));
+    children.push(element("h4", upcoming.length ? "Coming up" : "Nothing scheduled yet", "event-heading"));
+    upcoming.forEach((e) => children.push(eventCard(e)));
+    if (!upcoming.length)
+      children.push(
+        element(
+          "p",
+          data.editing_enabled
+            ? "Add the next ghat aarti, concert or mela so KashiAI can tell people about it."
+            : "Check back soon for upcoming events.",
+          "freshness",
+        ),
+      );
+    if (past.length) {
+      const details = element("details", null, "past-events");
+      details.append(element("summary", `Past events (${past.length})`));
+      past.forEach((e) => details.append(eventCard(e)));
+      children.push(details);
+    }
+    list.replaceChildren(...children);
+  } catch {
+    list.textContent = "Events aren't available right now. Please try again.";
+  }
+}
+
+const form = $("event-form");
+function toggleForm(open) {
+  form.hidden = !open;
+  $("add-event-toggle").hidden = open;
+  $("event-form-msg").textContent = "";
+  if (open) {
+    form.elements.adminKey.value = adminKey;
+    form.elements.name.focus();
+  }
+}
+$("add-event-toggle").addEventListener("click", () => toggleForm(true));
+$("event-cancel").addEventListener("click", () => toggleForm(false));
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = form.elements;
+  const msg = $("event-form-msg");
+  if (!f.name.value.trim() || !f.startDate.value || !f.adminKey.value) {
+    msg.textContent = "Name, start date and admin key are required.";
+    return;
+  }
+  const payload = {
+    name: f.name.value.trim(),
+    category: f.category.value,
+    start: f.startDate.value + (f.startTime.value ? "T" + f.startTime.value : ""),
+    end: f.endDate.value || null,
+    venue: f.venue.value.trim(),
+    description: f.description.value.trim(),
+    source_url: f.source_url.value.trim(),
+  };
+  $("event-save").disabled = true;
+  msg.textContent = "Saving…";
+  try {
+    const res = await fetch(API + "/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Admin-Key": f.adminKey.value },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(60000),
+    });
+    if (!res.ok) throw new Error(await errorText(res));
+    adminKey = f.adminKey.value;
+    try {
+      if (f.remember.checked) localStorage.setItem(ADMIN, adminKey);
+      else localStorage.removeItem(ADMIN);
+    } catch {
+      /* Storage unavailable; the key stays for this session only. */
+    }
+    form.reset();
+    toggleForm(false);
+    $("add-event-toggle").hidden = false;
+    loadEvents();
+  } catch (err) {
+    msg.textContent =
+      err.name === "TimeoutError" ? "The server took too long. Please try again." : err.message;
+  } finally {
+    $("event-save").disabled = false;
+  }
+});
+
+$("source-toggle").addEventListener("click", () => {
+  $("library").hidden = false;
+  $("source-close").focus();
+  showTab("events");
+  loadEvents();
 });
 document
   .querySelectorAll("[data-close]")

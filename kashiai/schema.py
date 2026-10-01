@@ -3,7 +3,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, model_validator
 
-Kind = Literal["historical_fact", "official_information", "religious_tradition", "current_news"]
+Kind = Literal["historical_fact", "official_information", "religious_tradition", "current_news", "event"]
+EventCategory = Literal["religious", "cultural", "music", "food", "fair", "exhibition", "sports", "other"]
 Route = Literal["auto", "knowledge", "news", "timeline", "compare"]
 
 
@@ -67,3 +68,33 @@ class Answer(BaseModel):
     generation_mode: str
     elapsed_ms: float
     feed_status: dict
+
+
+class EventIn(BaseModel):
+    name: str = Field(min_length=3, max_length=150)
+    category: EventCategory = "other"
+    # ISO date ("2026-11-15") for all-day events or local datetime ("2026-11-15T18:30"), Asia/Kolkata.
+    start: str = Field(min_length=10, max_length=40)
+    end: str | None = Field(default=None, max_length=40)
+    venue: str = Field(default="", max_length=150)
+    description: str = Field(default="", max_length=1000)
+    source_url: str = Field(default="", max_length=500)
+
+    @model_validator(mode="after")
+    def validate_event(self):
+        from .events import parse_when
+        from .ingest import canonical_url
+
+        self.name = self.name.strip()
+        if len(self.name) < 3:
+            raise ValueError("Please give the event a name.")
+        try:
+            start, _ = parse_when(self.start)
+            end = parse_when(self.end)[0] if self.end and self.end.strip() else None
+        except ValueError as exc:
+            raise ValueError("Dates must look like 2026-11-15 or 2026-11-15T18:30.") from exc
+        if end and end < start:
+            raise ValueError("The end must be on or after the start.")
+        if self.source_url.strip() and not canonical_url(self.source_url):
+            raise ValueError("The link must be an http(s) URL.")
+        return self

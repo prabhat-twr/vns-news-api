@@ -40,12 +40,12 @@
           <button
             id="source-toggle"
             class="icon-btn"
-            aria-label="Source library"
-            title="Source library"
+            aria-label="Events and sources"
+            title="Events and sources"
           >
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z" />
-              <path d="M20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z" />
+              <rect x="4" y="5" width="16" height="15" rx="2" />
+              <path d="M4 10h16M9 3v4M15 3v4" />
             </svg>
           </button>
           <button
@@ -135,15 +135,70 @@
         aria-labelledby="library-title"
       >
         <div class="sheet-head">
-          <h2 id="library-title">Source library</h2>
+          <h2 id="library-title">Kashi calendar</h2>
           <button id="source-close" class="icon-btn" aria-label="Close" data-close>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           </button>
         </div>
-        <p id="freshness" class="freshness"></p>
-        <div id="library-items" class="library-items"></div>
+        <div class="tabs" role="tablist">
+          <button role="tab" id="tab-events" aria-selected="true" aria-controls="panel-events">
+            Events
+          </button>
+          <button role="tab" id="tab-sources" aria-selected="false" aria-controls="panel-sources">
+            Sources
+          </button>
+        </div>
+
+        <div id="panel-events" role="tabpanel" aria-labelledby="tab-events">
+          <div class="events-bar">
+            <p class="freshness">
+              Events KashiAI knows about — ask it “what's happening this week?”
+            </p>
+            <button id="add-event-toggle" class="pill-btn" hidden>+ Add event</button>
+          </div>
+          <form id="event-form" class="event-form" hidden novalidate>
+            <label>Event name<input name="name" required maxlength="150" placeholder="Dev Deepawali boat procession" /></label>
+            <div class="form-row">
+              <label>Category
+                <select name="category">
+                  <option value="religious">Religious</option>
+                  <option value="cultural">Cultural</option>
+                  <option value="music">Music</option>
+                  <option value="food">Food</option>
+                  <option value="fair">Fair / mela</option>
+                  <option value="exhibition">Exhibition</option>
+                  <option value="sports">Sports</option>
+                  <option value="other" selected>Other</option>
+                </select>
+              </label>
+              <label>Venue<input name="venue" maxlength="150" placeholder="Dashashwamedh Ghat" /></label>
+            </div>
+            <div class="form-row">
+              <label>Start date<input name="startDate" type="date" required /></label>
+              <label>Start time <small>(optional)</small><input name="startTime" type="time" /></label>
+            </div>
+            <div class="form-row">
+              <label>End date <small>(optional)</small><input name="endDate" type="date" /></label>
+              <label>Link <small>(optional)</small><input name="source_url" type="url" maxlength="500" placeholder="https://…" /></label>
+            </div>
+            <label>Description<textarea name="description" rows="3" maxlength="1000" placeholder="What happens, who it's for, entry details…"></textarea></label>
+            <label>Admin key<input name="adminKey" type="password" autocomplete="current-password" required /></label>
+            <label class="check"><input name="remember" type="checkbox" checked /> Remember the key on this device</label>
+            <p id="event-form-msg" class="form-msg" role="status"></p>
+            <div class="form-actions">
+              <button type="button" id="event-cancel" class="ghost-btn">Cancel</button>
+              <button type="submit" id="event-save" class="pill-btn solid">Save event</button>
+            </div>
+          </form>
+          <div id="event-list" class="event-list"></div>
+        </div>
+
+        <div id="panel-sources" role="tabpanel" aria-labelledby="tab-sources" hidden>
+          <p id="freshness" class="freshness"></p>
+          <div id="library-items" class="library-items"></div>
+        </div>
       </section>
     </div>
     <script type="module" src="/src/main.js"></script>

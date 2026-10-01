@@ -85,7 +85,12 @@ test("source library and new chat", async ({ page }) => {
     }),
   );
   await page.goto("/");
-  await page.getByRole("button", { name: "Source library" }).click();
+  await page.route("**/api/events", (route) =>
+    route.fulfill({ json: { events: [], editing_enabled: false, storage: "memory" } }),
+  );
+  await page.getByRole("button", { name: "Events and sources" }).click();
+  await expect(page.getByRole("button", { name: "+ Add event" })).toBeHidden();
+  await page.getByRole("tab", { name: "Sources" }).click();
   await expect(page.locator("#library-items")).toContainText("Sarnath");
   await page.keyboard.press("Escape");
   await expect(page.locator("#library")).toBeHidden();
@@ -125,4 +130,31 @@ test("follow-up questions carry the conversation", async ({ page }) => {
     { role: "user", content: "Tell me about Sarnath" },
     { role: "assistant", content: "Answer 1" },
   ]);
+});
+test("admin adds an event from the calendar", async ({ page }) => {
+  const events = [];
+  let sentKey = null;
+  await page.route("**/api/events", async (route) => {
+    if (route.request().method() === "POST") {
+      sentKey = route.request().headers()["x-admin-key"];
+      const body = route.request().postDataJSON();
+      events.push({ ...body, id: "kite-1", origin: "admin", editable: true });
+      return route.fulfill({ status: 201, json: events[0] });
+    }
+    return route.fulfill({
+      json: { events, editing_enabled: true, storage: "cloudflare_kv" },
+    });
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Events and sources" }).click();
+  await page.getByRole("button", { name: "+ Add event" }).click();
+  const form = page.locator("#event-form");
+  await form.getByLabel("Event name").fill("Kite festival");
+  await form.getByLabel("Start date").fill("2099-01-14");
+  await form.getByLabel("Admin key").fill("k3y");
+  await form.getByRole("button", { name: "Save event" }).click();
+  await expect(page.locator(".event-card")).toContainText("Kite festival");
+  await expect(page.getByRole("button", { name: "Delete" })).toBeVisible();
+  expect(sentKey).toBe("k3y");
+  expect(events[0].start).toBe("2099-01-14");
 });

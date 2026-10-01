@@ -9,6 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 class Settings:
     knowledge_path: Path = field(default_factory=lambda: ROOT / "data/knowledge.json")
     news_path: Path = field(default_factory=lambda: ROOT / "news.json")
+    events_seed_path: Path = field(default_factory=lambda: ROOT / "events.json")
+    # Admin-added events persist in Cloudflare Workers KV; editing is disabled without an admin key.
+    cf_account_id: str = field(default_factory=lambda: os.getenv("CF_ACCOUNT_ID", ""))
+    cf_kv_namespace_id: str = field(default_factory=lambda: os.getenv("CF_KV_NAMESPACE_ID", ""))
+    cf_kv_token: str = field(default_factory=lambda: os.getenv("CF_KV_TOKEN", ""))
+    admin_key: str = field(default_factory=lambda: os.getenv("KASHI_ADMIN_KEY", ""))
     news_url: str = field(
         default_factory=lambda: os.getenv(
             "KASHI_NEWS_URL", "https://raw.githubusercontent.com/prabhat-twr/vns-news-api/main/news.json"

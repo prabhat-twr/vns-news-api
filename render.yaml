@@ -5,7 +5,23 @@ services:
     plan: free
     healthCheckPath: /health
     envVars:
+      # Answers: Cloudflare Workers AI through its OpenAI-compatible endpoint.
       - key: KASHI_PROVIDER
-        value: extractive
+        value: openai
+      - key: KASHI_MODEL
+        value: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
       - key: KASHI_EMBEDDINGS
         value: none
+      - key: OPENAI_BASE_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      # Admin-added events: Cloudflare Workers KV plus an admin key for the website form.
+      - key: CF_ACCOUNT_ID
+        sync: false
+      - key: CF_KV_NAMESPACE_ID
+        sync: false
+      - key: CF_KV_TOKEN
+        sync: false
+      - key: KASHI_ADMIN_KEY
+        sync: false

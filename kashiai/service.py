@@ -7,6 +7,7 @@ from datetime import UTC, datetime, timedelta
 import httpx
 
 from .config import Settings
+from .events import MAX_EVENTS, EventStore, load_seed, new_event, to_record
 from .ingest import load_knowledge, normalize_news
 from .retrieval import HybridRetriever
 
@@ -32,10 +33,19 @@ class Corpus:
 
             self.reranker = CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1")
         self.knowledge = load_knowledge(settings.knowledge_path)
-        self.static_index = HybridRetriever(self.knowledge, embed_model, self.reranker)
         self.news = normalize_news(json.loads(settings.news_path.read_text(encoding="utf-8")))
-        self.news_index = HybridRetriever(self.news, embed_model, self.reranker)
         self.lock = threading.Lock()
+        self.event_lock = threading.Lock()
+        self.event_store = EventStore(settings)
+        self.seed_events = load_seed(settings.events_seed_path)
+        self.user_events = []
+        self.events_error = None
+        try:
+            self.user_events = self.event_store.load()
+        except (httpx.HTTPError, ValueError) as exc:
+            log.warning("Event store load failed: %s", type(exc).__name__)
+            self.events_error = "Saved events could not be loaded; showing the built-in list."
+        self._rebuild_events()
         self.refresh_lock = threading.Lock()
         self.last_attempt = None
         self.fetched_at = None
@@ -69,7 +79,7 @@ class Corpus:
             news = normalize_news(items)
             if not news:
                 raise ValueError("Feed contains no usable Varanasi records")
-            index = HybridRetriever(news, self.embed_model, self.reranker)
+            index = HybridRetriever(news + self.event_records, self.embed_model, self.reranker)
             with self.lock:
                 self.news, self.news_index = news, index
                 self.fetched_at = datetime.now(UTC)
@@ -79,6 +89,50 @@ class Corpus:
             self.last_error = "Feed refresh failed; using the last available snapshot."
         finally:
             self.refresh_lock.release()
+
+    def _event_records(self):
+        records = []
+        for event in self.seed_events + self.user_events:
+            try:
+                records.append(to_record(event))
+            except (KeyError, ValueError, TypeError):
+                log.warning("Skipping malformed event %s", event.get("id"))
+        return records
+
+    def _rebuild_events(self):
+        records = self._event_records()
+        static = HybridRetriever(self.knowledge + records, self.embed_model, self.reranker)
+        news_index = HybridRetriever(self.news + records, self.embed_model, self.reranker)
+        with self.lock:
+            self.event_records = records
+            self.static_index, self.news_index = static, news_index
+
+    def list_events(self):
+        events = [dict(e, editable=e.get("origin") == "admin") for e in self.seed_events + self.user_events]
+        return sorted(events, key=lambda e: e["start"])
+
+    def add_event(self, data):
+        with self.event_lock:
+            current = self.event_store.load()  # re-read so concurrent edits are not lost
+            if len(current) >= MAX_EVENTS:
+                raise ValueError(f"The calendar is full ({MAX_EVENTS} events). Delete old events first.")
+            event = new_event(data)
+            current.append(event)
+            self.event_store.save(current)
+            self.user_events = current
+            self._rebuild_events()
+            return event
+
+    def delete_event(self, event_id):
+        with self.event_lock:
+            current = self.event_store.load()
+            remaining = [e for e in current if e.get("id") != event_id]
+            if len(remaining) == len(current):
+                return False
+            self.event_store.save(remaining)
+            self.user_events = remaining
+            self._rebuild_events()
+            return True
 
     def status(self):
         with self.lock:

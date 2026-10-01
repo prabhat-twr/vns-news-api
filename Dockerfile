@@ -19,6 +19,7 @@ RUN if [ -n "$INSTALL_EXTRAS" ]; then pip install --no-cache-dir ".[${INSTALL_EX
     && useradd --create-home --uid 1000 app
 COPY data ./data
 COPY news.json ./news.json
+COPY events.json ./events.json
 COPY --from=web /web/dist ./frontend/dist
 USER app
 ENV PORT=8000

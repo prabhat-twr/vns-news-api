@@ -1,16 +1,18 @@
 import asyncio
+import hmac
 import os
 import threading
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+import httpx
+from fastapi import FastAPI, Header, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from .agent import Assistant
 from .config import Settings
-from .schema import Answer, AskRequest
+from .schema import Answer, AskRequest, EventIn
 from .service import Corpus
 
 
@@ -40,8 +42,8 @@ def create_app(settings=None, corpus=None):
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.origins,
-        allow_methods=["GET", "POST"],
-        allow_headers=["Content-Type"],
+        allow_methods=["GET", "POST", "DELETE"],
+        allow_headers=["Content-Type", "X-Admin-Key"],
         allow_credentials=False,
     )
 
@@ -72,6 +74,48 @@ def create_app(settings=None, corpus=None):
             return app.state.assistant.ask(request)
         finally:
             app.state.slots.release()
+
+    def require_admin(key):
+        if not settings.admin_key:
+            raise HTTPException(503, "Adding events is not enabled on this server.")
+        if not key or not hmac.compare_digest(key.encode(), settings.admin_key.encode()):
+            raise HTTPException(401, "Wrong admin key.")
+
+    @app.get("/api/events")
+    def list_events():
+        corpus = app.state.corpus
+        return {
+            "events": corpus.list_events(),
+            "storage": corpus.event_store.backend,
+            "editing_enabled": bool(settings.admin_key),
+            "error": corpus.events_error,
+        }
+
+    @app.get("/api/admin/check", status_code=204)
+    def admin_check(x_admin_key: str | None = Header(default=None)):
+        require_admin(x_admin_key)
+        return Response(status_code=204)
+
+    @app.post("/api/events", status_code=201)
+    def add_event(event: EventIn, x_admin_key: str | None = Header(default=None)):
+        require_admin(x_admin_key)
+        try:
+            return app.state.corpus.add_event(event)
+        except ValueError as exc:
+            raise HTTPException(409, str(exc)) from exc
+        except httpx.HTTPError as exc:
+            raise HTTPException(502, "Could not save to the event store. Please try again.") from exc
+
+    @app.delete("/api/events/{event_id}", status_code=204)
+    def delete_event(event_id: str, x_admin_key: str | None = Header(default=None)):
+        require_admin(x_admin_key)
+        try:
+            found = app.state.corpus.delete_event(event_id)
+        except httpx.HTTPError as exc:
+            raise HTTPException(502, "Could not update the event store. Please try again.") from exc
+        if not found:
+            raise HTTPException(404, "Event not found (built-in events cannot be deleted).")
+        return Response(status_code=204)
 
     # Serve the built frontend from the same origin when present (single-service deploys).
     web_dir = Path(__file__).resolve().parents[1] / "frontend/dist"

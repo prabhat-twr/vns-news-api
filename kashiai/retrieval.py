@@ -53,7 +53,7 @@ class HybridRetriever:
         eligible = {
             r.id
             for r in self.records.values()
-            if (r.kind == "current_news") == news
+            if (r.kind == "event" or (r.kind == "current_news") == news)
             and (
                 (not since and not until)
                 or (
