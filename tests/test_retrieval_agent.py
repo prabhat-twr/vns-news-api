@@ -180,3 +180,16 @@ def test_hinglish_miss_retries_with_english_query(corpus):
     assert answer.trace[:3] == ["route:knowledge", "rewrite:llm", "tool:search_knowledge"]
     assert any("sarnath" in c.record.id for c in answer.citations)
     assert "Hinglish" in model.calls[1][0].content
+
+
+@pytest.mark.parametrize("text", ["kya haal chaal ?", "Namaste!", "hi", "thanks a lot", "नमस्ते"])
+def test_greetings_skip_search(corpus, text):
+    model = RecordingModel("Mast hoon! Aap batao?", "unused")
+    answer = Assistant(corpus, model).ask(AskRequest(question=text))
+    assert "small_talk" in answer.trace and not answer.citations
+    assert answer.generation_mode == "llm" and len(model.calls) == 1
+
+
+def test_question_starting_with_hi_still_searches(corpus):
+    answer = Assistant(corpus).ask(AskRequest(question="hi, why is Sarnath important for Buddhists?"))
+    assert "small_talk" not in answer.trace and answer.citations

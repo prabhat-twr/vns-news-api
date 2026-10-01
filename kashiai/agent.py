@@ -46,6 +46,19 @@ def route_question(request):
     return "knowledge"
 
 
+_GREETING = re.compile(
+    r"^\W*(hi+|hello|hey|namaste|namaskar|pranam|ram ram|har har mahadev|kya haal( chaal)?|haal chaal|"
+    r"kaise ho|kaisa hai|kaise hain|kaisi ho|how are you|good (morning|afternoon|evening|night)|thanks?|"
+    r"thank you|shukriya|dhanyavaad|dhanyawad|ok|okay|bye|नमस्ते|नमस्कार|प्रणाम|कैसे हो|क्या हाल|धन्यवाद)\b",
+    re.IGNORECASE,
+)
+
+
+def is_small_talk(question):
+    """Short greetings and pleasantries need a chat reply, not a source search."""
+    return len(question.split()) <= 5 and bool(_GREETING.match(question.strip()))
+
+
 def time_window(request, now=None):
     today = (now or datetime.now(UTC)).astimezone(IST).date()
     if request.since or request.until:
@@ -174,8 +187,10 @@ class Assistant:
 
     def _retrieve(self, name):
         def run(state):
-            hits = self.tools[name].invoke(state["request"].model_dump())
             trace = list(state["trace"])
+            if self.model and is_small_talk((state.get("chat") or state["request"]).question):
+                return {"hits": [], "warnings": [], "trace": trace + ["small_talk"]}
+            hits = self.tools[name].invoke(state["request"].model_dump())
             # Nothing found (e.g. Hinglish like "kya khaye"): retry once with an English search query.
             if not hits and self.model and not state.get("rewritten"):
                 query = self._rewrite(state.get("chat") or state["request"])

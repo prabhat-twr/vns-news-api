@@ -1,4 +1,5 @@
 import asyncio
+import os
 import threading
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -48,6 +49,8 @@ def create_app(settings=None, corpus=None):
     def health():
         return {
             "status": "ok",
+            # Render sets this, so a deploy can be confirmed from outside.
+            "commit": os.getenv("RENDER_GIT_COMMIT", "")[:7],
             "retrieval_mode": app.state.corpus.static_index.mode,
             "model_provider": settings.provider,
             "knowledge_records": len(app.state.corpus.knowledge),
