@@ -242,6 +242,12 @@ async function ask(question, route = "auto") {
   setComposer("");
   $("submit").disabled = true;
 
+  // The last few turns let the server understand follow-ups like "tell me more".
+  const turns = history.slice(-6).map((m) =>
+    m.role === "user"
+      ? { role: "user", content: m.text.slice(0, 4000) }
+      : { role: "assistant", content: m.data.answer.slice(0, 4000) },
+  );
   userBubble(question);
   history.push({ role: "user", text: question });
   save();
@@ -251,7 +257,7 @@ async function ask(question, route = "auto") {
     const data = await request("/api/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question, language, route }),
+      body: JSON.stringify({ question, language, route, history: turns }),
     });
     stop();
     renderAnswer(data, true);

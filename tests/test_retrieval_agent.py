@@ -124,3 +124,44 @@ def test_grouped_citations_normalised(corpus):
     answer = Assistant(corpus, FakeModel("Sarnath matters [1, 2]. More [n].")).ask(AskRequest(question="Sarnath"))
     assert answer.generation_mode == "llm"
     assert "[1][2]" in answer.answer and "[n]" not in answer.answer
+
+
+def test_follow_up_uses_conversation_without_model(corpus):
+    history = [
+        {"role": "user", "content": "Why is Sarnath important?"},
+        {"role": "assistant", "content": "Sarnath is linked to the Buddha's first teaching. [1]"},
+    ]
+    answer = Assistant(corpus).ask(AskRequest(question="tell me more", history=history))
+    assert answer.trace[0] == "contextualize:concat"
+    assert any("sarnath" in c.record.id for c in answer.citations)
+
+
+class RecordingModel:
+    def __init__(self, rewrite, reply):
+        self.replies = [rewrite, reply]
+        self.calls = []
+
+    def invoke(self, messages):
+        assert "untrusted" in messages[0].content
+        self.calls.append(messages)
+        return AIMessage(content=self.replies[len(self.calls) - 1])
+
+
+def test_follow_up_rewritten_and_history_sent_to_model(corpus):
+    model = RecordingModel("What is Sarnath known for?", "It is known for the first teaching. [1]")
+    history = [
+        {"role": "user", "content": "Tell me about Sarnath"},
+        {"role": "assistant", "content": "Sarnath is near Varanasi. [2]"},
+    ]
+    answer = Assistant(corpus, model).ask(AskRequest(question="what is it known for?", history=history))
+    assert answer.trace[0] == "contextualize:llm"
+    assert answer.generation_mode == "llm"
+    assert any("sarnath" in c.record.id for c in answer.citations)
+    synth = model.calls[1]
+    assert [type(m).__name__ for m in synth] == ["SystemMessage", "HumanMessage", "AIMessage", "HumanMessage"]
+    assert "[2]" not in synth[2].content  # old citation markers are stripped from history
+
+
+def test_standalone_question_skips_rewrite(corpus):
+    answer = Assistant(corpus).ask(AskRequest(question="What is Dev Deepawali?"))
+    assert not answer.trace[0].startswith("contextualize")

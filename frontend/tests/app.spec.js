@@ -92,3 +92,37 @@ test("source library and new chat", async ({ page }) => {
   await page.getByRole("button", { name: "New chat" }).click();
   await expect(page.getByText("Namaste! I'm KashiAI.")).toBeVisible();
 });
+test("follow-up questions carry the conversation", async ({ page }) => {
+  const bodies = [];
+  await page.route("**/api/ask", async (route) => {
+    const body = route.request().postDataJSON();
+    bodies.push(body);
+    await route.fulfill({
+      json: {
+        answer: `Answer ${bodies.length}`,
+        language: "en",
+        generation_mode: "llm",
+        route: "knowledge",
+        warnings: [],
+        citations: [],
+        trace: [],
+        retrieval_mode: "bm25",
+        elapsed_ms: 10,
+        feed_status: status,
+      },
+    });
+  });
+  await page.goto("/");
+  const box = page.getByLabel("Message KashiAI");
+  await box.fill("Tell me about Sarnath");
+  await box.press("Enter");
+  await expect(page.locator(".row.bot .bubble")).toHaveText("Answer 1");
+  await box.fill("tell me more");
+  await box.press("Enter");
+  await expect(page.locator(".row.bot .bubble").last()).toHaveText("Answer 2");
+  expect(bodies[0].history).toEqual([]);
+  expect(bodies[1].history).toEqual([
+    { role: "user", content: "Tell me about Sarnath" },
+    { role: "assistant", content: "Answer 1" },
+  ]);
+});

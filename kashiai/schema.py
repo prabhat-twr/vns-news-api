@@ -25,8 +25,15 @@ class Record(BaseModel):
     rights: str = "Original editorial summary; source content retains its own rights."
 
 
+class Turn(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str = Field(max_length=4000)
+
+
 class AskRequest(BaseModel):
     question: str = Field(min_length=2, max_length=1000)
+    # Earlier chat turns, oldest first, so follow-up questions keep their context.
+    history: list[Turn] = Field(default_factory=list, max_length=12)
     language: Literal["auto", "hi", "en"] = "auto"
     route: Route = "auto"
     since: date | None = None
