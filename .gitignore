@@ -10,3 +10,4 @@ frontend/dist/
 playwright-report/
 test-results/
 build/
+*.local

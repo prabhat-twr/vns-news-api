@@ -38,18 +38,22 @@ test("question, safe citations and source labels", async ({ page }) => {
     }),
   );
   await page.goto("/");
-  await page
-    .getByLabel("What would you like to discover?")
-    .fill("Tell me about Sarnath");
-  await page.getByRole("button", { name: "Ask KashiAI" }).click();
-  await expect(page.locator("#answer")).toContainText("first teaching");
-  await expect(page.locator(".citation")).toContainText("Historical fact");
-  await expect(page.locator(".citation script")).toHaveCount(0);
-  await expect(page.locator(".citation a")).toHaveAttribute(
+  await page.getByLabel("Message KashiAI").fill("Tell me about Sarnath");
+  await page.getByLabel("Message KashiAI").press("Enter");
+  await expect(page.locator(".row.user .bubble")).toHaveText(
+    "Tell me about Sarnath",
+  );
+  await expect(page.locator(".row.bot .bubble")).toContainText(
+    "first teaching",
+  );
+  await expect(page.locator(".cite")).toHaveText("1");
+  await expect(page.locator(".source-card")).toContainText("Historical fact");
+  await expect(page.locator(".source-card script")).toHaveCount(0);
+  await expect(page.locator(".source-card a")).toHaveAttribute(
     "rel",
     "noopener noreferrer",
   );
-  await expect(page.locator("#answer-mode")).toHaveText("Source extracts");
+  await expect(page.locator(".mode")).toHaveText("Source extracts");
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
@@ -59,11 +63,12 @@ test("question, safe citations and source labels", async ({ page }) => {
 test("offline errors recover and inputs remain usable", async ({ page }) => {
   await page.route("**/api/ask", (route) => route.abort());
   await page.goto("/");
-  await page.getByRole("button", { name: "History of the ghats" }).click();
-  await expect(page.getByRole("alert")).toContainText("Cannot reach");
-  await expect(page.getByRole("button", { name: "Ask KashiAI" })).toBeEnabled();
+  await page.getByRole("button", { name: /History of the ghats/ }).click();
+  await expect(page.getByRole("alert")).toContainText("can't reach");
+  await page.getByLabel("Message KashiAI").fill("Try again");
+  await expect(page.getByRole("button", { name: "Send" })).toBeEnabled();
 });
-test("date validation and source library", async ({ page }) => {
+test("source library and new chat", async ({ page }) => {
   await page.route("**/api/sources", (route) =>
     route.fulfill({
       json: {
@@ -80,12 +85,10 @@ test("date validation and source library", async ({ page }) => {
     }),
   );
   await page.goto("/");
-  await page.getByText("Focus your search").click();
-  await page.locator("#question").fill("flood news");
-  await page.locator("#since").fill("2026-02-01");
-  await page.locator("#until").fill("2026-01-01");
-  await page.getByRole("button", { name: "Ask KashiAI" }).click();
-  await expect(page.getByRole("alert")).toContainText("start date");
   await page.getByRole("button", { name: "Source library" }).click();
   await expect(page.locator("#library-items")).toContainText("Sarnath");
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#library")).toBeHidden();
+  await page.getByRole("button", { name: "New chat" }).click();
+  await expect(page.getByText("Namaste! I'm KashiAI.")).toBeVisible();
 });

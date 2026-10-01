@@ -4,6 +4,7 @@ COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 COPY frontend/index.html ./
 COPY frontend/src ./src
+COPY frontend/public ./public
 # "/" makes the frontend call the API on its own origin.
 RUN VITE_API_URL=/ npm run build
 
