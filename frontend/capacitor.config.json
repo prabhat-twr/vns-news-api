@@ -3,8 +3,13 @@
   "appName": "KashiAI",
   "webDir": "dist",
   "server": {
-    "url": "https://kashiai-gls4.onrender.com",
-    "errorPath": "offline.html"
+    "androidScheme": "https",
+    "hostname": "kashiai.app"
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
   },
   "android": {
     "backgroundColor": "#f7f5f0"
