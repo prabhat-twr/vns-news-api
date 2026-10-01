@@ -93,7 +93,7 @@ class FakeModel:
 
 @pytest.mark.parametrize(
     "content",
-    ["Invented [999]", "Uncited answer","URL https://bad.test [1]"],
+    ["Invented [999]", "URL https://bad.test [1]", ""],
 )
 def test_citation_guard_falls_back(corpus, content):
     answer = Assistant(corpus, FakeModel(content)).ask(AskRequest(question="Sarnath"))
@@ -112,3 +112,15 @@ def test_uncited_background_paragraph_allowed(corpus):
     content = "Sarnath lies just outside Varanasi.\n\nIt is associated with the Buddha's first teaching. [1]"
     answer = Assistant(corpus, FakeModel(content)).ask(AskRequest(question="Sarnath"))
     assert answer.generation_mode == "llm"
+
+
+def test_uncited_answer_is_flagged_as_general_knowledge(corpus):
+    answer = Assistant(corpus, FakeModel("General background about the ghats.")).ask(AskRequest(question="Sarnath"))
+    assert answer.generation_mode == "llm"
+    assert any("general background" in w for w in answer.warnings)
+
+
+def test_grouped_citations_normalised(corpus):
+    answer = Assistant(corpus, FakeModel("Sarnath matters [1, 2]. More [n].")).ask(AskRequest(question="Sarnath"))
+    assert answer.generation_mode == "llm"
+    assert "[1][2]" in answer.answer and "[n]" not in answer.answer
