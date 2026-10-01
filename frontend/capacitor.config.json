@@ -1,0 +1,12 @@
+{
+  "appId": "in.kashiai.app",
+  "appName": "KashiAI",
+  "webDir": "dist",
+  "server": {
+    "url": "https://kashiai-gls4.onrender.com",
+    "errorPath": "offline.html"
+  },
+  "android": {
+    "backgroundColor": "#f7f5f0"
+  }
+}

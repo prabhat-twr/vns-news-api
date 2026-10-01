@@ -91,7 +91,9 @@ class Assistant:
         elif model is None and settings.provider == "openai":
             from langchain_openai import ChatOpenAI
 
-            self.model = ChatOpenAI(model=settings.model, temperature=0, timeout=45, max_retries=0)
+            self.model = ChatOpenAI(
+                model=settings.model, temperature=0, max_tokens=1024, timeout=45, max_retries=0
+            )
         elif model is None and settings.provider != "extractive":
             raise ValueError("KASHI_PROVIDER must be ollama, extractive, or openai")
         self.tools = {}
