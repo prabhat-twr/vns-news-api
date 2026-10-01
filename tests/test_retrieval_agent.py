@@ -167,7 +167,7 @@ def test_standalone_question_skips_rewrite(corpus):
 
 
 def test_small_talk_gets_a_chat_reply_not_an_abstention(corpus):
-    model = RecordingModel("hello how are you", "Sab badhiya! Banaras ke baare mein kya jaanna hai? [1]")
+    model = RecordingModel("NONE", "Sab badhiya! Banaras ke baare mein kya jaanna hai? [1]")
     answer = Assistant(corpus, model).ask(AskRequest(question="kya haal chaal ?"))
     assert answer.generation_mode == "llm"
     assert answer.answer == "Sab badhiya! Banaras ke baare mein kya jaanna hai?"  # stray marker removed
