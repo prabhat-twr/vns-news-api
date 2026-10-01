@@ -93,7 +93,7 @@ class FakeModel:
 
 @pytest.mark.parametrize(
     "content",
-    ["Invented [999]", "Uncited answer", "A claim [1]\n\nUncited claim", "URL https://bad.test [1]"],
+    ["Invented [999]", "Uncited answer","URL https://bad.test [1]"],
 )
 def test_citation_guard_falls_back(corpus, content):
     answer = Assistant(corpus, FakeModel(content)).ask(AskRequest(question="Sarnath"))
@@ -105,4 +105,10 @@ def test_valid_model_response(corpus):
     answer = Assistant(corpus, FakeModel("Sarnath is associated with the Buddha's first teaching. [1]")).ask(
         AskRequest(question="Sarnath")
     )
+    assert answer.generation_mode == "llm"
+
+
+def test_uncited_background_paragraph_allowed(corpus):
+    content = "Sarnath lies just outside Varanasi.\n\nIt is associated with the Buddha's first teaching. [1]"
+    answer = Assistant(corpus, FakeModel(content)).ask(AskRequest(question="Sarnath"))
     assert answer.generation_mode == "llm"
