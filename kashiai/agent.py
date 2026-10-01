@@ -49,7 +49,7 @@ def route_question(request):
 _GREETING = re.compile(
     r"^\W*(hi+|hello|hey|namaste|namaskar|pranam|ram ram|har har mahadev|kya haal( chaal)?|haal chaal|"
     r"kaise ho|kaisa hai|kaise hain|kaisi ho|how are you|good (morning|afternoon|evening|night)|thanks?|"
-    r"thank you|shukriya|dhanyavaad|dhanyawad|ok|okay|bye|नमस्ते|नमस्कार|प्रणाम|कैसे हो|क्या हाल|धन्यवाद)\b",
+    r"thank you|shukriya|dhanyavaad|dhanyawad|ok|okay|bye|नमस्ते|नमस्कार|प्रणाम|कैसे हो|क्या हाल|धन्यवाद)(?=\s|[!?.,।]|$)",
     re.IGNORECASE,
 )
 

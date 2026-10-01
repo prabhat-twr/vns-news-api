@@ -167,7 +167,7 @@ def test_standalone_question_skips_rewrite(corpus):
 
 
 def test_small_talk_gets_a_chat_reply_not_an_abstention(corpus):
-    model = RecordingModel("NONE", "Sab badhiya! Banaras ke baare mein kya jaanna hai? [1]")
+    model = RecordingModel("Sab badhiya! Banaras ke baare mein kya jaanna hai? [1]", "unused")
     answer = Assistant(corpus, model).ask(AskRequest(question="kya haal chaal ?"))
     assert answer.generation_mode == "llm"
     assert answer.answer == "Sab badhiya! Banaras ke baare mein kya jaanna hai?"  # stray marker removed
@@ -176,7 +176,7 @@ def test_small_talk_gets_a_chat_reply_not_an_abstention(corpus):
 
 def test_hinglish_miss_retries_with_english_query(corpus):
     model = RecordingModel("Sarnath Buddha first teaching", "Sarnath mein Buddha ne pehla updesh diya. [1]")
-    answer = Assistant(corpus, model).ask(AskRequest(question="kya haal chaal ?"))
+    answer = Assistant(corpus, model).ask(AskRequest(question="woh jagah jahan pehla updesh hua?"))
     assert answer.trace[:3] == ["route:knowledge", "rewrite:llm", "tool:search_knowledge"]
     assert any("sarnath" in c.record.id for c in answer.citations)
     assert "Hinglish" in model.calls[1][0].content
