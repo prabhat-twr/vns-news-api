@@ -15,7 +15,7 @@ COPY requirements-tested.txt ./
 COPY kashiai ./kashiai
 ARG INSTALL_EXTRAS=""
 RUN if [ -n "$INSTALL_EXTRAS" ]; then pip install --no-cache-dir ".[${INSTALL_EXTRAS}]"; \
-    else pip install --no-cache-dir -c requirements-tested.txt .; fi \
+    else pip install --no-cache-dir -c requirements-tested.txt ".[paid]"; fi \
     && useradd --create-home --uid 1000 app
 COPY data ./data
 COPY news.json ./news.json
