@@ -1,0 +1,100 @@
+from datetime import date, datetime
+from typing import Literal
+
+from pydantic import BaseModel, Field, model_validator
+
+Kind = Literal["historical_fact", "official_information", "religious_tradition", "current_news", "event"]
+EventCategory = Literal["religious", "cultural", "music", "food", "fair", "exhibition", "sports", "other"]
+Route = Literal["auto", "knowledge", "news", "timeline", "compare"]
+
+
+class Record(BaseModel):
+    id: str
+    title: str
+    text: str
+    text_hi: str = ""
+    source_url: str
+    publisher: str
+    category: str
+    kind: Kind
+    language: str = "en"
+    aliases: list[str] = Field(default_factory=list)
+    published_at: datetime | None = None
+    date_basis: str = "unknown"
+    retrieved_at: datetime | None = None
+    reviewed_on: date | None = None
+    rights: str = "Original editorial summary; source content retains its own rights."
+
+
+class Turn(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str = Field(max_length=4000)
+
+
+class AskRequest(BaseModel):
+    question: str = Field(min_length=2, max_length=1000)
+    # Earlier chat turns, oldest first, so follow-up questions keep their context.
+    history: list[Turn] = Field(default_factory=list, max_length=12)
+    language: Literal["auto", "hi", "en"] = "auto"
+    route: Route = "auto"
+    since: date | None = None
+    until: date | None = None
+    top_k: int = Field(default=5, ge=1, le=10)
+
+    @model_validator(mode="after")
+    def validate_request(self):
+        self.question = self.question.strip()
+        if len(self.question) < 2:
+            raise ValueError("Please enter a question.")
+        if self.since and self.until and self.since > self.until:
+            raise ValueError("since must be on or before until")
+        return self
+
+
+class Citation(BaseModel):
+    number: int
+    record: Record
+    score: float
+
+
+class Answer(BaseModel):
+    answer: str
+    language: str
+    route: str
+    citations: list[Citation]
+    warnings: list[str]
+    trace: list[str]
+    retrieval_mode: str
+    generation_mode: str
+    elapsed_ms: float
+    feed_status: dict
+
+
+class EventIn(BaseModel):
+    name: str = Field(min_length=3, max_length=150)
+    category: EventCategory = "other"
+    # ISO date ("2026-11-15") for all-day events or local datetime ("2026-11-15T18:30"), Asia/Kolkata.
+    start: str = Field(min_length=10, max_length=40)
+    end: str | None = Field(default=None, max_length=40)
+    venue: str = Field(default="", max_length=150)
+    description: str = Field(default="", max_length=1000)
+    source_url: str = Field(default="", max_length=500)
+
+    @model_validator(mode="after")
+    def validate_event(self):
+        from .events import parse_when
+        from .ingest import canonical_url
+
+        self.name = self.name.strip()
+        if len(self.name) < 3:
+            raise ValueError("Please give the event a name.")
+        try:
+            start, _ = parse_when(self.start)
+            end = parse_when(self.end)[0] if self.end and self.end.strip() else None
+        except ValueError as exc:
+            raise ValueError("Dates must look like 2026-11-15 or 2026-11-15T18:30.") from exc
+        if end and end < start:
+            raise ValueError("The end must be on or after the start.")
+        if self.source_url.strip() and not canonical_url(self.source_url):
+            raise ValueError("The link must be an http(s) URL.")
+        return self
