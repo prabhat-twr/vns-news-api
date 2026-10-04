@@ -1,0 +1,20 @@
+services:
+  api:
+    build:
+      context: .
+      args:
+        INSTALL_EXTRAS: dense
+    environment:
+      KASHI_PROVIDER: ollama
+      KASHI_EMBEDDINGS: huggingface
+      OLLAMA_BASE_URL: http://ollama:11434
+      HF_HOME: /home/app/.cache/huggingface
+    volumes:
+      - embeddings:/home/app/.cache
+    depends_on: [ollama]
+  ollama:
+    image: ollama/ollama:0.11.11
+    volumes: ["ollama:/root/.ollama"]
+volumes:
+  embeddings:
+  ollama:
