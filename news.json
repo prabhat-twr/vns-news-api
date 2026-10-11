@@ -1,5 +1,21 @@
 [
   {
+    "cityId": "mirzapur",
+    "cityName": "मिर्जापुर",
+    "title": "यूपी: राजनीति में आने के बाद पहली बार मिर्जापुर पहुंचीं पूर्व IAS दिव्या मित्तल, लगे नारे जिंदाबाद के नारे",
+    "summary": "पूर्व आईएएस अधिकारी दिव्या मित्तल का राजनीति में आने की घोषणा के बाद रविवार को पहली बार मिर्जापुर पहुंचने पर जोरदार स्वागत किया गया। जिगना क्षेत्र में स्थानीय लोगों और समर्थकों ने उनका स्वागत किया।",
+    "content": "पूर्व आईएएस अधिकारी दिव्या मित्तल का राजनीति में आने की घोषणा के बाद रविवार को पहली बार मिर्जापुर पहुंचने पर जोरदार स्वागत किया गया। जिगना क्षेत्र में स्थानीय लोगों और समर्थकों ने उनका स्वागत किया।",
+    "location": "मिर्जापुर",
+    "date": "11 Oct 2026, 10:38 AM",
+    "imageUrl": "",
+    "sourceUrl": "https://www.amarujala.com/uttar-pradesh/mirzapur/former-ias-officer-divya-mittal-visited-mirzapur-for-the-first-time-after-entering-politics-2026-10-11",
+    "sourceName": "Amar Ujala",
+    "isBreaking": true,
+    "id": "mirzapur-cde06a9c2b44",
+    "firstSeenAt": "2026-10-11T18:48:49+00:00",
+    "updatedAt": "2026-10-11T18:48:49+00:00"
+  },
+  {
     "cityId": "varanasi",
     "cityName": "वाराणसी",
     "title": "काशी की सड़कों पर लस्सी बेचते और रिक्शा चलाते दिखे सांसद मनोज तिवारी: शो 'पति, पत्नी और पंगा' की शूटिंग के दौरान उमड़ी भीड़",
@@ -10,10 +26,10 @@
     "imageUrl": "https://www.jagranimages.com/images/2026/10/11/template/image/manoj-1791724953700.webp",
     "sourceUrl": "https://www.jagran.com/uttar-pradesh/varanasi-city-mp-manoj-tiwari-spotted-selling-lassi-and-driving-a-rickshaw-on-the-streets-of-kashi-a-crowd-gathered-during-the-shoot-of-the-show-pati-patni-aur-panga-40401747.html",
     "sourceName": "Dainik Jagran",
-    "isBreaking": true,
+    "isBreaking": false,
     "id": "varanasi-83aa5d2b9929",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -29,7 +45,7 @@
     "isBreaking": false,
     "id": "varanasi-ec7a201b7f60",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -45,7 +61,7 @@
     "isBreaking": false,
     "id": "varanasi-20bf0746918b",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -61,7 +77,7 @@
     "isBreaking": false,
     "id": "varanasi-e7180763dc67",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -77,7 +93,7 @@
     "isBreaking": false,
     "id": "varanasi-3e214b51b9f4",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -93,7 +109,7 @@
     "isBreaking": false,
     "id": "varanasi-23ff6f1418f5",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -109,7 +125,7 @@
     "isBreaking": false,
     "id": "varanasi-64c0174f4e14",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -125,7 +141,7 @@
     "isBreaking": false,
     "id": "varanasi-ee4adf58edbc",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -141,7 +157,7 @@
     "isBreaking": false,
     "id": "varanasi-5519b68a5687",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -157,7 +173,7 @@
     "isBreaking": false,
     "id": "varanasi-044f19677958",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -173,7 +189,7 @@
     "isBreaking": false,
     "id": "varanasi-8248de30cd78",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -189,7 +205,7 @@
     "isBreaking": false,
     "id": "varanasi-85b8cb7da830",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -205,7 +221,7 @@
     "isBreaking": false,
     "id": "varanasi-eb8cc28da9e8",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -221,7 +237,7 @@
     "isBreaking": false,
     "id": "varanasi-37d88350e220",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -237,7 +253,7 @@
     "isBreaking": false,
     "id": "mirzapur-96d2fe3aca26",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -253,7 +269,7 @@
     "isBreaking": false,
     "id": "mirzapur-d85ea6571be7",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -269,7 +285,7 @@
     "isBreaking": false,
     "id": "mirzapur-3272b09860af",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -285,7 +301,7 @@
     "isBreaking": false,
     "id": "mirzapur-71da10f37df9",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -301,7 +317,7 @@
     "isBreaking": false,
     "id": "mirzapur-51daa968575f",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -317,7 +333,7 @@
     "isBreaking": false,
     "id": "jaunpur-613d6a837e4e",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -333,7 +349,7 @@
     "isBreaking": false,
     "id": "jaunpur-e99076788516",
     "firstSeenAt": "2026-10-11T14:01:10+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -349,7 +365,7 @@
     "isBreaking": false,
     "id": "varanasi-a37c69bc4ac0",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -365,7 +381,7 @@
     "isBreaking": false,
     "id": "varanasi-278b5859ab3b",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -381,7 +397,7 @@
     "isBreaking": false,
     "id": "varanasi-46f69284a019",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -397,7 +413,7 @@
     "isBreaking": false,
     "id": "varanasi-4907cc2de7dc",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -413,7 +429,7 @@
     "isBreaking": false,
     "id": "varanasi-62dfa99d7702",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -429,7 +445,7 @@
     "isBreaking": false,
     "id": "varanasi-0d1c11da5793",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -445,7 +461,7 @@
     "isBreaking": false,
     "id": "varanasi-b7b999631df4",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -461,7 +477,7 @@
     "isBreaking": false,
     "id": "varanasi-b1abc34bbcf4",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -477,7 +493,7 @@
     "isBreaking": false,
     "id": "varanasi-6fd75e59038b",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -493,7 +509,7 @@
     "isBreaking": false,
     "id": "varanasi-2a44f1d3d3c3",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -509,7 +525,7 @@
     "isBreaking": false,
     "id": "varanasi-d29d5adc41d0",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -525,7 +541,7 @@
     "isBreaking": false,
     "id": "varanasi-4eb29f9add87",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -541,7 +557,7 @@
     "isBreaking": false,
     "id": "varanasi-9336ac805e3e",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -557,7 +573,7 @@
     "isBreaking": false,
     "id": "varanasi-f06fb3ac8c41",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -573,7 +589,7 @@
     "isBreaking": false,
     "id": "varanasi-edf21cedb8f2",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -589,7 +605,7 @@
     "isBreaking": false,
     "id": "mirzapur-e46602dc91a2",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -605,7 +621,7 @@
     "isBreaking": false,
     "id": "mirzapur-f9c78485875f",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -621,7 +637,7 @@
     "isBreaking": false,
     "id": "jaunpur-1f81bff204b3",
     "firstSeenAt": "2026-10-11T07:06:12+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -637,7 +653,7 @@
     "isBreaking": false,
     "id": "varanasi-b915050dd579",
     "firstSeenAt": "2026-10-11T00:56:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -653,7 +669,7 @@
     "isBreaking": false,
     "id": "varanasi-7bb5787a7b5b",
     "firstSeenAt": "2026-10-11T00:56:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -669,7 +685,7 @@
     "isBreaking": false,
     "id": "varanasi-5c14b69edaa1",
     "firstSeenAt": "2026-10-11T00:56:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -685,7 +701,7 @@
     "isBreaking": false,
     "id": "varanasi-012182c930ae",
     "firstSeenAt": "2026-10-11T00:56:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -701,7 +717,7 @@
     "isBreaking": false,
     "id": "mirzapur-c33a41a6c65e",
     "firstSeenAt": "2026-10-11T00:56:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -717,7 +733,7 @@
     "isBreaking": false,
     "id": "mirzapur-fffb2d26b53f",
     "firstSeenAt": "2026-10-11T00:56:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -733,7 +749,7 @@
     "isBreaking": false,
     "id": "varanasi-f96afa2fb17c",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -749,7 +765,7 @@
     "isBreaking": false,
     "id": "varanasi-66cd47762ffa",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -765,7 +781,7 @@
     "isBreaking": false,
     "id": "varanasi-1a3320513607",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -781,7 +797,7 @@
     "isBreaking": false,
     "id": "varanasi-c64ce6901749",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -797,7 +813,7 @@
     "isBreaking": false,
     "id": "varanasi-653aaa602e64",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -813,7 +829,7 @@
     "isBreaking": false,
     "id": "varanasi-fd4b420848d3",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -829,7 +845,7 @@
     "isBreaking": false,
     "id": "varanasi-1f9706b6d2c7",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -845,7 +861,7 @@
     "isBreaking": false,
     "id": "varanasi-1cf07aa86ea7",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -861,7 +877,7 @@
     "isBreaking": false,
     "id": "mirzapur-183cb0b18b06",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -877,7 +893,7 @@
     "isBreaking": false,
     "id": "mirzapur-1d821f818861",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -893,7 +909,7 @@
     "isBreaking": false,
     "id": "mirzapur-ed4f74a6f76d",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -909,7 +925,7 @@
     "isBreaking": false,
     "id": "mirzapur-0d0ccb82de95",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -925,7 +941,7 @@
     "isBreaking": false,
     "id": "mirzapur-ebf3ce92dbc2",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -941,7 +957,7 @@
     "isBreaking": false,
     "id": "mirzapur-207bb58acdb6",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -957,7 +973,7 @@
     "isBreaking": false,
     "id": "mirzapur-0cc7b12143da",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -973,7 +989,7 @@
     "isBreaking": false,
     "id": "mirzapur-5bf8aad40e23",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -989,7 +1005,7 @@
     "isBreaking": false,
     "id": "jaunpur-4ec7efbf9763",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1005,7 +1021,7 @@
     "isBreaking": false,
     "id": "jaunpur-e1cd6d0e2ef5",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1021,7 +1037,7 @@
     "isBreaking": false,
     "id": "jaunpur-83efd7f51d54",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1037,7 +1053,7 @@
     "isBreaking": false,
     "id": "jaunpur-9612e0ab75f6",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1053,7 +1069,7 @@
     "isBreaking": false,
     "id": "jaunpur-5c3658edd9ec",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1069,7 +1085,7 @@
     "isBreaking": false,
     "id": "jaunpur-0bb66a0f7209",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1085,7 +1101,7 @@
     "isBreaking": false,
     "id": "jaunpur-8aec019112f9",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1101,7 +1117,7 @@
     "isBreaking": false,
     "id": "jaunpur-c416cabc2380",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1117,7 +1133,7 @@
     "isBreaking": false,
     "id": "jaunpur-403a0b695142",
     "firstSeenAt": "2026-10-10T21:35:49+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1133,7 +1149,7 @@
     "isBreaking": false,
     "id": "varanasi-a5a7674ef8f5",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1149,7 +1165,7 @@
     "isBreaking": false,
     "id": "varanasi-fe8f0d801cb6",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1165,7 +1181,7 @@
     "isBreaking": false,
     "id": "varanasi-0eedccba37d6",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1181,7 +1197,7 @@
     "isBreaking": false,
     "id": "varanasi-4fada01d12e6",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1197,7 +1213,7 @@
     "isBreaking": false,
     "id": "varanasi-d138b748e0a3",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1213,7 +1229,7 @@
     "isBreaking": false,
     "id": "varanasi-0e8627e343be",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1229,7 +1245,7 @@
     "isBreaking": false,
     "id": "varanasi-aace5b5c4596",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1245,7 +1261,7 @@
     "isBreaking": false,
     "id": "varanasi-f9af91dcb7f4",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1261,7 +1277,7 @@
     "isBreaking": false,
     "id": "varanasi-edd96d3659ad",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1277,7 +1293,7 @@
     "isBreaking": false,
     "id": "varanasi-75d42ef48dfc",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1293,7 +1309,7 @@
     "isBreaking": false,
     "id": "varanasi-20570bf116d3",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1309,7 +1325,7 @@
     "isBreaking": false,
     "id": "varanasi-198e04f78d66",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1325,7 +1341,7 @@
     "isBreaking": false,
     "id": "varanasi-1a0fe36b4ce2",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1341,7 +1357,7 @@
     "isBreaking": false,
     "id": "varanasi-4f24543966ff",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1357,7 +1373,7 @@
     "isBreaking": false,
     "id": "varanasi-bdc03a1ba8dd",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -1373,7 +1389,7 @@
     "isBreaking": false,
     "id": "mirzapur-e0e6aed514fe",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1389,7 +1405,7 @@
     "isBreaking": false,
     "id": "jaunpur-dcfb97be8f33",
     "firstSeenAt": "2026-10-10T17:48:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1405,7 +1421,7 @@
     "isBreaking": false,
     "id": "varanasi-8fbfd9309c84",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1421,7 +1437,7 @@
     "isBreaking": false,
     "id": "varanasi-fde91107fb0f",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1437,7 +1453,7 @@
     "isBreaking": false,
     "id": "varanasi-10315340d3c1",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1453,7 +1469,7 @@
     "isBreaking": false,
     "id": "varanasi-6a80b7eb9d90",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1469,7 +1485,7 @@
     "isBreaking": false,
     "id": "varanasi-cfa4a71c9792",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1485,7 +1501,7 @@
     "isBreaking": false,
     "id": "varanasi-502582b17d22",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1501,7 +1517,7 @@
     "isBreaking": false,
     "id": "varanasi-b8f07ef7ed4b",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1517,7 +1533,7 @@
     "isBreaking": false,
     "id": "varanasi-6281efdb0237",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1533,7 +1549,7 @@
     "isBreaking": false,
     "id": "varanasi-de74c0be0090",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1549,7 +1565,7 @@
     "isBreaking": false,
     "id": "varanasi-756a1218bb8f",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1565,7 +1581,7 @@
     "isBreaking": false,
     "id": "varanasi-a42de6581a86",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1581,7 +1597,7 @@
     "isBreaking": false,
     "id": "varanasi-08fedb4f321d",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1597,7 +1613,7 @@
     "isBreaking": false,
     "id": "varanasi-c119c2fdcc80",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1613,7 +1629,7 @@
     "isBreaking": false,
     "id": "varanasi-b434ed2edec3",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1629,7 +1645,7 @@
     "isBreaking": false,
     "id": "varanasi-d50c87a8fff7",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1645,7 +1661,7 @@
     "isBreaking": false,
     "id": "varanasi-64af439b71e3",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -1661,7 +1677,7 @@
     "isBreaking": false,
     "id": "mirzapur-8f0042db0fa6",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -1677,7 +1693,7 @@
     "isBreaking": false,
     "id": "mirzapur-5a57d2e3c1bd",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -1693,7 +1709,7 @@
     "isBreaking": false,
     "id": "mirzapur-7657644ba05b",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -1709,7 +1725,7 @@
     "isBreaking": false,
     "id": "mirzapur-dc2adafcc3e4",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1725,7 +1741,7 @@
     "isBreaking": false,
     "id": "jaunpur-4675b5c2d3bb",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1741,7 +1757,7 @@
     "isBreaking": false,
     "id": "jaunpur-6356210b3f86",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1757,7 +1773,7 @@
     "isBreaking": false,
     "id": "jaunpur-d16bc20a174f",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1773,7 +1789,7 @@
     "isBreaking": false,
     "id": "jaunpur-3ed4f4ccb7cd",
     "firstSeenAt": "2026-10-10T12:23:50+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1789,7 +1805,7 @@
     "isBreaking": false,
     "id": "varanasi-8a1319ad50ff",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1805,7 +1821,7 @@
     "isBreaking": false,
     "id": "varanasi-7c98be5bcef5",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1821,7 +1837,7 @@
     "isBreaking": false,
     "id": "varanasi-7b885b3a2582",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1837,7 +1853,7 @@
     "isBreaking": false,
     "id": "varanasi-22287c39f49f",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1853,7 +1869,7 @@
     "isBreaking": false,
     "id": "varanasi-e9b1459084c4",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1869,7 +1885,7 @@
     "isBreaking": false,
     "id": "varanasi-694235a27f22",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1885,7 +1901,7 @@
     "isBreaking": false,
     "id": "varanasi-b7bdfa579566",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1901,7 +1917,7 @@
     "isBreaking": false,
     "id": "varanasi-0e184059fa86",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1917,7 +1933,7 @@
     "isBreaking": false,
     "id": "varanasi-0f07724e7fb7",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1933,7 +1949,7 @@
     "isBreaking": false,
     "id": "varanasi-8cd055095a34",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1949,7 +1965,7 @@
     "isBreaking": false,
     "id": "jaunpur-1c7efaeab593",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -1965,7 +1981,7 @@
     "isBreaking": false,
     "id": "jaunpur-4b88b9d5963d",
     "firstSeenAt": "2026-10-10T05:43:40+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1981,7 +1997,7 @@
     "isBreaking": false,
     "id": "varanasi-3414491d24e5",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -1997,7 +2013,7 @@
     "isBreaking": false,
     "id": "varanasi-9ca5e0877868",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2013,7 +2029,7 @@
     "isBreaking": false,
     "id": "varanasi-f55918a3cac1",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2029,7 +2045,7 @@
     "isBreaking": false,
     "id": "varanasi-6d266bf3133d",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2045,7 +2061,7 @@
     "isBreaking": false,
     "id": "varanasi-6b21fae3cd85",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2061,7 +2077,7 @@
     "isBreaking": false,
     "id": "varanasi-24c2fd093220",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2077,7 +2093,7 @@
     "isBreaking": false,
     "id": "varanasi-14c59a2eadba",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2093,7 +2109,7 @@
     "isBreaking": false,
     "id": "varanasi-4117d8304018",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2109,7 +2125,7 @@
     "isBreaking": false,
     "id": "mirzapur-b9de642bbe6d",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2125,7 +2141,7 @@
     "isBreaking": false,
     "id": "mirzapur-db3e3a7f7260",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2141,7 +2157,7 @@
     "isBreaking": false,
     "id": "mirzapur-4011fb383d21",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2157,7 +2173,7 @@
     "isBreaking": false,
     "id": "mirzapur-5013ea0b882a",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2173,7 +2189,7 @@
     "isBreaking": false,
     "id": "mirzapur-8f2622004712",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2189,7 +2205,7 @@
     "isBreaking": false,
     "id": "mirzapur-681ffdb43001",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2205,7 +2221,7 @@
     "isBreaking": false,
     "id": "mirzapur-769a5517b145",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2221,7 +2237,7 @@
     "isBreaking": false,
     "id": "mirzapur-72afdb5a7afb",
     "firstSeenAt": "2026-10-09T23:59:34+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2237,7 +2253,7 @@
     "isBreaking": false,
     "id": "varanasi-9a684cc6d3be",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2253,7 +2269,7 @@
     "isBreaking": false,
     "id": "varanasi-54595b8c1cd2",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2269,7 +2285,7 @@
     "isBreaking": false,
     "id": "varanasi-72ee3d2ebfc4",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2285,7 +2301,7 @@
     "isBreaking": false,
     "id": "varanasi-5b76ba27a941",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2301,7 +2317,7 @@
     "isBreaking": false,
     "id": "varanasi-3af0bfe58e7a",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2317,7 +2333,7 @@
     "isBreaking": false,
     "id": "varanasi-4ee137b3e3a0",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2333,7 +2349,7 @@
     "isBreaking": false,
     "id": "varanasi-ef8a691f2551",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2349,7 +2365,7 @@
     "isBreaking": false,
     "id": "varanasi-031a243a53a9",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2365,7 +2381,7 @@
     "isBreaking": false,
     "id": "varanasi-8c8689014988",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2381,7 +2397,7 @@
     "isBreaking": false,
     "id": "varanasi-fe3df0b3a524",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2397,7 +2413,7 @@
     "isBreaking": false,
     "id": "varanasi-dae31cf5726f",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2413,7 +2429,7 @@
     "isBreaking": false,
     "id": "mirzapur-a4cbcce30682",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2429,7 +2445,7 @@
     "isBreaking": false,
     "id": "mirzapur-728f80fe378f",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2445,7 +2461,7 @@
     "isBreaking": false,
     "id": "mirzapur-ab3645fd85d4",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2461,7 +2477,7 @@
     "isBreaking": false,
     "id": "mirzapur-8dcb7fcacf93",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2477,7 +2493,7 @@
     "isBreaking": false,
     "id": "mirzapur-40e84e9ae049",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2493,7 +2509,7 @@
     "isBreaking": false,
     "id": "mirzapur-247e7f596e92",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2509,7 +2525,7 @@
     "isBreaking": false,
     "id": "mirzapur-fbad32faa602",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2525,7 +2541,7 @@
     "isBreaking": false,
     "id": "mirzapur-bddbd875b6de",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2541,7 +2557,7 @@
     "isBreaking": false,
     "id": "mirzapur-01c0902355ee",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2557,7 +2573,7 @@
     "isBreaking": false,
     "id": "mirzapur-52f3d2aca7d9",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -2573,7 +2589,7 @@
     "isBreaking": false,
     "id": "jaunpur-2cf4639f40d6",
     "firstSeenAt": "2026-10-09T19:30:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2589,7 +2605,7 @@
     "isBreaking": false,
     "id": "varanasi-b74406b196da",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2605,7 +2621,7 @@
     "isBreaking": false,
     "id": "varanasi-b2185f9054b7",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2621,7 +2637,7 @@
     "isBreaking": false,
     "id": "varanasi-5d33de57db50",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2637,7 +2653,7 @@
     "isBreaking": false,
     "id": "varanasi-bb8062a4bd7e",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2653,7 +2669,7 @@
     "isBreaking": false,
     "id": "varanasi-a65421f60950",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2669,7 +2685,7 @@
     "isBreaking": false,
     "id": "varanasi-dd200424cb60",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2685,7 +2701,7 @@
     "isBreaking": false,
     "id": "varanasi-865be1699e01",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2701,7 +2717,7 @@
     "isBreaking": false,
     "id": "varanasi-921cbdbdb33c",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2717,7 +2733,7 @@
     "isBreaking": false,
     "id": "varanasi-94ea29e2d5ca",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2733,7 +2749,7 @@
     "isBreaking": false,
     "id": "varanasi-d29a3b365e9e",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -2749,7 +2765,7 @@
     "isBreaking": false,
     "id": "jaunpur-e840dd8c1357",
     "firstSeenAt": "2026-10-09T13:08:26+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2765,7 +2781,7 @@
     "isBreaking": false,
     "id": "varanasi-6e2929fdb186",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2781,7 +2797,7 @@
     "isBreaking": false,
     "id": "varanasi-17a57b589673",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2797,7 +2813,7 @@
     "isBreaking": false,
     "id": "varanasi-d5448fee5e04",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2813,7 +2829,7 @@
     "isBreaking": false,
     "id": "varanasi-b34793a59c57",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2829,7 +2845,7 @@
     "isBreaking": false,
     "id": "varanasi-d3611b55dc27",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2845,7 +2861,7 @@
     "isBreaking": false,
     "id": "varanasi-7b849bf55497",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2861,7 +2877,7 @@
     "isBreaking": false,
     "id": "varanasi-e91338fa5bc9",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2877,7 +2893,7 @@
     "isBreaking": false,
     "id": "varanasi-aa9f5c60c728",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2893,7 +2909,7 @@
     "isBreaking": false,
     "id": "varanasi-b308bbcf8f48",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2909,7 +2925,7 @@
     "isBreaking": false,
     "id": "mirzapur-086a49795eba",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2925,7 +2941,7 @@
     "isBreaking": false,
     "id": "mirzapur-c2a72f08d70a",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -2941,7 +2957,7 @@
     "isBreaking": false,
     "id": "mirzapur-2c6d36ca5d6d",
     "firstSeenAt": "2026-10-09T06:00:37+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2957,7 +2973,7 @@
     "isBreaking": false,
     "id": "varanasi-8e2fac3ba195",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2973,7 +2989,7 @@
     "isBreaking": false,
     "id": "varanasi-054c0ea1f7c3",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -2989,7 +3005,7 @@
     "isBreaking": false,
     "id": "varanasi-454475faa8ec",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3005,7 +3021,7 @@
     "isBreaking": false,
     "id": "varanasi-5352a9372fda",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3021,7 +3037,7 @@
     "isBreaking": false,
     "id": "varanasi-eaeb4f766c54",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3037,7 +3053,7 @@
     "isBreaking": false,
     "id": "varanasi-c31b91a002ed",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3053,7 +3069,7 @@
     "isBreaking": false,
     "id": "varanasi-796108d41ca2",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3069,7 +3085,7 @@
     "isBreaking": false,
     "id": "varanasi-3b130b948082",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3085,7 +3101,7 @@
     "isBreaking": false,
     "id": "varanasi-2e8c0c691239",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3101,7 +3117,7 @@
     "isBreaking": false,
     "id": "mirzapur-f1ca68cf8a29",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3117,7 +3133,7 @@
     "isBreaking": false,
     "id": "mirzapur-6494cc9f8045",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3133,7 +3149,7 @@
     "isBreaking": false,
     "id": "mirzapur-e2ce9c54d064",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3149,7 +3165,7 @@
     "isBreaking": false,
     "id": "mirzapur-a8cb7a205447",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3165,7 +3181,7 @@
     "isBreaking": false,
     "id": "mirzapur-5232da86b477",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3181,7 +3197,7 @@
     "isBreaking": false,
     "id": "mirzapur-97e43322b07d",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3197,7 +3213,7 @@
     "isBreaking": false,
     "id": "mirzapur-ea1b19e2b6f5",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3213,7 +3229,7 @@
     "isBreaking": false,
     "id": "mirzapur-bc5308279efa",
     "firstSeenAt": "2026-10-08T23:17:03+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3229,7 +3245,7 @@
     "isBreaking": false,
     "id": "varanasi-2b5770f76e8e",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3245,7 +3261,7 @@
     "isBreaking": false,
     "id": "varanasi-a6a1efa3425a",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3261,7 +3277,7 @@
     "isBreaking": false,
     "id": "varanasi-1a3ed8667806",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3277,7 +3293,7 @@
     "isBreaking": false,
     "id": "varanasi-9f2f60ab81ba",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3293,7 +3309,7 @@
     "isBreaking": false,
     "id": "varanasi-fddb5cc85577",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3309,7 +3325,7 @@
     "isBreaking": false,
     "id": "varanasi-67ef7b38a268",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3325,7 +3341,7 @@
     "isBreaking": false,
     "id": "varanasi-b450fd505695",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3341,7 +3357,7 @@
     "isBreaking": false,
     "id": "varanasi-67063bd05a89",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3357,7 +3373,7 @@
     "isBreaking": false,
     "id": "varanasi-b4649369ad2e",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3373,7 +3389,7 @@
     "isBreaking": false,
     "id": "varanasi-4f78623dcf40",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3389,7 +3405,7 @@
     "isBreaking": false,
     "id": "varanasi-f6d02034a990",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3405,7 +3421,7 @@
     "isBreaking": false,
     "id": "varanasi-2ef4e976bbf1",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3421,7 +3437,7 @@
     "isBreaking": false,
     "id": "varanasi-ccf36265c5c3",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -3437,7 +3453,7 @@
     "isBreaking": false,
     "id": "jaunpur-3b1c1f708455",
     "firstSeenAt": "2026-10-08T17:50:47+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3453,7 +3469,7 @@
     "isBreaking": false,
     "id": "varanasi-5f443fd9ddbd",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3469,7 +3485,7 @@
     "isBreaking": false,
     "id": "varanasi-edf61be1e781",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3485,7 +3501,7 @@
     "isBreaking": false,
     "id": "varanasi-6e9678cbc308",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3501,7 +3517,7 @@
     "isBreaking": false,
     "id": "varanasi-0a1e19ceef0c",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3517,7 +3533,7 @@
     "isBreaking": false,
     "id": "varanasi-0ec265534782",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3533,7 +3549,7 @@
     "isBreaking": false,
     "id": "varanasi-6ab9451cd86e",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3549,7 +3565,7 @@
     "isBreaking": false,
     "id": "varanasi-15020c4c1c4c",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3565,7 +3581,7 @@
     "isBreaking": false,
     "id": "varanasi-58c21c8bddbd",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3581,7 +3597,7 @@
     "isBreaking": false,
     "id": "varanasi-80f5e794a898",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3597,7 +3613,7 @@
     "isBreaking": false,
     "id": "varanasi-0bb9a35c728f",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3613,7 +3629,7 @@
     "isBreaking": false,
     "id": "varanasi-a44f779ce572",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3629,7 +3645,7 @@
     "isBreaking": false,
     "id": "varanasi-15c9286cf4ea",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3645,7 +3661,7 @@
     "isBreaking": false,
     "id": "varanasi-db713d06cb70",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3661,7 +3677,7 @@
     "isBreaking": false,
     "id": "varanasi-72d8eb32666e",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3677,7 +3693,7 @@
     "isBreaking": false,
     "id": "varanasi-86032a0a690e",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3693,7 +3709,7 @@
     "isBreaking": false,
     "id": "varanasi-2f9740334438",
     "firstSeenAt": "2026-10-08T10:27:02+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3709,7 +3725,7 @@
     "isBreaking": false,
     "id": "varanasi-83bc464e4800",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3725,7 +3741,7 @@
     "isBreaking": false,
     "id": "varanasi-5fa2e5c4b9c6",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3741,7 +3757,7 @@
     "isBreaking": false,
     "id": "varanasi-7061d2d3a858",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3757,7 +3773,7 @@
     "isBreaking": false,
     "id": "varanasi-1c62d312b3a3",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3773,7 +3789,7 @@
     "isBreaking": false,
     "id": "varanasi-4e9baed78bf0",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3789,7 +3805,7 @@
     "isBreaking": false,
     "id": "varanasi-a6afea90d1ef",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3805,7 +3821,7 @@
     "isBreaking": false,
     "id": "varanasi-2785ac5ac7aa",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3821,7 +3837,7 @@
     "isBreaking": false,
     "id": "varanasi-621b5040a2e9",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -3837,7 +3853,7 @@
     "isBreaking": false,
     "id": "jaunpur-33584a2d71f3",
     "firstSeenAt": "2026-10-08T02:40:19+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3853,7 +3869,7 @@
     "isBreaking": false,
     "id": "varanasi-f5899ceaac4b",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3869,7 +3885,7 @@
     "isBreaking": false,
     "id": "varanasi-8218d0616b19",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3885,7 +3901,7 @@
     "isBreaking": false,
     "id": "varanasi-7e46a1d0f1a1",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3901,7 +3917,7 @@
     "isBreaking": false,
     "id": "varanasi-986756f66dc2",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3917,7 +3933,7 @@
     "isBreaking": false,
     "id": "varanasi-a6beff5ee936",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3933,7 +3949,7 @@
     "isBreaking": false,
     "id": "varanasi-769408be1891",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3949,7 +3965,7 @@
     "isBreaking": false,
     "id": "varanasi-53b926fc96a3",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -3965,7 +3981,7 @@
     "isBreaking": false,
     "id": "varanasi-420e171adeff",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3981,7 +3997,7 @@
     "isBreaking": false,
     "id": "mirzapur-c2708dd76fb6",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -3997,7 +4013,7 @@
     "isBreaking": false,
     "id": "mirzapur-2ec81f4bd357",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4013,7 +4029,7 @@
     "isBreaking": false,
     "id": "mirzapur-c4ab97581084",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4029,7 +4045,7 @@
     "isBreaking": false,
     "id": "mirzapur-2102c9091dd1",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4045,7 +4061,7 @@
     "isBreaking": false,
     "id": "mirzapur-a3ae14f0d1f5",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4061,7 +4077,7 @@
     "isBreaking": false,
     "id": "mirzapur-6d6a99156342",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4077,7 +4093,7 @@
     "isBreaking": false,
     "id": "mirzapur-4e33a878dac1",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4093,7 +4109,7 @@
     "isBreaking": false,
     "id": "mirzapur-efb3d446ee43",
     "firstSeenAt": "2026-10-07T23:01:43+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4109,7 +4125,7 @@
     "isBreaking": false,
     "id": "varanasi-37dac6cef1c5",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4125,7 +4141,7 @@
     "isBreaking": false,
     "id": "varanasi-b8f4994cd792",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4141,7 +4157,7 @@
     "isBreaking": false,
     "id": "varanasi-85e9e1247599",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4157,7 +4173,7 @@
     "isBreaking": false,
     "id": "varanasi-9ceaaa449043",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4173,7 +4189,7 @@
     "isBreaking": false,
     "id": "varanasi-5eb1cd0e3f78",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4189,7 +4205,7 @@
     "isBreaking": false,
     "id": "varanasi-cb183e289614",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4205,7 +4221,7 @@
     "isBreaking": false,
     "id": "varanasi-7ebf67df6b3b",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4221,7 +4237,7 @@
     "isBreaking": false,
     "id": "varanasi-9e1a059f8a83",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4237,7 +4253,7 @@
     "isBreaking": false,
     "id": "varanasi-edf9c8340c3a",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4253,7 +4269,7 @@
     "isBreaking": false,
     "id": "varanasi-6c1ce0c04b71",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4269,7 +4285,7 @@
     "isBreaking": false,
     "id": "varanasi-f241e36a4b7f",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4285,7 +4301,7 @@
     "isBreaking": false,
     "id": "varanasi-1d9c2de32102",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4301,7 +4317,7 @@
     "isBreaking": false,
     "id": "varanasi-f68689fad3cd",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4317,7 +4333,7 @@
     "isBreaking": false,
     "id": "varanasi-257037d8c8c7",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4333,7 +4349,7 @@
     "isBreaking": false,
     "id": "varanasi-2fb1e4f86a90",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4349,7 +4365,7 @@
     "isBreaking": false,
     "id": "varanasi-1088c2e016d1",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4365,7 +4381,7 @@
     "isBreaking": false,
     "id": "mirzapur-b2f039ad8395",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4381,7 +4397,7 @@
     "isBreaking": false,
     "id": "mirzapur-943d0ab0d577",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "mirzapur",
@@ -4397,7 +4413,7 @@
     "isBreaking": false,
     "id": "mirzapur-8bd68fdead49",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -4413,7 +4429,7 @@
     "isBreaking": false,
     "id": "jaunpur-c796a097c49b",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -4429,7 +4445,7 @@
     "isBreaking": false,
     "id": "jaunpur-a915332c68b1",
     "firstSeenAt": "2026-10-07T17:46:59+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4445,7 +4461,7 @@
     "isBreaking": false,
     "id": "varanasi-7b04d432dfb2",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4461,7 +4477,7 @@
     "isBreaking": false,
     "id": "varanasi-9cf3fff22292",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4477,7 +4493,7 @@
     "isBreaking": false,
     "id": "varanasi-92d18e79805a",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4493,7 +4509,7 @@
     "isBreaking": false,
     "id": "varanasi-ab7c48856611",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4509,7 +4525,7 @@
     "isBreaking": false,
     "id": "varanasi-26cbe5019c89",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4525,7 +4541,7 @@
     "isBreaking": false,
     "id": "varanasi-b69c348f26de",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4541,7 +4557,7 @@
     "isBreaking": false,
     "id": "varanasi-f9ced9b7218f",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4557,7 +4573,7 @@
     "isBreaking": false,
     "id": "varanasi-5a4037095a2d",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4573,7 +4589,7 @@
     "isBreaking": false,
     "id": "varanasi-6cab13cd15eb",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4589,7 +4605,7 @@
     "isBreaking": false,
     "id": "varanasi-acf21ce97cc5",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4605,7 +4621,7 @@
     "isBreaking": false,
     "id": "varanasi-a4f206890c69",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4621,7 +4637,7 @@
     "isBreaking": false,
     "id": "varanasi-b2477a4388b1",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4637,7 +4653,7 @@
     "isBreaking": false,
     "id": "varanasi-603e2f40098c",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4653,7 +4669,7 @@
     "isBreaking": false,
     "id": "varanasi-db003fb7510e",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "jaunpur",
@@ -4669,7 +4685,7 @@
     "isBreaking": false,
     "id": "jaunpur-4880f5718d52",
     "firstSeenAt": "2026-10-07T10:09:33+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4685,7 +4701,7 @@
     "isBreaking": false,
     "id": "varanasi-ab37ac0674e0",
     "firstSeenAt": "2026-10-07T02:18:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4701,7 +4717,7 @@
     "isBreaking": false,
     "id": "varanasi-f4677a77e360",
     "firstSeenAt": "2026-10-07T02:18:17+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4717,7 +4733,7 @@
     "isBreaking": false,
     "id": "varanasi-9f4f5a15b974",
     "firstSeenAt": "2026-10-06T22:36:53+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4733,7 +4749,7 @@
     "isBreaking": false,
     "id": "varanasi-0775ecb52e98",
     "firstSeenAt": "2026-10-06T22:36:53+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4749,7 +4765,7 @@
     "isBreaking": false,
     "id": "varanasi-9aef58579d97",
     "firstSeenAt": "2026-10-06T22:36:53+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4765,7 +4781,7 @@
     "isBreaking": false,
     "id": "varanasi-c0c197103362",
     "firstSeenAt": "2026-10-06T22:36:53+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   },
   {
     "cityId": "varanasi",
@@ -4781,22 +4797,6 @@
     "isBreaking": false,
     "id": "varanasi-9a4b61ea5eb4",
     "firstSeenAt": "2026-10-06T22:36:53+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
-  },
-  {
-    "cityId": "varanasi",
-    "cityName": "वाराणसी",
-    "title": "Varanasi News: मखाने की खेती को बढ़ावा देने पर दिया जोर",
-    "summary": "Emphasis placed on promoting makhana cultivation.",
-    "content": "Emphasis placed on promoting makhana cultivation.",
-    "location": "वाराणसी",
-    "date": "07 Oct 2026, 02:22 AM",
-    "imageUrl": "",
-    "sourceUrl": "https://www.amarujala.com/uttar-pradesh/varanasi/emphasis-placed-on-promoting-makhana-cultivation-varanasi-news-c-20-vns1056-1571515-2026-10-07",
-    "sourceName": "Amar Ujala",
-    "isBreaking": false,
-    "id": "varanasi-e2660735464e",
-    "firstSeenAt": "2026-10-06T22:36:53+00:00",
-    "updatedAt": "2026-10-11T14:01:10+00:00"
+    "updatedAt": "2026-10-11T18:48:49+00:00"
   }
 ]
