@@ -1,0 +1,748 @@
+[
+  {
+    "id": "kashi-names",
+    "title": "Kashi, Banaras and Varanasi",
+    "category": "history",
+    "kind": "historical_fact",
+    "source_url": "https://varanasi.nic.in/history/",
+    "text": "Varanasi is also called Banaras and Kashi. Its long history combines pilgrimage, learning and textile trade.",
+    "text_hi": "वाराणसी को बनारस और काशी भी कहते हैं। तीर्थ, शिक्षा और वस्त्र व्यापार इसके इतिहास से जुड़े हैं.",
+    "aliases": [
+      "काशी",
+      "बनारस",
+      "इतिहास",
+      "names"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "kashi-moksha",
+    "title": "Kashi and liberation traditions",
+    "category": "traditions",
+    "kind": "religious_tradition",
+    "source_url": "https://varanasi.nic.in/history/",
+    "text": "Hindu traditions connect dying in Kashi with liberation from rebirth. This is a religious belief, not an empirically verified promise.",
+    "text_hi": "हिंदू परंपरा में काशी में मृत्यु को पुनर्जन्म से मुक्ति से जोड़ा जाता है। यह धार्मिक मान्यता है, प्रमाणित वादा नहीं।",
+    "aliases": [
+      "मोक्ष",
+      "शिव",
+      "मुक्ति",
+      "belief"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "jain-parshvanath",
+    "title": "Parshvanath and Jain Varanasi",
+    "category": "traditions",
+    "kind": "religious_tradition",
+    "source_url": "https://varanasi.nic.in/history/",
+    "text": "Jain tradition associates Varanasi with the birthplace of Parshvanath, the twenty-third Tirthankara.",
+    "text_hi": "जैन परंपरा वाराणसी को तेईसवें तीर्थंकर पार्श्वनाथ का जन्मस्थान मानती है।",
+    "aliases": [
+      "जैन",
+      "पार्श्वनाथ"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "musicians",
+    "title": "Ravi Shankar and Bismillah Khan",
+    "category": "people",
+    "kind": "historical_fact",
+    "source_url": "https://varanasi.nic.in/history/",
+    "text": "Sitar musician Ravi Shankar and shehnai musician Bismillah Khan are closely associated with Varanasi's musical history.",
+    "text_hi": "सितार वादक रवि शंकर और शहनाई वादक बिस्मिल्लाह खान वाराणसी के संगीत इतिहास से जुड़े हैं।",
+    "aliases": [
+      "रवि",
+      "शंकर",
+      "बिस्मिल्लाह",
+      "खान",
+      "shehnai",
+      "sitar"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "vishwanath",
+    "title": "Kashi Vishwanath Temple",
+    "category": "temples",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/tourist-place/shri-kashi-vishwanath-temple/",
+    "text": "Kashi Vishwanath is a Shiva temple in Varanasi. The district administration lists it among the city's principal religious sites.",
+    "text_hi": "काशी विश्वनाथ वाराणसी का शिव मंदिर है। जिला प्रशासन इसे प्रमुख धार्मिक स्थलों में सूचीबद्ध करता है।",
+    "aliases": [
+      "विश्वनाथ",
+      "मंदिर",
+      "shiva",
+      "golden",
+      "temple"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "jyotirlinga",
+    "title": "Vishwanath and Jyotirlinga tradition",
+    "category": "traditions",
+    "kind": "religious_tradition",
+    "source_url": "https://varanasi.nic.in/temples-of-importance/",
+    "text": "The fiery pillar of light associated with Shiva is a sacred Jyotirlinga narrative.",
+    "text_hi": "शिव के प्रकाश स्तंभ की कथा ज्योतिर्लिंग की धार्मिक परंपरा है।",
+    "aliases": [
+      "ज्योतिर्लिंग",
+      "शिव",
+      "legend"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "annapurna",
+    "title": "Annapurna Temple",
+    "category": "temples",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/temples-of-importance/",
+    "text": "Annapurna Temple is near Kashi Vishwanath.",
+    "text_hi": "अन्नपूर्णा मंदिर काशी विश्वनाथ के पास है।",
+    "aliases": [
+      "अन्नपूर्णा",
+      "मंदिर"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "kalbhairav",
+    "title": "Kal Bhairav: Kotwal of Kashi",
+    "category": "traditions",
+    "kind": "religious_tradition",
+    "source_url": "https://varanasi.nic.in/temples-of-importance/",
+    "text": "Devotees regard Kal Bhairav as Kashi's guardian or Kotwal.",
+    "text_hi": "भक्त काल भैरव को काशी का कोतवाल मानते हैं।",
+    "aliases": [
+      "काल",
+      "भैरव",
+      "कोतवाल"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "sankatmochan",
+    "title": "Sankat Mochan Temple",
+    "category": "temples",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/temples-of-importance/",
+    "text": "Sankat Mochan is a Hanuman temple near the Assi stream.",
+    "text_hi": "संकट मोचन अस्सी धारा के पास हनुमान मंदिर है।",
+    "aliases": [
+      "संकट",
+      "मोचन",
+      "हनुमान"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "durga",
+    "title": "Durga Temple and Durgakund",
+    "category": "temples",
+    "kind": "historical_fact",
+    "source_url": "https://varanasi.nic.in/temples-of-importance/",
+    "text": "The eighteenth-century Durga Temple stands beside Durgakund pond.",
+    "text_hi": "अठारहवीं सदी का दुर्गा मंदिर दुर्गाकुंड तालाब के पास है।",
+    "aliases": [
+      "दुर्गा",
+      "दुर्गाकुंड"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "bharat-mata",
+    "title": "Bharat Mata Temple",
+    "category": "temples",
+    "kind": "historical_fact",
+    "source_url": "https://varanasi.nic.in/temples-of-importance/",
+    "text": "Bharat Mata Temple houses a marble relief map of India.",
+    "text_hi": "भारत माता मंदिर में भारत का संगमरमर का उभरा नक्शा है।",
+    "aliases": [
+      "भारत",
+      "माता",
+      "नक्शा"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "tulsi-manas",
+    "title": "Tulsi Manas Temple",
+    "category": "temples",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/temples-of-importance/",
+    "text": "Tulsi Manas Temple has Ramcharitmanas verses on its walls.",
+    "text_hi": "तुलसी मानस मंदिर की दीवारों पर रामचरितमानस के पद हैं।",
+    "aliases": [
+      "तुलसी",
+      "मानस",
+      "रामचरितमानस"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "ghats",
+    "title": "Ganga riverfront ghats",
+    "category": "ghats",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/tourist-place/ganga-ghat/",
+    "text": "Ghats are riverfront steps along the Ganga. They serve bathing, worship and, at particular sites, cremation.",
+    "text_hi": "घाट गंगा किनारे बनी सीढ़ियाँ हैं। स्नान, पूजा और कुछ स्थलों पर दाह संस्कार होते हैं।",
+    "aliases": [
+      "गंगा",
+      "घाट",
+      "riverfront"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "ghat-history",
+    "title": "Rebuilding the ghats",
+    "category": "history",
+    "kind": "historical_fact",
+    "source_url": "https://varanasi.nic.in/tourist-place/ganga-ghat/",
+    "text": "Many present-day Varanasi ghats were rebuilt after 1700 under patrons including Maratha ruling families.",
+    "text_hi": "वाराणसी के कई वर्तमान घाट 1700 के बाद मराठा शासक परिवारों सहित विभिन्न संरक्षकों ने पुनर्निर्मित कराए।",
+    "aliases": [
+      "घाट",
+      "इतिहास",
+      "मराठा"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "assi",
+    "title": "Assi Ghat",
+    "category": "ghats",
+    "kind": "official_information",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/let-us-walk-in-varanasi",
+    "text": "Assi Ghat is associated with the meeting of the Assi and Ganga rivers.",
+    "text_hi": "अस्सी घाट का संबंध अस्सी और गंगा के संगम से है।",
+    "aliases": [
+      "अस्सी",
+      "घाट"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "manikarnika",
+    "title": "Manikarnika Ghat",
+    "category": "ghats",
+    "kind": "official_information",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/let-us-walk-in-varanasi",
+    "text": "Manikarnika is a cremation ghat. Its religious significance should be distinguished from historical claims.",
+    "text_hi": "मणिकर्णिका दाह संस्कार का घाट है। इसकी धार्मिक महत्ता को ऐतिहासिक दावों से अलग समझना चाहिए।",
+    "aliases": [
+      "मणिकर्णिका",
+      "दाह",
+      "संस्कार",
+      "cremation"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "weavers",
+    "title": "Banaras weaving communities",
+    "category": "crafts",
+    "kind": "historical_fact",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/let-us-walk-in-varanasi",
+    "text": "Banaras weaving traditions include Muslim master weavers, silk brocade and silver zari work.",
+    "text_hi": "बनारस की बुनाई में मुस्लिम उस्ताद बुनकर, रेशमी ब्रोकेड और चाँदी की जरी का काम शामिल है।",
+    "aliases": [
+      "बुनकर",
+      "रेशम",
+      "जरी",
+      "weaving"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "sarnath",
+    "title": "Sarnath and the first sermon",
+    "category": "sarnath",
+    "kind": "historical_fact",
+    "source_url": "https://tourism.gov.in/sites/default/files/2021-10/Buddhist%20Tourism%20Circuit%20in%20India_ani_English_Low%20res.pdf",
+    "text": "Sarnath near Varanasi is associated with the Buddha's first teaching after enlightenment. Its Buddhist monuments include Dhamekh and Chaukhandi stupas.",
+    "text_hi": "वाराणसी के निकट सारनाथ बुद्ध के ज्ञानप्राप्ति के बाद प्रथम उपदेश से जुड़ा है। धामेख और चौखंडी स्तूप यहाँ के बौद्ध स्मारक हैं।",
+    "aliases": [
+      "सारनाथ",
+      "बुद्ध",
+      "प्रथम",
+      "उपदेश",
+      "धमेख",
+      "चौखंडी"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "sarnath-museum",
+    "title": "Sarnath Archaeological Museum",
+    "category": "sarnath",
+    "kind": "official_information",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/sarnath-museum",
+    "text": "Sarnath Museum is an Archaeological Survey of India site museum. It preserves archaeological material from Sarnath.",
+    "text_hi": "सारनाथ संग्रहालय भारतीय पुरातत्व सर्वेक्षण का स्थल संग्रहालय है। यहाँ सारनाथ की पुरातात्विक सामग्री संरक्षित है।",
+    "aliases": [
+      "सारनाथ",
+      "संग्रहालय",
+      "ASI",
+      "archaeology"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "music-city",
+    "title": "UNESCO City of Music",
+    "category": "culture",
+    "kind": "official_information",
+    "source_url": "https://www.unesco.org/en/creative-cities/varanasi",
+    "text": "Varanasi joined UNESCO's Creative Cities Network in the Music category in 2015.",
+    "text_hi": "वाराणसी 2015 में संगीत श्रेणी में यूनेस्को क्रिएटिव सिटीज नेटवर्क से जुड़ा।",
+    "aliases": [
+      "यूनेस्को",
+      "संगीत",
+      "UNESCO"
+    ],
+    "publisher": "UNESCO",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "guru-shishya",
+    "title": "Guru-shishya musical learning",
+    "category": "culture",
+    "kind": "historical_fact",
+    "source_url": "https://www.unesco.org/en/creative-cities/varanasi",
+    "text": "Varanasi's musical heritage includes the guru-shishya tradition of learning with a teacher.",
+    "text_hi": "वाराणसी की संगीत विरासत में गुरु से सीखने की गुरु-शिष्य परंपरा शामिल है।",
+    "aliases": [
+      "गुरु",
+      "शिष्य",
+      "संगीत"
+    ],
+    "publisher": "UNESCO",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "subah-banaras",
+    "title": "Subah-e-Banaras",
+    "category": "festivals",
+    "kind": "official_information",
+    "source_url": "https://www.unesco.org/en/creative-cities/varanasi",
+    "text": "UNESCO describes Subah-e-Banaras as a festival linking music and well-being. Consult organizers for current programs.",
+    "text_hi": "यूनेस्को सुबह-ए-बनारस को संगीत और आंतरिक कल्याण से जुड़ा उत्सव बताता है। वर्तमान कार्यक्रम आयोजकों से जाँचें।",
+    "aliases": [
+      "सुबह",
+      "बनारस",
+      "festival"
+    ],
+    "publisher": "UNESCO",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "dev-deepawali",
+    "title": "Dev Deepawali",
+    "category": "festivals",
+    "kind": "religious_tradition",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/10-unmissable-travel-and-food-experiences",
+    "text": "Dev Deepawali is celebrated on the full moon after Diwali. Traditions associate it with deities visiting the Ganga and Shiva's victory over Tripurasura.",
+    "text_hi": "देव दीपावली दिवाली के बाद पूर्णिमा पर मनाई जाती है। परंपराएँ इसे देवताओं के गंगा आगमन और त्रिपुरासुर पर शिव की विजय से जोड़ती हैं।",
+    "aliases": [
+      "देव",
+      "दीपावली",
+      "कार्तिक",
+      "पूर्णिमा",
+      "festival"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "silk",
+    "title": "Banaras brocades and sarees",
+    "category": "crafts",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/art-craft-varanasi/",
+    "text": "The district GI directory lists Banaras Brocades and Sarees as a registered craft.",
+    "text_hi": "जिले की जीआई सूची में बनारस ब्रोकेड और साड़ियाँ पंजीकृत शिल्प हैं।",
+    "aliases": [
+      "बनारसी",
+      "साड़ी",
+      "रेशम",
+      "silk",
+      "saree"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "meenakari",
+    "title": "Gulabi Meenakari",
+    "category": "crafts",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/art-craft-varanasi/",
+    "text": "Banaras Gulabi Meenakari is listed among the district's GI crafts.",
+    "text_hi": "बनारस गुलाबी मीनाकारी जिले के जीआई शिल्पों में सूचीबद्ध है।",
+    "aliases": [
+      "गुलाबी",
+      "मीनाकारी",
+      "enamel"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "wooden-toys",
+    "title": "Wooden lacquerware and toys",
+    "category": "crafts",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/art-craft-varanasi/",
+    "text": "Varanasi wooden lacquerware and toys appear in the district GI directory.",
+    "text_hi": "वाराणसी के लकड़ी के लाख चढ़े सामान और खिलौने जिला जीआई सूची में हैं।",
+    "aliases": [
+      "लकड़ी",
+      "खिलौने",
+      "lacquer"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "stone-metal",
+    "title": "Stone jali and metal repoussé",
+    "category": "crafts",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/art-craft-varanasi/",
+    "text": "The GI directory includes soft stone jali work and Banaras metal repoussé.",
+    "text_hi": "जीआई सूची में मुलायम पत्थर का जाली काम और बनारस धातु रिपुसे शिल्प शामिल हैं।",
+    "aliases": [
+      "पत्थर",
+      "जाली",
+      "धातु",
+      "शिल्प"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "food",
+    "title": "Banarasi food traditions",
+    "category": "food",
+    "kind": "official_information",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi",
+    "text": "Banarasi food includes kachori sabzi, tamatar chaat, choora matar and seasonal malaiyyo.",
+    "text_hi": "बनारसी भोजन में कचौरी सब्जी, टमाटर चाट, चूड़ा मटर और मौसमी मलइयो शामिल हैं।",
+    "aliases": [
+      "भोजन",
+      "खाना",
+      "कचौरी",
+      "टमाटर",
+      "चाट",
+      "मलइयो"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "paan",
+    "title": "Banarasi paan",
+    "category": "food",
+    "kind": "official_information",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/culinary-delights-of-varanasi",
+    "text": "Banarasi paan is a betel-leaf preparation with varied fillings, associated with local food culture.",
+    "text_hi": "बनारसी पान विभिन्न भरावन वाला पान-पत्ते का व्यंजन है और स्थानीय खानपान से जुड़ा है।",
+    "aliases": [
+      "बनारसी",
+      "पान",
+      "betel"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "lassi",
+    "title": "Lassi and baati chokha",
+    "category": "food",
+    "kind": "official_information",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/culinary-delights-of-varanasi",
+    "text": "Varanasi's food offerings include lassi and baati chokha.",
+    "text_hi": "वाराणसी के खानपान में लस्सी और बाटी चोखा भी शामिल हैं।",
+    "aliases": [
+      "लस्सी",
+      "बाटी",
+      "चोखा"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "bhu",
+    "title": "Banaras Hindu University",
+    "category": "education",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/public-utility-category/universities/",
+    "text": "Banaras Hindu University is listed at Lanka, Varanasi, in the district university directory.",
+    "text_hi": "जिला विश्वविद्यालय निर्देशिका में बनारस हिंदू विश्वविद्यालय का स्थान लंका, वाराणसी है।",
+    "aliases": [
+      "बीएचयू",
+      "BHU",
+      "विश्वविद्यालय",
+      "शिक्षा"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "sanskrit-university",
+    "title": "Sampurnanand Sanskrit University",
+    "category": "education",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/public-utility-category/universities/",
+    "text": "The district directory lists Sampurnanand Sanskrit University in Jagatganj.",
+    "text_hi": "जिला निर्देशिका संपूर्णानंद संस्कृत विश्वविद्यालय को जगतगंज में सूचीबद्ध करती है।",
+    "aliases": [
+      "संपूर्णानंद",
+      "संस्कृत",
+      "विश्वविद्यालय"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "vidyapith",
+    "title": "Mahatma Gandhi Kashi Vidyapith",
+    "category": "education",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/public-utility-category/universities/",
+    "text": "Mahatma Gandhi Kashi Vidyapith is a Varanasi university listed by the district administration.",
+    "text_hi": "महात्मा गांधी काशी विद्यापीठ जिला प्रशासन द्वारा सूचीबद्ध वाराणसी का विश्वविद्यालय है।",
+    "aliases": [
+      "महात्मा",
+      "गांधी",
+      "काशी",
+      "विद्यापीठ",
+      "MGKVP"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "tibetan-studies",
+    "title": "Higher Tibetan studies at Sarnath",
+    "category": "education",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/public-utility-category/universities/",
+    "text": "The Central Institute of Higher Tibetan Studies is listed at Sarnath.",
+    "text_hi": "केंद्रीय उच्च तिब्बती शिक्षा संस्थान सारनाथ में सूचीबद्ध है।",
+    "aliases": [
+      "तिब्बती",
+      "शिक्षा",
+      "सारनाथ",
+      "CIHTS"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "kabir",
+    "title": "Kabir and Kabir Chaura",
+    "category": "people",
+    "kind": "historical_fact",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/kabir-chaura-math",
+    "text": "Kabir Chaura Math commemorates the poet and mystic Kabir. The surrounding neighbourhood is also associated with Banaras musical traditions.",
+    "text_hi": "कबीर चौरा मठ कवि और संत कबीर की स्मृति से जुड़ा है। आसपास का मोहल्ला बनारस की संगीत परंपराओं से भी जुड़ा है।",
+    "aliases": [
+      "कबीर",
+      "चौरा",
+      "संत",
+      "कवि",
+      "poet"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "kabir-legend",
+    "title": "Kabir's flowers legend",
+    "category": "traditions",
+    "kind": "religious_tradition",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/kabir-chaura-math",
+    "text": "A tradition says Kabir's body became flowers after his death. It is a devotional narrative, not an established historical event.",
+    "text_hi": "एक परंपरा में कबीर की मृत्यु के बाद शरीर फूल बनने की कथा है। यह भक्तिपरक आख्यान है, स्थापित ऐतिहासिक घटना नहीं।",
+    "aliases": [
+      "कबीर",
+      "फूल",
+      "कथा",
+      "legend"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "ravidas",
+    "title": "Ravidas temple at Seer Govardhan",
+    "category": "people",
+    "kind": "official_information",
+    "source_url": "https://varanasi.nic.in/tourist-place/saint-ravidas-temple/",
+    "text": "The Ravidas temple is at Seer Govardhan near BHU. The place is revered as Ravidas's birthplace.",
+    "text_hi": "रविदास मंदिर बीएचयू के पास सीर गोवर्धन में है। यह स्थान रविदास के जन्मस्थान के रूप में पूजनीय है।",
+    "aliases": [
+      "रविदास",
+      "सीर",
+      "गोवर्धन"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "ramnagar",
+    "title": "Ramnagar Fort",
+    "category": "places",
+    "kind": "historical_fact",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi/ramnagar-fort",
+    "text": "Ramnagar Fort is part of Varanasi's royal and architectural heritage.",
+    "text_hi": "रामनगर किला वाराणसी की राजकीय और स्थापत्य विरासत का हिस्सा है।",
+    "aliases": [
+      "रामनगर",
+      "किला",
+      "fort"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "lanes",
+    "title": "Vishwanath Gali and old-city lanes",
+    "category": "places",
+    "kind": "official_information",
+    "source_url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/varanasi",
+    "text": "Vishwanath Gali, Kachauri Gali and Thatheri Bazaar are among Varanasi's old-city lanes and markets.",
+    "text_hi": "विश्वनाथ गली, कचौरी गली और ठठेरी बाजार वाराणसी की पुरानी गलियों और बाजारों में हैं।",
+    "aliases": [
+      "विश्वनाथ",
+      "गली",
+      "ठठेरी",
+      "बाजार",
+      "कचौरी"
+    ],
+    "publisher": "Ministry of Tourism, India",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  },
+  {
+    "id": "plural-culture",
+    "title": "Varanasi's religious and artistic diversity",
+    "category": "culture",
+    "kind": "historical_fact",
+    "source_url": "https://varanasi.nic.in/culture-heritage/",
+    "text": "Varanasi's heritage includes Buddhist, Jain, Shaiva, Vaishnava and saint-poet traditions, alongside craft and learning communities.",
+    "text_hi": "वाराणसी की विरासत में बौद्ध, जैन, शैव, वैष्णव और संत-कवि परंपराओं के साथ शिल्प और शिक्षा समुदाय हैं।",
+    "aliases": [
+      "संस्कृति",
+      "विरासत",
+      "धर्म"
+    ],
+    "publisher": "District Varanasi",
+    "language": "en-hi",
+    "reviewed_on": "2026-09-30",
+    "rights": "Original brief editorial paraphrase with Hindi translation; source page retains its rights. No permission to reproduce source articles is implied."
+  }
+]

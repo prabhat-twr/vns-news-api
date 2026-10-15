@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">KashiAI</string>
+    <string name="title_activity_main">KashiAI</string>
+    <string name="package_name">in.kashiai.app</string>
+    <string name="custom_url_scheme">in.kashiai.app</string>
+</resources>
