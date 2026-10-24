@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banaras Buzz | वाराणसी समाचार और कार्यक्रम</title>
+<meta name="description" content="वाराणसी, मिर्ज़ापुर और जौनपुर की ताज़ा खबरें और वाराणसी के कार्यक्रम">
+<style>
+:root{--bg:#fbf7f0;--card:#fff;--ink:#1d1a16;--mute:#6b6459;--line:#e8dfd0;--accent:#c2410c;--accent2:#7c2d12;--chip:#f3e8d8}
+@media (prefers-color-scheme:dark){:root{--bg:#16130f;--card:#201c17;--ink:#f3ece1;--mute:#a79d8c;--line:#352e25;--accent:#fb923c;--accent2:#fdba74;--chip:#2c261e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI","Noto Sans Devanagari",sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+h1{margin:0;font-size:20px;color:var(--accent2)}
+h1 small{display:block;font-size:12px;font-weight:400;color:var(--mute)}
+.tabs,.chips{display:flex;gap:8px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
+.tab,.chip{border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:6px 14px;border-radius:99px;cursor:pointer;white-space:nowrap;font:inherit;font-size:14px}
+.tab[aria-selected=true],.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tools{display:flex;gap:8px;padding:12px 0}
+input[type=search]{flex:1;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+main{padding-bottom:48px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--chip)}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.meta{font-size:12px;color:var(--mute);display:flex;flex-wrap:wrap;gap:6px 10px}
+.badge{background:var(--accent);color:#fff;border-radius:6px;padding:1px 7px;font-size:11px}
+.badge.alt{background:var(--chip);color:var(--accent2);border:1px solid var(--line)}
+.card h3{margin:0;font-size:16px;line-height:1.4}
+.card p{margin:0;color:var(--mute);font-size:14px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.card a{color:inherit;text-decoration:none}
+.card a.more{color:var(--accent);font-size:13px;margin-top:auto}
+.empty,.err{padding:40px 0;text-align:center;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:16px 0;color:var(--mute);font-size:13px;text-align:center}
+footer a{color:var(--accent)}
+.hide{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <h1>Banaras Buzz <small>वाराणसी · मिर्ज़ापुर · जौनपुर</small></h1>
+      <div class="tabs" role="tablist" id="sections" style="padding:0">
+        <button class="tab" role="tab" data-s="news" aria-selected="true">खबरें</button>
+        <button class="tab" role="tab" data-s="events" aria-selected="false">कार्यक्रम</button>
+      </div>
+    </div>
+    <div class="chips" id="filters"></div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="tools"><input type="search" id="q" placeholder="खोजें / Search…" aria-label="Search"></div>
+  <div id="out" class="grid"></div>
+  <div id="msg" class="empty hide"></div>
+</main>
+<footer><div class="wrap">स्रोत: Dainik Jagran, Hindustan, Amar Ujala और संपादक द्वारा जोड़ी गई खबरें · <a href="admin.html">Admin</a></div></footer>
+
+<script>
+const NEWS_FILES=['news.json','manual-news.json'];
+const EVENT_FILES=['events.json','manual-events.json'];
+const CITY_ORDER=['varanasi','mirzapur','jaunpur'];
+const CAT={religious:'धार्मिक',cultural:'सांस्कृतिक',tourism:'पर्यटन',general:'सामान्य'};
+const state={section:'news',filter:'all',q:'',news:[],events:[]};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl=u=>/^https?:\/\//i.test(u||'')?u:'';
+
+async function load(f){
+  try{const r=await fetch(f+'?t='+Math.floor(Date.now()/60000),{cache:'no-store'});
+    if(!r.ok)return null;return await r.json();}catch(e){return null}
+}
+function parseNewsDate(a){
+  const t=Date.parse(a.firstSeenAt||'');
+  if(!isNaN(t))return t;
+  const d=Date.parse((a.date||'').replace(' AM',' AM').replace(',',''));
+  return isNaN(d)?0:d;
+}
+async function init(){
+  const [n1,n2,e1,e2]=await Promise.all([...NEWS_FILES,...EVENT_FILES].map(load));
+  state.news=[...(Array.isArray(n2)?n2:[]),...(Array.isArray(n1)?n1:[])];
+  const seen=new Set();
+  state.news=state.news.filter(a=>a&&a.title&&!seen.has(a.id||a.title)&&seen.add(a.id||a.title));
+  state.news.sort((a,b)=>parseNewsDate(b)-parseNewsDate(a));
+  const ev=[...(e1&&e1.events||[]),...(e2&&e2.events||[])];
+  state.events=ev.filter(e=>e&&e.name).sort((a,b)=>Date.parse(a.start)-Date.parse(b.start));
+  if(!n1&&!n2)showMsg('खबरें लोड नहीं हो सकीं। कृपया बाद में कोशिश करें।',true);
+  buildFilters();render();
+}
+function buildFilters(){
+  const box=$('#filters');
+  let opts;
+  if(state.section==='news'){
+    const cities=[...new Map(state.news.map(a=>[a.cityId,a.cityName])).entries()]
+      .sort((a,b)=>CITY_ORDER.indexOf(a[0])-CITY_ORDER.indexOf(b[0]));
+    opts=[['all','सभी'],['breaking','ब्रेकिंग'],...cities];
+  }else{
+    const cats=[...new Set(state.events.map(e=>e.category||'general'))];
+    opts=[['all','सभी'],['upcoming','आगामी'],...cats.map(c=>[c,CAT[c]||c])];
+  }
+  box.innerHTML=opts.map(([k,l])=>`<button class="chip" data-f="${esc(k)}" aria-pressed="${state.filter===k}">${esc(l)}</button>`).join('');
+}
+function showMsg(t,isErr){const m=$('#msg');m.textContent=t;m.className=(isErr?'err':'empty');}
+function render(){
+  const q=state.q.trim().toLowerCase();
+  const out=$('#out'),msg=$('#msg');msg.className='hide';
+  let html='',n=0;
+  if(state.section==='news'){
+    let list=state.news;
+    if(state.filter==='breaking')list=list.filter(a=>a.isBreaking);
+    else if(state.filter!=='all')list=list.filter(a=>a.cityId===state.filter);
+    if(q)list=list.filter(a=>(a.title+' '+(a.summary||'')).toLowerCase().includes(q));
+    list.slice(0,120).forEach(a=>{n++;
+      const u=safeUrl(a.sourceUrl),img=safeUrl(a.imageUrl);
+      html+=`<article class="card">${img?`<img loading="lazy" src="${esc(img)}" alt="" onerror="this.remove()">`:''}
+      <div class="body"><div class="meta">${a.isBreaking?'<span class="badge">ब्रेकिंग</span>':''}<span>${esc(a.cityName||'')}</span><span>${esc(a.date||'')}</span><span>${esc(a.sourceName||'')}</span></div>
+      <h3>${u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(a.title)}</a>`:esc(a.title)}</h3>
+      <p>${esc(a.summary||a.content||'')}</p>
+      ${u?`<a class="more" href="${esc(u)}" target="_blank" rel="noopener noreferrer">पूरी खबर →</a>`:''}</div></article>`;});
+  }else{
+    const now=Date.now()-86400000;
+    let list=state.events;
+    if(state.filter==='upcoming')list=list.filter(e=>Date.parse(e.start)>=now);
+    else if(state.filter!=='all')list=list.filter(e=>(e.category||'general')===state.filter);
+    if(q)list=list.filter(e=>(e.name+' '+(e.description||'')+' '+(e.location?.name||'')).toLowerCase().includes(q));
+    list.forEach(e=>{n++;
+      const d=new Date(e.start),when=isNaN(d)?'':d.toLocaleDateString('hi-IN',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'})+(e.all_day?'':', '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'}));
+      const u=safeUrl(e.source_url),img=safeUrl(e.image_url);
+      html+=`<article class="card">${img?`<img loading="lazy" src="${esc(img)}" alt="" onerror="this.remove()">`:''}
+      <div class="body"><div class="meta"><span class="badge alt">${esc(CAT[e.category]||e.category||'')}</span><span>${esc(when)}</span>${e.date_confidence&&e.date_confidence!=='confirmed'?'<span>(तिथि अनुमानित)</span>':''}</div>
+      <h3>${esc(e.name)}</h3>
+      ${e.location?.name?`<div class="meta">📍 ${esc(e.location.name)}</div>`:''}
+      <p>${esc(e.description||'')}</p>
+      ${u?`<a class="more" href="${esc(u)}" target="_blank" rel="noopener noreferrer">विवरण →</a>`:''}</div></article>`;});
+  }
+  out.innerHTML=html;
+  if(!n)showMsg('कुछ नहीं मिला।');
+}
+$('#sections').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;
+  state.section=b.dataset.s;state.filter='all';
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t===b));
+  buildFilters();render();});
+$('#filters').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+  state.filter=b.dataset.f;buildFilters();render();});
+$('#q').addEventListener('input',e=>{state.q=e.target.value;render();});
+init();
+</script>
+</body>
+</html>

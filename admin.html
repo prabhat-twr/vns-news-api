@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Banaras Buzz Admin</title>
+<style>
+:root{--bg:#fbf7f0;--card:#fff;--ink:#1d1a16;--mute:#6b6459;--line:#e8dfd0;--accent:#c2410c;--chip:#f3e8d8;--ok:#15803d;--bad:#b91c1c}
+@media (prefers-color-scheme:dark){:root{--bg:#16130f;--card:#201c17;--ink:#f3ece1;--mute:#a79d8c;--line:#352e25;--accent:#fb923c;--chip:#2c261e;--ok:#4ade80;--bad:#f87171}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Devanagari",sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:8px 0 4px}h2{font-size:18px;margin:0 0 10px}
+a{color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+label{display:block;font-size:13px;color:var(--mute);margin:10px 0 4px}
+input,select,textarea{width:100%;padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+button{font:inherit;border:0;border-radius:10px;padding:9px 16px;cursor:pointer;background:var(--accent);color:#fff}
+button.ghost{background:var(--chip);color:var(--ink);border:1px solid var(--line)}
+button.del{background:transparent;color:var(--bad);border:1px solid var(--line);padding:4px 10px;font-size:13px}
+button:disabled{opacity:.5;cursor:wait}
+.tabs{display:flex;gap:8px;margin:12px 0}
+.tab[aria-selected=true]{background:var(--accent);color:#fff}
+.tab{background:var(--chip);color:var(--ink);border:1px solid var(--line)}
+.item{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.item small{color:var(--mute);display:block}
+#status{position:sticky;bottom:10px;padding:10px 14px;border-radius:10px;background:var(--card);border:1px solid var(--line);margin-top:10px;display:none}
+#status.ok{color:var(--ok)}#status.bad{color:var(--bad)}
+.hide{display:none}
+.note{font-size:13px;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Banaras Buzz Admin</h1>
+  <p class="note"><a href="index.html">← Viewer पर जाएँ</a></p>
+
+  <section class="card" id="login">
+    <h2>Sign in</h2>
+    <p class="note">GitHub fine-grained token चाहिए: सिर्फ़ इसी repo पर <b>Contents: Read and write</b>. Token सिर्फ़ आपके browser में रहता है, किसी और server पर नहीं जाता।</p>
+    <label>Repository (owner/repo)</label>
+    <input id="repo" value="prabhat-twr/vns-news-api" autocomplete="off">
+    <label>Branch</label>
+    <input id="branch" value="main" autocomplete="off">
+    <label>GitHub token</label>
+    <input id="token" type="password" placeholder="github_pat_…" autocomplete="off">
+    <label><input type="checkbox" id="remember" style="width:auto"> इस browser में याद रखें</label>
+    <p><button id="signin">Sign in</button></p>
+  </section>
+
+  <div id="app" class="hide">
+    <div class="tabs">
+      <button class="tab" data-t="news" aria-selected="true">News</button>
+      <button class="tab" data-t="events" aria-selected="false">Events</button>
+      <button class="ghost" id="signout" style="margin-left:auto">Sign out</button>
+    </div>
+
+    <section id="p-news">
+      <div class="card">
+        <h2>नई खबर जोड़ें</h2>
+        <form id="f-news">
+          <label>Title *</label><input name="title" required maxlength="300">
+          <label>Summary *</label><textarea name="summary" required maxlength="2000"></textarea>
+          <div class="row">
+            <div><label>City</label>
+              <select name="cityId"><option value="varanasi">वाराणसी</option><option value="mirzapur">मिर्ज़ापुर</option><option value="jaunpur">जौनपुर</option></select></div>
+            <div><label>Source name</label><input name="sourceName" value="Banaras Buzz"></div>
+          </div>
+          <label>Source link (optional)</label><input name="sourceUrl" type="url" placeholder="https://…">
+          <label>Image URL (optional)</label><input name="imageUrl" type="url" placeholder="https://…">
+          <label><input type="checkbox" name="isBreaking" style="width:auto"> Breaking news</label>
+          <p><button type="submit">Publish news</button></p>
+        </form>
+      </div>
+      <div class="card"><h2>आपकी जोड़ी हुई खबरें</h2><div id="l-news"></div></div>
+    </section>
+
+    <section id="p-events" class="hide">
+      <div class="card">
+        <h2>नया कार्यक्रम जोड़ें</h2>
+        <form id="f-events">
+          <label>Name *</label><input name="name" required maxlength="200">
+          <div class="row">
+            <div><label>Category</label>
+              <select name="category"><option value="religious">धार्मिक</option><option value="cultural">सांस्कृतिक</option><option value="tourism">पर्यटन</option><option value="general">सामान्य</option></select></div>
+            <div><label>Venue</label><input name="venue" maxlength="200"></div>
+          </div>
+          <div class="row">
+            <div><label>Start date *</label><input name="date" type="date" required></div>
+            <div><label>Start time (खाली = पूरा दिन)</label><input name="time" type="time"></div>
+          </div>
+          <label>Description</label><textarea name="description" maxlength="2000"></textarea>
+          <label>Link (optional)</label><input name="source_url" type="url" placeholder="https://…">
+          <label>Image URL (optional)</label><input name="image_url" type="url" placeholder="https://…">
+          <p><button type="submit">Publish event</button></p>
+        </form>
+      </div>
+      <div class="card"><h2>आपके जोड़े हुए कार्यक्रम</h2><div id="l-events"></div></div>
+    </section>
+  </div>
+  <div id="status" role="status"></div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const cfg={repo:'',branch:'main',token:''};
+const FILES={news:'manual-news.json',events:'manual-events.json'};
+const store={news:[],events:[]};
+const sha={news:null,events:null};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function say(t,ok=true){const s=$('#status');s.textContent=t;s.className=ok?'ok':'bad';s.style.display='block';clearTimeout(say.t);say.t=setTimeout(()=>s.style.display='none',6000);}
+const b64enc=s=>{const b=new TextEncoder().encode(s);let r='';b.forEach(x=>r+=String.fromCharCode(x));return btoa(r);};
+const b64dec=s=>{const r=atob(s.replace(/\n/g,''));return new TextDecoder().decode(Uint8Array.from(r,c=>c.charCodeAt(0)));};
+const api=(path,opt={})=>fetch(`https://api.github.com/repos/${cfg.repo}/contents/${path}`+(opt.method==='PUT'?'':`?ref=${encodeURIComponent(cfg.branch)}`),{
+  ...opt,headers:{Accept:'application/vnd.github+json',Authorization:'Bearer '+cfg.token,'X-GitHub-Api-Version':'2022-11-28',...(opt.headers||{})}});
+
+async function pull(kind){
+  const r=await api(FILES[kind]);
+  if(r.status===404){sha[kind]=null;store[kind]=kind==='events'?[]:[];return;}
+  if(!r.ok)throw new Error('GitHub '+r.status+' — token या repo सही नहीं है');
+  const j=await r.json();sha[kind]=j.sha;
+  const data=JSON.parse(b64dec(j.content));
+  store[kind]=kind==='events'?(data.events||[]):data;
+}
+async function push(kind,msg){
+  const body=kind==='events'
+    ?{generated_at:new Date().toISOString(),location:'Varanasi, India',events:store.events}
+    :store.news;
+  const payload={message:msg,content:b64enc(JSON.stringify(body,null,2)+'\n'),branch:cfg.branch};
+  if(sha[kind])payload.sha=sha[kind];
+  const r=await api(FILES[kind],{method:'PUT',body:JSON.stringify(payload)});
+  if(!r.ok){const t=await r.text();throw new Error('Save failed ('+r.status+'): '+t.slice(0,160));}
+  sha[kind]=(await r.json()).content.sha;
+}
+const uid=p=>p+'-'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const cityNames={varanasi:'वाराणसी',mirzapur:'मिर्ज़ापुर',jaunpur:'जौनपुर'};
+
+function renderLists(){
+  $('#l-news').innerHTML=store.news.length?store.news.map(a=>`<div class="item"><div><b>${esc(a.title)}</b><small>${esc(a.cityName)} · ${esc(a.date)}${a.isBreaking?' · breaking':''}</small></div><button class="del" data-k="news" data-id="${esc(a.id)}">Delete</button></div>`).join(''):'<p class="note">अभी कोई नहीं।</p>';
+  $('#l-events').innerHTML=store.events.length?store.events.map(e=>`<div class="item"><div><b>${esc(e.name)}</b><small>${esc(e.start.slice(0,16).replace('T',' '))} · ${esc(e.category)}</small></div><button class="del" data-k="events" data-id="${esc(e.id)}">Delete</button></div>`).join(''):'<p class="note">अभी कोई नहीं।</p>';
+}
+async function enter(){
+  try{
+    $('#signin').disabled=true;
+    await Promise.all([pull('news'),pull('events')]);
+    $('#login').classList.add('hide');$('#app').classList.remove('hide');renderLists();
+  }catch(e){say(e.message,false);}finally{$('#signin').disabled=false;}
+}
+$('#signin').onclick=()=>{
+  cfg.repo=$('#repo').value.trim();cfg.branch=$('#branch').value.trim()||'main';cfg.token=$('#token').value.trim();
+  if(!/^[\w.-]+\/[\w.-]+$/.test(cfg.repo)||!cfg.token){say('Repo और token भरें',false);return;}
+  const st=$('#remember').checked?localStorage:sessionStorage;
+  try{st.setItem('bb-admin',JSON.stringify(cfg));}catch(e){}
+  enter();
+};
+$('#signout').onclick=()=>{try{localStorage.removeItem('bb-admin');sessionStorage.removeItem('bb-admin');}catch(e){}location.reload();};
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t===b));
+  $('#p-news').classList.toggle('hide',b.dataset.t!=='news');
+  $('#p-events').classList.toggle('hide',b.dataset.t!=='events');});
+
+async function save(kind,mutate,msg,form){
+  const btns=document.querySelectorAll('button');btns.forEach(b=>b.disabled=true);
+  try{
+    await pull(kind);           // always start from the latest file
+    mutate();
+    await push(kind,msg);
+    renderLists();if(form)form.reset();
+    say('Saved. वेबसाइट पर 1–2 मिनट में दिखेगा।');
+  }catch(e){say(e.message,false);}finally{btns.forEach(b=>b.disabled=false);}
+}
+$('#f-news').onsubmit=e=>{e.preventDefault();const f=e.target,d=new FormData(f);
+  const now=new Date(),iso=now.toISOString();
+  const art={cityId:d.get('cityId'),cityName:cityNames[d.get('cityId')],title:d.get('title').trim(),summary:d.get('summary').trim(),
+    content:d.get('summary').trim(),location:cityNames[d.get('cityId')],
+    date:now.toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}),
+    imageUrl:d.get('imageUrl').trim()||null,sourceUrl:d.get('sourceUrl').trim()||null,sourceName:d.get('sourceName').trim()||'Banaras Buzz',
+    isBreaking:d.get('isBreaking')==='on',id:uid('manual'),firstSeenAt:iso,updatedAt:iso};
+  save('news',()=>store.news.unshift(art),'Admin: add news',f);};
+$('#f-events').onsubmit=e=>{e.preventDefault();const f=e.target,d=new FormData(f);
+  const time=d.get('time');
+  const ev={id:uid('manual-event'),name:d.get('name').trim(),category:d.get('category'),
+    start:`${d.get('date')}T${time||'00:00'}:00+05:30`,end:null,all_day:!time,date_confidence:'confirmed',date_note:null,
+    location:{name:d.get('venue').trim()||null,lat:null,lng:null,coordinate_precision:null},
+    description:d.get('description').trim(),source_url:d.get('source_url').trim()||null,image_url:d.get('image_url').trim()||null};
+  save('events',()=>{store.events.push(ev);store.events.sort((a,b)=>Date.parse(a.start)-Date.parse(b.start));},'Admin: add event',f);};
+document.addEventListener('click',e=>{const b=e.target.closest('.del');if(!b)return;
+  if(!confirm('Delete करें?'))return;
+  const k=b.dataset.k,id=b.dataset.id;
+  save(k,()=>{store[k]=store[k].filter(x=>x.id!==id);},'Admin: delete '+k+' item');});
+
+// restore saved session
+try{const s=sessionStorage.getItem('bb-admin')||localStorage.getItem('bb-admin');
+  if(s){Object.assign(cfg,JSON.parse(s));$('#repo').value=cfg.repo;$('#branch').value=cfg.branch;enter();}}catch(e){}
+</script>
+</body>
+</html>
