@@ -12,13 +12,36 @@ android {
         applicationId = "com.banarasbuzz.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
+        // Play Store needs a higher versionCode for every upload; CI passes the run number.
+        versionCode = (System.getenv("VERSION_CODE") ?: "1").toInt()
         versionName = "1.0.0"
+    }
+
+    // Release signing: the upload keystore is never stored in the repo. CI decodes it from
+    // GitHub secrets and passes its location and passwords through these environment variables.
+    val keystorePath = System.getenv("KEYSTORE_FILE")
+    signingConfigs {
+        if (keystorePath != null) {
+            create("release") {
+                storeFile = File(keystorePath)
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
+            if (keystorePath != null) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
     compileOptions {

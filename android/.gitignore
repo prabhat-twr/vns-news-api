@@ -5,3 +5,6 @@ local.properties
 *.iml
 captures/
 .cxx/
+*.jks
+*.keystore
+keystore.properties

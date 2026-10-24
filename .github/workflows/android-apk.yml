@@ -36,6 +36,9 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
 
+      - name: Check the release bundle builds (unsigned)
+        run: ./gradlew bundleRelease --stacktrace
+
       - name: Rename APK
         run: cp app/build/outputs/apk/debug/app-debug.apk BanarasBuzz.apk
 
