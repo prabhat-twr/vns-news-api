@@ -68,9 +68,15 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl=u=>/^https?:\/\//i.test(u||'')?u:'';
 
+// Live data comes from the GitHub repo (the hourly scraper and the admin page both write there);
+// files bundled with the site are the fallback.
+const RAW_BASE='https://raw.githubusercontent.com/prabhat-twr/vns-news-api/main/';
+async function fetchJson(url){
+  try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)return null;return await r.json();}catch(e){return null}
+}
 async function load(f){
-  try{const r=await fetch(f+'?t='+Math.floor(Date.now()/60000),{cache:'no-store'});
-    if(!r.ok)return null;return await r.json();}catch(e){return null}
+  const t='?t='+Math.floor(Date.now()/60000);
+  return (await fetchJson(RAW_BASE+f+t))||(await fetchJson(f+t));
 }
 function parseNewsDate(a){
   const t=Date.parse(a.firstSeenAt||'');
