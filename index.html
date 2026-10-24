@@ -85,13 +85,14 @@ function parseNewsDate(a){
   return isNaN(d)?0:d;
 }
 async function init(){
-  const [n1,n2,e1,e2]=await Promise.all([...NEWS_FILES,...EVENT_FILES].map(load));
+  const [n1,n2,e1,e2,hid]=await Promise.all([...NEWS_FILES,...EVENT_FILES,'hidden.json'].map(load));
+  const hn=new Set((hid&&hid.news)||[]),he=new Set((hid&&hid.events)||[]);
   state.news=[...(Array.isArray(n2)?n2:[]),...(Array.isArray(n1)?n1:[])];
   const seen=new Set();
-  state.news=state.news.filter(a=>a&&a.title&&!seen.has(a.id||a.title)&&seen.add(a.id||a.title));
+  state.news=state.news.filter(a=>a&&a.title&&!hn.has(a.id)&&!seen.has(a.id||a.title)&&seen.add(a.id||a.title));
   state.news.sort((a,b)=>parseNewsDate(b)-parseNewsDate(a));
   const ev=[...(e1&&e1.events||[]),...(e2&&e2.events||[])];
-  state.events=ev.filter(e=>e&&e.name).sort((a,b)=>Date.parse(a.start)-Date.parse(b.start));
+  state.events=ev.filter(e=>e&&e.name&&!he.has(e.id)).sort((a,b)=>Date.parse(a.start)-Date.parse(b.start));
   if(!n1&&!n2)showMsg('खबरें लोड नहीं हो सकीं। कृपया बाद में कोशिश करें।',true);
   buildFilters();render();
 }

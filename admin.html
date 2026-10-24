@@ -78,6 +78,9 @@ button:disabled{opacity:.5;cursor:wait}
         </form>
       </div>
       <div class="card"><h2>आपकी जोड़ी हुई खबरें</h2><div id="l-news"></div></div>
+      <div class="card"><h2>Auto-scraped खबरें (साइट से हटाएँ)</h2>
+        <p class="note">Hide करने पर खबर साइट पर नहीं दिखेगी। Scraper दोबारा चले तब भी हटी रहेगी। कभी भी Unhide कर सकते हैं।</p>
+        <input id="s-news" type="search" placeholder="खोजें…"><div id="h-news"></div></div>
     </section>
 
     <section id="p-events" class="hide">
@@ -101,6 +104,9 @@ button:disabled{opacity:.5;cursor:wait}
         </form>
       </div>
       <div class="card"><h2>आपके जोड़े हुए कार्यक्रम</h2><div id="l-events"></div></div>
+      <div class="card"><h2>पहले से मौजूद कार्यक्रम (साइट से हटाएँ)</h2>
+        <p class="note">events.json के कार्यक्रम यहाँ से Hide / Unhide करें।</p>
+        <input id="s-events" type="search" placeholder="खोजें…"><div id="h-events"></div></div>
     </section>
   </div>
   <div id="status" role="status"></div>
@@ -109,9 +115,10 @@ button:disabled{opacity:.5;cursor:wait}
 <script>
 const $=s=>document.querySelector(s);
 const cfg={repo:'',branch:'main',token:''};
-const FILES={news:'manual-news.json',events:'manual-events.json'};
-const store={news:[],events:[]};
-const sha={news:null,events:null};
+const FILES={news:'manual-news.json',events:'manual-events.json',hidden:'hidden.json'};
+const store={news:[],events:[],hidden:{news:[],events:[]}};
+const sha={news:null,events:null,hidden:null};
+const feeds={news:[],events:[]};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 function say(t,ok=true){const s=$('#status');s.textContent=t;s.className=ok?'ok':'bad';s.style.display='block';clearTimeout(say.t);say.t=setTimeout(()=>s.style.display='none',6000);}
@@ -122,16 +129,17 @@ const api=(path,opt={})=>fetch(`https://api.github.com/repos/${cfg.repo}/content
 
 async function pull(kind){
   const r=await api(FILES[kind]);
-  if(r.status===404){sha[kind]=null;store[kind]=kind==='events'?[]:[];return;}
+  if(r.status===404){sha[kind]=null;store[kind]=kind==='hidden'?{news:[],events:[]}:[];return;}
   if(!r.ok)throw new Error('GitHub '+r.status+' — token या repo सही नहीं है');
   const j=await r.json();sha[kind]=j.sha;
   const data=JSON.parse(b64dec(j.content));
   store[kind]=kind==='events'?(data.events||[]):data;
+  if(kind==='hidden'){store.hidden={news:data.news||[],events:data.events||[]};}
 }
 async function push(kind,msg){
   const body=kind==='events'
     ?{generated_at:new Date().toISOString(),location:'Varanasi, India',events:store.events}
-    :store.news;
+    :store[kind];
   const payload={message:msg,content:b64enc(JSON.stringify(body,null,2)+'\n'),branch:cfg.branch};
   if(sha[kind])payload.sha=sha[kind];
   const r=await api(FILES[kind],{method:'PUT',body:JSON.stringify(payload)});
@@ -144,11 +152,28 @@ const cityNames={varanasi:'वाराणसी',mirzapur:'मिर्ज़�
 function renderLists(){
   $('#l-news').innerHTML=store.news.length?store.news.map(a=>`<div class="item"><div><b>${esc(a.title)}</b><small>${esc(a.cityName)} · ${esc(a.date)}${a.isBreaking?' · breaking':''}</small></div><button class="del" data-k="news" data-id="${esc(a.id)}">Delete</button></div>`).join(''):'<p class="note">अभी कोई नहीं।</p>';
   $('#l-events').innerHTML=store.events.length?store.events.map(e=>`<div class="item"><div><b>${esc(e.name)}</b><small>${esc(e.start.slice(0,16).replace('T',' '))} · ${esc(e.category)}</small></div><button class="del" data-k="events" data-id="${esc(e.id)}">Delete</button></div>`).join(''):'<p class="note">अभी कोई नहीं।</p>';
+  if(typeof renderFeeds==='function')renderFeeds();
 }
+async function loadFeeds(){
+  const base=`https://raw.githubusercontent.com/${cfg.repo}/${encodeURIComponent(cfg.branch)}/`,t='?t='+Date.now();
+  try{const r=await fetch(base+'news.json'+t);if(r.ok)feeds.news=await r.json();}catch(e){}
+  try{const r=await fetch(base+'events.json'+t);if(r.ok)feeds.events=(await r.json()).events||[];}catch(e){}
+}
+function renderFeeds(){
+  [['news','title'],['events','name']].forEach(([k,f])=>{
+    const q=($('#s-'+k).value||'').toLowerCase(),hid=new Set(store.hidden[k]);
+    const rows=feeds[k].filter(x=>x.id&&(!q||String(x[f]).toLowerCase().includes(q))).slice(0,40);
+    $('#h-'+k).innerHTML=rows.length?rows.map(x=>`<div class="item"><div><b>${esc(x[f])}</b><small>${esc(k==='news'?(x.cityName+' · '+x.date):String(x.start).slice(0,10))}${hid.has(x.id)?' · hidden':''}</small></div><button class="${hid.has(x.id)?'ghost':'del'} tog" data-k="${k}" data-id="${esc(x.id)}">${hid.has(x.id)?'Unhide':'Hide'}</button></div>`).join(''):'<p class="note">कुछ नहीं मिला।</p>';
+  });
+}
+$('#s-news').oninput=renderFeeds;$('#s-events').oninput=renderFeeds;
+document.addEventListener('click',e=>{const b=e.target.closest('button.tog');if(!b)return;
+  const k=b.dataset.k,id=b.dataset.id;
+  save('hidden',()=>{const a=store.hidden[k],i=a.indexOf(id);if(i<0)a.push(id);else a.splice(i,1);},'Admin: toggle hidden '+k);});
 async function enter(){
   try{
     $('#signin').disabled=true;
-    await Promise.all([pull('news'),pull('events')]);
+    await Promise.all([pull('news'),pull('events'),pull('hidden'),loadFeeds()]);
     $('#login').classList.add('hide');$('#app').classList.remove('hide');renderLists();
   }catch(e){say(e.message,false);}finally{$('#signin').disabled=false;}
 }
