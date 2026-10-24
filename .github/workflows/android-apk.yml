@@ -1,0 +1,58 @@
+name: Build Android APK
+
+on:
+  push:
+    paths:
+      - "android/**"
+      - ".github/workflows/android-apk.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-apk
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Rename APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk BanarasBuzz.apk
+
+      - name: Upload APK as build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BanarasBuzz-debug-apk
+          path: android/BanarasBuzz.apk
+
+      - name: Publish APK to the "apk-latest" release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete apk-latest --cleanup-tag --yes --repo "$GITHUB_REPOSITORY" || true
+          gh release create apk-latest BanarasBuzz.apk \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Banaras Buzz Android (latest debug build)" \
+            --notes "Debug build of the Banaras Buzz Android app. Download BanarasBuzz.apk on your phone and install it (allow 'install unknown apps' for your browser if asked)." \
+            --prerelease
