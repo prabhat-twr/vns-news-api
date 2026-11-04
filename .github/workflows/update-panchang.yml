@@ -1,0 +1,70 @@
+name: Update Varanasi panchang
+
+on:
+  schedule:
+    # 00:10 IST, so the app has the new day's panchang just after midnight,
+    # and 06:10 IST as a backup in case the first run is delayed or fails.
+    - cron: "40 18 * * *"
+    - cron: "40 0 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_panchang.py"
+      - ".github/workflows/update-panchang.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-panchang
+  cancel-in-progress: false
+
+jobs:
+  update-panchang:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Skyfield
+        run: pip install "skyfield==1.55" "numpy<3"
+
+      - name: Cache JPL ephemeris
+        uses: actions/cache@v4
+        with:
+          path: .ephemeris
+          key: jpl-de421
+
+      - name: Calculate panchang
+        run: python -X utf8 scripts/build_panchang.py --days 45
+
+      - name: Validate JSON
+        run: |
+          python -m json.tool varanasi-panchang-daily.json > /dev/null
+          python -m json.tool varanasi-panchang-calendar.json > /dev/null
+
+      - name: Commit and push if changed
+        run: |
+          # generated_at changes every run; only commit when the panchang itself changed.
+          strip() { git show "HEAD:$1" 2>/dev/null | grep -v '"generated_at"'; }
+          if diff -q <(strip varanasi-panchang-daily.json) <(grep -v '"generated_at"' varanasi-panchang-daily.json) >/dev/null &&
+             diff -q <(strip varanasi-panchang-calendar.json) <(grep -v '"generated_at"' varanasi-panchang-calendar.json) >/dev/null; then
+            echo "Panchang unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add varanasi-panchang-daily.json varanasi-panchang-calendar.json
+          git commit -m "Auto update Varanasi panchang"
+          # The news workflow pushes hourly too; rebase onto it before pushing.
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 10
+          done
+          exit 1

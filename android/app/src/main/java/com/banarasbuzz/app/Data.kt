@@ -44,7 +44,7 @@ data class EventItem(
 )
 
 /** One tithi / nakshatra / yoga / karana entry. `endsAt` is 0 when it runs past the day. */
-data class Anga(val name: String, val paksha: String?, val endsAt: Long)
+data class Anga(val name: String, val paksha: String?, val endsAt: Long, val nameHi: String? = null)
 
 data class TimeWindow(val start: Long, val end: Long)
 
@@ -69,6 +69,7 @@ data class Panchang(
 data class Observance(
     val id: String,
     val name: String,
+    val nameHi: String?,
     val type: String,
     val date: String,
     val tithi: String,
@@ -164,7 +165,7 @@ private fun parseAngas(arr: JSONArray?): List<Anga> {
     return (0 until arr.length()).mapNotNull { i ->
         val o = arr.optJSONObject(i) ?: return@mapNotNull null
         val name = o.str("name") ?: return@mapNotNull null
-        Anga(name, o.str("paksha"), parseMillis(o.str("ends_at")))
+        Anga(name, o.str("paksha"), parseMillis(o.str("ends_at")), o.str("name_hi"))
     }
 }
 
@@ -194,7 +195,8 @@ private fun parsePanchang(text: String?): Panchang? {
             rahuKaal = parseWindow(o.optJSONObject("rahu_kaal")),
             abhijit = parseWindow(o.optJSONObject("abhijit_muhurat")),
             festivals = if (fest == null) emptyList() else (0 until fest.length()).mapNotNull { i ->
-                fest.optJSONObject(i)?.str("name") ?: fest.optString(i).takeIf { it.isNotBlank() }
+                fest.optJSONObject(i)?.let { it.str("name_hi") ?: it.str("name") }
+                    ?: fest.optString(i).takeIf { it.isNotBlank() }
             },
         )
     } catch (e: Exception) {
@@ -212,6 +214,7 @@ private fun parseObservances(text: String?): List<Observance> {
             Observance(
                 id = o.str("id") ?: name,
                 name = name,
+                nameHi = o.str("name_hi"),
                 type = o.str("type") ?: "tyohar",
                 date = o.str("date") ?: "",
                 tithi = o.str("tithi") ?: "",

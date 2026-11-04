@@ -1,35 +1,97 @@
 {
-  "generated_at": "2026-08-26T17:57:00+05:30",
-  "date": "2026-08-26",
-  "location": { "name": "Varanasi, Uttar Pradesh, India", "lat": 25.3176, "lng": 82.9739 },
+  "generated_at": "2026-11-04T23:44:42+05:30",
+  "date": "2026-11-04",
+  "location": {
+    "name": "Varanasi, Uttar Pradesh, India",
+    "lat": 25.3176,
+    "lng": 82.9739
+  },
   "vara": "Wednesday (Budhavara)",
+  "vara_hi": "बुधवार",
+  "lunar_month": {
+    "purnimanta": "Kartika",
+    "purnimanta_hi": "कार्तिक",
+    "amanta": "Ashwin",
+    "adhik": false
+  },
   "tithi": [
-    { "name": "Trayodashi", "paksha": "Shukla", "ends_at": "2026-08-26T07:59:00+05:30" },
-    { "name": "Chaturdashi", "paksha": "Shukla", "ends_at": null }
+    {
+      "name": "Dashami",
+      "name_hi": "दशमी",
+      "paksha": "Krishna",
+      "ends_at": "2026-11-04T11:03:00+05:30"
+    },
+    {
+      "name": "Ekadashi",
+      "name_hi": "एकादशी",
+      "paksha": "Krishna",
+      "ends_at": null
+    }
   ],
   "nakshatra": [
-    { "name": "Shravana", "ends_at": "2026-08-27T00:47:00+05:30" },
-    { "name": "Dhanishta", "ends_at": null }
+    {
+      "name": "Purva Phalguni",
+      "name_hi": "पूर्वा फाल्गुनी",
+      "ends_at": "2026-11-05T03:30:00+05:30"
+    },
+    {
+      "name": "Uttara Phalguni",
+      "name_hi": "उत्तरा फाल्गुनी",
+      "ends_at": null
+    }
   ],
   "yoga": [
-    { "name": "Saubhagya", "ends_at": "2026-08-26T07:56:00+05:30" },
-    { "name": "Shobhana", "ends_at": null }
+    {
+      "name": "Brahma",
+      "name_hi": "ब्रह्म",
+      "ends_at": "2026-11-04T08:00:00+05:30"
+    },
+    {
+      "name": "Indra",
+      "name_hi": "इन्द्र",
+      "ends_at": null
+    }
   ],
   "karana": [
-    { "name": "Taitila", "ends_at": "2026-08-26T07:59:00+05:30" },
-    { "name": "Garaja", "ends_at": "2026-08-26T20:39:00+05:30" }
+    {
+      "name": "Vishti",
+      "name_hi": "विष्टि",
+      "ends_at": "2026-11-04T11:03:00+05:30"
+    },
+    {
+      "name": "Bava",
+      "name_hi": "बव",
+      "ends_at": "2026-11-04T22:47:00+05:30"
+    },
+    {
+      "name": "Balava",
+      "name_hi": "बालव",
+      "ends_at": null
+    }
   ],
-  "sunrise": "2026-08-26T05:36:00+05:30",
-  "sunset": "2026-08-26T18:23:00+05:30",
-  "moonrise": "2026-08-26T17:21:00+05:30",
-  "moonset": "2026-08-27T04:35:00+05:30",
-  "rahu_kaal": { "start": "2026-08-26T11:59:00+05:30", "end": "2026-08-26T13:35:00+05:30" },
-  "yamaganda_kaal": { "start": "2026-08-26T07:11:00+05:30", "end": "2026-08-26T08:47:00+05:30" },
-  "gulika_kaal": { "start": "2026-08-26T10:23:00+05:30", "end": "2026-08-26T11:59:00+05:30" },
-  "abhijit_muhurat": { "start": "2026-08-26T11:34:00+05:30", "end": "2026-08-26T12:22:00+05:30" },
+  "sunrise": "2026-11-04T06:07:00+05:30",
+  "sunset": "2026-11-04T17:15:00+05:30",
+  "moonrise": "2026-11-05T02:19:00+05:30",
+  "moonset": "2026-11-04T14:09:00+05:30",
+  "rahu_kaal": {
+    "start": "2026-11-04T11:41:00+05:30",
+    "end": "2026-11-04T13:04:00+05:30"
+  },
+  "yamaganda_kaal": {
+    "start": "2026-11-04T07:31:00+05:30",
+    "end": "2026-11-04T08:54:00+05:30"
+  },
+  "gulika_kaal": {
+    "start": "2026-11-04T10:18:00+05:30",
+    "end": "2026-11-04T11:41:00+05:30"
+  },
+  "abhijit_muhurat": {
+    "start": "2026-11-04T11:19:00+05:30",
+    "end": "2026-11-04T12:03:00+05:30"
+  },
   "festivals_and_vrats": [],
-  "calculation_method": "Drik Ganita",
-  "data_source": "direct_fetch",
-  "confidence": "confirmed",
-  "source_url": "https://astrosight.ai/panchanga/varanasi"
+  "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
+  "data_source": "calculated",
+  "confidence": "calculated",
+  "source_url": null
 }

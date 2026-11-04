@@ -131,7 +131,7 @@ fun PanchangScreen(vm: FeedViewModel) {
                 )
             }
 
-            val todays = (p.festivals + vm.feed.observances.filter { it.date == p.date }.map { it.name }).distinct()
+            val todays = (p.festivals + vm.feed.observances.filter { it.date == p.date }.map { it.nameHi ?: it.name }).distinct()
             GoldBand {
                 Text("आज के व्रत और त्योहार", fontSize = 17.sp, fontWeight = FontWeight.Bold, color = BB.Ink)
                 Text(
@@ -143,8 +143,8 @@ fun PanchangScreen(vm: FeedViewModel) {
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                SmallFact("योग", p.yoga.firstOrNull()?.name ?: "—", Modifier.weight(1f))
-                SmallFact("करण", p.karana.firstOrNull()?.name ?: "—", Modifier.weight(1f))
+                SmallFact("योग", p.yoga.firstOrNull()?.let { it.nameHi ?: it.name } ?: "—", Modifier.weight(1f))
+                SmallFact("करण", p.karana.firstOrNull()?.let { it.nameHi ?: it.name } ?: "—", Modifier.weight(1f))
                 SmallFact("चंद्रोदय", clock(p.moonrise).ifBlank { "—" }, Modifier.weight(1f))
             }
         }
@@ -190,7 +190,7 @@ fun PanchangScreen(vm: FeedViewModel) {
                     }
                     Spacer(Modifier.width(12.dp))
                     Column(Modifier.weight(1f)) {
-                        Text(o.name, fontWeight = FontWeight.Bold, color = BB.Ink, fontSize = 15.sp)
+                        Text(o.nameHi ?: o.name, fontWeight = FontWeight.Bold, color = BB.Ink, fontSize = 15.sp)
                         Text(
                             listOf(
                                 when (o.type) { "vrat" -> "व्रत"; "both" -> "व्रत व त्योहार"; else -> "त्योहार" },

@@ -1,2 +1,4 @@
 *.jks
 *.keystore
+.ephemeris/
+__pycache__/
