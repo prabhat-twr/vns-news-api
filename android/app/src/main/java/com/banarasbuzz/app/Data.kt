@@ -43,9 +43,44 @@ data class EventItem(
     val approximateDate: Boolean,
 )
 
+/** One tithi / nakshatra / yoga / karana entry. `endsAt` is 0 when it runs past the day. */
+data class Anga(val name: String, val paksha: String?, val endsAt: Long)
+
+data class TimeWindow(val start: Long, val end: Long)
+
+/** One day's Varanasi panchang (varanasi-panchang-daily.json). */
+data class Panchang(
+    val date: String,
+    val vara: String,
+    val tithi: List<Anga>,
+    val nakshatra: List<Anga>,
+    val yoga: List<Anga>,
+    val karana: List<Anga>,
+    val sunrise: Long,
+    val sunset: Long,
+    val moonrise: Long,
+    val moonset: Long,
+    val rahuKaal: TimeWindow?,
+    val abhijit: TimeWindow?,
+    val festivals: List<String>,
+)
+
+/** An upcoming vrat or tyohar (varanasi-panchang-calendar.json). */
+data class Observance(
+    val id: String,
+    val name: String,
+    val type: String,
+    val date: String,
+    val tithi: String,
+    val paksha: String,
+    val description: String,
+)
+
 data class Feed(
     val news: List<NewsItem> = emptyList(),
     val events: List<EventItem> = emptyList(),
+    val panchang: Panchang? = null,
+    val observances: List<Observance> = emptyList(),
     val offline: Boolean = false,
 )
 
@@ -124,6 +159,71 @@ private fun parseEvents(text: String?): List<EventItem> {
     return out
 }
 
+private fun parseAngas(arr: JSONArray?): List<Anga> {
+    if (arr == null) return emptyList()
+    return (0 until arr.length()).mapNotNull { i ->
+        val o = arr.optJSONObject(i) ?: return@mapNotNull null
+        val name = o.str("name") ?: return@mapNotNull null
+        Anga(name, o.str("paksha"), parseMillis(o.str("ends_at")))
+    }
+}
+
+private fun parseWindow(o: JSONObject?): TimeWindow? {
+    if (o == null) return null
+    val start = parseMillis(o.str("start"))
+    val end = parseMillis(o.str("end"))
+    return if (start == 0L || end == 0L) null else TimeWindow(start, end)
+}
+
+private fun parsePanchang(text: String?): Panchang? {
+    if (text == null) return null
+    return try {
+        val o = JSONObject(text)
+        val fest = o.optJSONArray("festivals_and_vrats")
+        Panchang(
+            date = o.str("date") ?: return null,
+            vara = o.str("vara") ?: "",
+            tithi = parseAngas(o.optJSONArray("tithi")),
+            nakshatra = parseAngas(o.optJSONArray("nakshatra")),
+            yoga = parseAngas(o.optJSONArray("yoga")),
+            karana = parseAngas(o.optJSONArray("karana")),
+            sunrise = parseMillis(o.str("sunrise")),
+            sunset = parseMillis(o.str("sunset")),
+            moonrise = parseMillis(o.str("moonrise")),
+            moonset = parseMillis(o.str("moonset")),
+            rahuKaal = parseWindow(o.optJSONObject("rahu_kaal")),
+            abhijit = parseWindow(o.optJSONObject("abhijit_muhurat")),
+            festivals = if (fest == null) emptyList() else (0 until fest.length()).mapNotNull { i ->
+                fest.optJSONObject(i)?.str("name") ?: fest.optString(i).takeIf { it.isNotBlank() }
+            },
+        )
+    } catch (e: Exception) {
+        null
+    }
+}
+
+private fun parseObservances(text: String?): List<Observance> {
+    if (text == null) return emptyList()
+    return try {
+        val arr = JSONObject(text).optJSONArray("observances") ?: return emptyList()
+        (0 until arr.length()).mapNotNull { i ->
+            val o = arr.optJSONObject(i) ?: return@mapNotNull null
+            val name = o.str("name") ?: return@mapNotNull null
+            Observance(
+                id = o.str("id") ?: name,
+                name = name,
+                type = o.str("type") ?: "tyohar",
+                date = o.str("date") ?: "",
+                tithi = o.str("tithi") ?: "",
+                paksha = o.str("paksha") ?: "",
+                description = o.str("description") ?: "",
+            )
+        }.sortedBy { it.date }
+    } catch (e: Exception) {
+        emptyList()
+    }
+}
+
 private fun parseHidden(text: String?, key: String): Set<String> {
     if (text == null) return emptySet()
     return try {
@@ -161,24 +261,36 @@ object Repository {
             }
         }
 
-        val scraped = fetch("news.json")
-        val manualNews = fetch("manual-news.json")
-        val eventsFile = fetch("events.json")
-        val manualEvents = fetch("manual-events.json")
-        val hidden = fetch("hidden.json")
-
-        val hiddenNews = parseHidden(hidden, "news")
-        val hiddenEvents = parseHidden(hidden, "events")
-
-        val seen = HashSet<String>()
-        val news = (parseNews(manualNews) + parseNews(scraped))
-            .filter { it.id !in hiddenNews && seen.add(it.id) }
-            .sortedByDescending { it.timestamp }
-
-        val events = (parseEvents(eventsFile) + parseEvents(manualEvents))
-            .filter { it.id !in hiddenEvents }
-            .sortedBy { it.startMillis }
-
-        Feed(news = news, events = events, offline = offline)
+        assembleFeed(::fetch).copy(offline = offline)
     }
+}
+
+/** Merges the feed files (read through [fetch]) into one [Feed], minus anything hidden. */
+internal fun assembleFeed(fetch: (String) -> String?): Feed {
+    val scraped = fetch("news.json")
+    val manualNews = fetch("manual-news.json")
+    val eventsFile = fetch("events.json")
+    val manualEvents = fetch("manual-events.json")
+    val hidden = fetch("hidden.json")
+    val panchang = parsePanchang(fetch("varanasi-panchang-daily.json"))
+    val observances = parseObservances(fetch("varanasi-panchang-calendar.json"))
+
+    val hiddenNews = parseHidden(hidden, "news")
+    val hiddenEvents = parseHidden(hidden, "events")
+
+    val seen = HashSet<String>()
+    val news = (parseNews(manualNews) + parseNews(scraped))
+        .filter { it.id !in hiddenNews && seen.add(it.id) }
+        .sortedByDescending { it.timestamp }
+
+    val events = (parseEvents(eventsFile) + parseEvents(manualEvents))
+        .filter { it.id !in hiddenEvents }
+        .sortedBy { it.startMillis }
+
+    return Feed(
+        news = news,
+        events = events,
+        panchang = panchang,
+        observances = observances,
+    )
 }
