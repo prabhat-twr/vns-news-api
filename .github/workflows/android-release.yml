@@ -1,4 +1,4 @@
-name: Build signed Android App Bundle (Play Store)
+name: Build signed Android release (APK + Play Store bundle)
 
 on:
   workflow_dispatch:
@@ -45,18 +45,28 @@ jobs:
           KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         run: echo "$KS" | base64 -d > "$RUNNER_TEMP/upload.jks"
 
-      - name: Build signed release bundle
+      - name: Build signed release APK and bundle
         env:
           KEYSTORE_FILE: ${{ runner.temp }}/upload.jks
           KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          VERSION_CODE: ${{ github.run_number }}
-        run: ./gradlew bundleRelease --stacktrace
+        # versionCode = run number + 10, so CI builds stay above the first hand-signed APK (versionCode 2).
+        run: VERSION_CODE=$(( ${{ github.run_number }} + 10 )) ./gradlew assembleRelease bundleRelease --stacktrace
 
-      - name: Verify the bundle is signed
+      - name: Verify the APK and bundle are signed
         run: |
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$BT/apksigner" verify --print-certs app/build/outputs/apk/release/app-release.apk | head -4
           keytool -printcert -jarfile app/build/outputs/bundle/release/app-release.aab | head -8
+          cp app/build/outputs/apk/release/app-release.apk BanarasBuzz-release.apk
+
+      - name: Upload signed APK (private build artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: BanarasBuzz-release-apk
+          path: android/BanarasBuzz-release.apk
+          retention-days: 30
 
       - name: Upload bundle (private build artifact)
         uses: actions/upload-artifact@v4

@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Banaras Buzz Web</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Banaras Buzz — Varanasi news, panchang, events and city guide">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one phone-width column, centered on wide screens, bottom tab bar like the Android app. */
+:root {
+  --bg: #FFF8EF; --tile: #FFEFD9; --tile-strong: #FCE3B5; --card: #FFFFFF;
+  --ink: #2B1A0F; --ink-soft: #4A3526; --muted: #85705E; --line: #F1E3D0;
+  --saffron: #E8600F; --saffron-deep: #C24B0A; --heart: #E5383B; --nav: #FFFFFF;
+  --ok: #2E7D4F; --ok-bg: #E3F3E8; --warn: #A15C00; --warn-bg: #FFF0D6; --bad: #B3261E; --bad-bg: #FDE3E1;
+  --shadow: 0 6px 18px rgba(232, 96, 15, .13);
+  --font: "Mukta", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1A120C; --tile: #2B1D13; --tile-strong: #3B2816; --card: #23180F;
+  --ink: #F6E9DA; --ink-soft: #E0CBB5; --muted: #AE977F; --line: #3A2A1E;
+  --saffron: #FF8A3D; --saffron-deep: #FFA463; --heart: #FF6B6E; --nav: #1F150E;
+  --ok: #7BD49A; --ok-bg: #173323; --warn: #F5B961; --warn-bg: #3A2A10; --bad: #FF8A80; --bad-bg: #3D1714;
+  --shadow: 0 6px 18px rgba(0, 0, 0, .35); color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #1A120C; --tile: #2B1D13; --tile-strong: #3B2816; --card: #23180F;
+  --ink: #F6E9DA; --ink-soft: #E0CBB5; --muted: #AE977F; --line: #3A2A1E;
+  --saffron: #FF8A3D; --saffron-deep: #FFA463; --heart: #FF6B6E; --nav: #1F150E;
+  --ok: #7BD49A; --ok-bg: #173323; --warn: #F5B961; --warn-bg: #3A2A10; --bad: #FF8A80; --bad-bg: #3D1714;
+  --shadow: 0 6px 18px rgba(0, 0, 0, .35); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.45 var(--font); }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--saffron); outline-offset: 2px; }
+
+#app { max-width: 480px; margin: 0 auto; min-height: 100vh; padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+.screen { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 8px 24px; display: flex; flex-direction: column; gap: 14px; }
+
+/* Bottom tabs */
+nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--nav); border-top: 1px solid var(--line);
+  padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
+nav.tabs .inner { max-width: 480px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); }
+nav.tabs a { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11.5px; font-weight: 500; color: var(--muted); padding: 4px 0; }
+nav.tabs a svg { width: 24px; height: 24px; padding: 2px 14px; box-sizing: content-box; border-radius: 16px; }
+nav.tabs a.on { color: var(--saffron); font-weight: 700; }
+nav.tabs a.on svg { background: var(--tile); }
+
+/* Shared pieces */
+.hdr { display: flex; align-items: center; gap: 6px; min-height: 48px; }
+.hdr h1 { font-size: 22px; font-weight: 700; margin: 0; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.icon-btn { width: 40px; height: 40px; border-radius: 50%; border: 0; background: transparent; display: grid; place-items: center; color: var(--ink); }
+.icon-btn:hover { background: var(--tile); }
+.icon-btn svg { width: 22px; height: 22px; }
+.utabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto; margin-top: -6px; }
+.utabs button { border: 0; background: none; padding: 8px 10px 10px; font-weight: 500; color: var(--ink-soft); position: relative; white-space: nowrap; }
+.utabs button.on { color: var(--saffron); font-weight: 700; }
+.utabs button.on::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 36px; height: 3px; margin-left: -18px; border-radius: 2px; background: var(--saffron); }
+.chips { display: flex; gap: 8px; overflow-x: auto; }
+.chips button { border: 0; border-radius: 999px; padding: 7px 16px; font-weight: 600; background: var(--tile); color: var(--ink); white-space: nowrap; }
+.chips button.on { background: var(--saffron); color: #fff; }
+.card { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; }
+.tile { background: var(--tile); border-radius: 18px; }
+.sec { font-size: 17px; font-weight: 700; margin: 6px 0 -4px; }
+.muted { color: var(--muted); }
+.small { font-size: 12.5px; }
+.empty { color: var(--muted); padding: 24px 4px; }
+.outline { border: 1.3px solid var(--saffron); color: var(--saffron); background: transparent; border-radius: 10px; padding: 6px 14px; font-weight: 600; font-size: 13.5px; }
+.badge { display: inline-block; background: var(--saffron); color: #fff; font-size: 11px; font-weight: 700; border-radius: 6px; padding: 1px 8px; }
+.row-link { display: flex; align-items: center; gap: 12px; padding: 10px; background: var(--card); border-radius: 16px; }
+.row-link:hover { box-shadow: var(--shadow); }
+.clamp2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.clamp3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+canvas.scene { display: block; width: 100%; height: 100%; }
+.media { position: relative; overflow: hidden; background: var(--tile-strong); }
+.media > img, .media > canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,.72)); }
+.on-photo { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+
+/* Home */
+.mast { display: flex; align-items: center; gap: 10px; padding-top: 6px; }
+.mast .logo { font-size: 34px; }
+.mast b { display: block; font-size: 25px; font-weight: 800; color: var(--saffron); letter-spacing: .5px; line-height: 1.05; }
+.mast span { color: var(--saffron-deep); font-size: 13.5px; font-weight: 500; }
+.hero { height: 210px; border-radius: 22px; }
+.hero .greet { font-size: 25px; font-weight: 800; line-height: 1.2; }
+.qgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.qtile { min-height: 128px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 12px; border: 0; }
+.qtile .e { font-size: 30px; line-height: 1.2; }
+.qtile b { font-size: 16px; line-height: 1.25; margin-top: 4px; white-space: pre-line; }
+.qtile span { font-size: 12.5px; color: var(--saffron-deep); }
+.qtile:hover { background: var(--tile-strong); }
+.strip { display: flex; align-items: center; gap: 12px; padding: 14px 16px; }
+.num { width: 30px; height: 30px; border-radius: 50%; background: var(--saffron); color: #fff; display: grid; place-items: center; font-weight: 700; flex: none; }
+
+/* News */
+.city { border: 0; background: var(--tile); border-radius: 999px; padding: 6px 12px; font-weight: 600; font-size: 13.5px; }
+.search { width: 100%; border: 1px solid var(--line); background: var(--card); border-radius: 14px; padding: 11px 14px 11px 40px; outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2385705E'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: 12px center; background-size: 20px; }
+.search:focus { border-color: var(--saffron); }
+.lead { display: block; height: 230px; border-radius: 20px; }
+.lead h2 { font-size: 19px; line-height: 1.35; margin: 6px 0 4px; }
+.thumb { width: 104px; height: 78px; border-radius: 12px; flex: none; }
+
+/* Panchang */
+.pan { background: linear-gradient(180deg, var(--tile-strong), var(--bg) 320px); margin: -8px -16px 0; padding: 8px 16px 0; }
+.pan-head { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; text-align: center; }
+.pan-head h1 { font-size: 27px; font-weight: 800; margin: 0; line-height: 1.2; }
+.pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ptile { background: var(--tile); border-radius: 18px; padding: 12px; min-height: 118px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.ptile h3 { margin: 0; font-size: 18px; }
+.ptile .big { font-size: 23px; font-weight: 800; line-height: 1.2; }
+.band { background: var(--tile-strong); border-radius: 18px; padding: 14px; text-align: center; }
+.band h3 { margin: 0; font-size: 22px; font-weight: 800; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.facts div { background: var(--tile); border-radius: 14px; padding: 8px; text-align: center; font-size: 13px; }
+.facts b { display: block; font-size: 14px; }
+.stale { color: var(--saffron-deep); font-size: 12.5px; text-align: center; }
+.datebox { width: 58px; flex: none; background: var(--tile); border-radius: 12px; text-align: center; padding: 6px 0; }
+.datebox b { display: block; font-size: 21px; color: var(--saffron); line-height: 1.1; }
+
+/* Explore + business */
+.xgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.xtile { height: 118px; border-radius: 18px; border: 0; padding: 0; display: block; text-align: left; }
+.xtile .lbl { position: absolute; left: 12px; bottom: 10px; color: #fff; font-weight: 700; font-size: 16px; text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+.emoji-art { position: absolute; inset: 0; display: grid; place-items: center; font-size: 44px; }
+.qlinks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center; }
+.qlinks a { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12.5px; color: var(--ink-soft); padding: 4px; border-radius: 12px; }
+.qlinks .circ { width: 52px; height: 52px; border-radius: 50%; background: var(--tile); display: grid; place-items: center; font-size: 24px; }
+.place { display: flex; align-items: center; gap: 12px; padding: 10px; }
+.place .art { width: 100px; height: 86px; border-radius: 14px; position: relative; overflow: hidden; flex: none; }
+.place .body { flex: 1; min-width: 0; }
+.heart { border: 0; background: none; width: 40px; height: 40px; border-radius: 50%; color: var(--muted); display: grid; place-items: center; flex: none; }
+.heart svg { width: 22px; height: 22px; }
+.heart.on { color: var(--saffron); }
+
+/* Community */
+.avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--tile); border: 1px solid var(--saffron); color: var(--saffron); display: grid; place-items: center; font-weight: 700; flex: none; }
+.photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.photos a { aspect-ratio: 1; border-radius: 10px; max-width: 100%; }
+.fab { position: fixed; z-index: 15; right: max(16px, calc(50vw - 224px)); bottom: calc(86px + env(safe-area-inset-bottom, 0px)); border: 0; background: var(--saffron); color: #fff;
+  font-weight: 700; border-radius: 16px; padding: 12px 20px; box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+.poll button { display: block; width: 100%; text-align: left; border: 0; background: var(--tile); border-radius: 12px; padding: 11px 14px; font-weight: 500; }
+.poll button.on { background: var(--saffron); color: #fff; font-weight: 700; }
+
+/* More + check */
+.menu { background: var(--card); border-radius: 18px; overflow: hidden; }
+.menu a, .menu button { display: flex; align-items: center; gap: 14px; width: 100%; padding: 12px 14px; border: 0; background: none; text-align: left; border-bottom: 1px solid var(--line); }
+.menu > :last-child { border-bottom: 0; }
+.menu .ic { width: 40px; height: 40px; border-radius: 50%; background: var(--tile); display: grid; place-items: center; color: var(--saffron); flex: none; }
+.menu .ic svg { width: 22px; height: 22px; }
+.menu .t { flex: 1; min-width: 0; }
+.menu .t b { display: block; font-weight: 600; }
+.chk { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.chk:last-child { border-bottom: 0; }
+.pill { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.pill.ok { color: var(--ok); background: var(--ok-bg); }
+.pill.warn { color: var(--warn); background: var(--warn-bg); }
+.pill.bad { color: var(--bad); background: var(--bad-bg); }
+.kv { width: 100%; border-collapse: collapse; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.kv td { padding: 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.kv td:first-child { color: var(--muted); width: 42%; padding-right: 8px; }
+
+.modal-bg { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,.45); display: grid; place-items: center; padding: 16px; }
+.modal { background: var(--bg); border-radius: 20px; padding: 20px; width: min(380px, 100%); display: flex; flex-direction: column; gap: 12px; }
+.modal h2 { margin: 0; font-size: 19px; }
+.modal label { display: flex; align-items: center; gap: 10px; padding: 6px 4px; }
+.modal input[type=radio] { accent-color: var(--saffron); width: 18px; height: 18px; }
+.modal .ok-btn { align-self: flex-end; border: 0; background: none; color: var(--saffron); font-weight: 700; padding: 8px 12px; }
+#toast { position: fixed; z-index: 50; left: 50%; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg);
+  border-radius: 10px; padding: 10px 16px; font-size: 14px; max-width: calc(100% - 32px); }
+.loading { display: grid; place-items: center; min-height: 60vh; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .screen { animation: fade .18s ease-out; } @keyframes fade { from { opacity: .4; } to { opacity: 1; } } }
+</style>
+</head>
+<body>
+<div id="app"><div class="loading">बनारस बज़ लोड हो रहा है…</div></div>
+<nav class="tabs" aria-label="Main"><div class="inner" id="tabs"></div></nav>
+<div id="toast" hidden></div>
+<div id="modal" hidden></div>
+
+<!-- When this page is published as a standalone snapshot, the feed files are embedded here. -->
+<script id="bb-data">window.BB_DATA = null;</script>
+<script>
+"use strict";
+const RAW = "https://raw.githubusercontent.com/prabhat-twr/vns-news-api/";
+const FILES = ["news.json", "manual-news.json", "events.json", "manual-events.json", "hidden.json",
+  "varanasi-panchang-daily.json", "varanasi-panchang-calendar.json"];
+
+// ---------- small helpers ----------
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("bb-" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("bb-" + k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
+};
+const IST = "Asia/Kolkata";
+const fmtClock = new Intl.DateTimeFormat("en-US", { timeZone: IST, hour: "2-digit", minute: "2-digit", hour12: true });
+const fmtClockShort = new Intl.DateTimeFormat("en-US", { timeZone: IST, hour: "numeric", minute: "2-digit", hour12: true });
+const fmtIsoDate = new Intl.DateTimeFormat("en-CA", { timeZone: IST, year: "numeric", month: "2-digit", day: "2-digit" });
+const fmtHour = new Intl.DateTimeFormat("en-US", { timeZone: IST, hour: "numeric", hourCycle: "h23" });
+const clock = (ms) => (ms ? fmtClock.format(ms) : "");
+const clockShort = (ms) => (ms ? fmtClockShort.format(ms) : "");
+const istDate = (ms) => fmtIsoDate.format(ms);
+const todayIso = () => istDate(Date.now());
+const addDays = (iso, n) => { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const parseMs = (s) => { if (!s) return 0; const t = Date.parse(s); return isNaN(t) ? 0 : t; };
+
+const WEEKDAY_HI = ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"];
+const MONTH_HI = ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"];
+const hindiLongDate = (iso) => { const d = new Date(iso + "T12:00:00Z"); return `${WEEKDAY_HI[d.getUTCDay()]}, ${d.getUTCDate()} ${MONTH_HI[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
+const hindiShortDate = (iso) => { const d = new Date(iso + "T12:00:00Z"); return `${d.getUTCDate()} ${MONTH_HI[d.getUTCMonth()]}`; };
+
+const TITHI_HI = { pratipada: "प्रतिपदा", dwitiya: "द्वितीया", tritiya: "तृतीया", chaturthi: "चतुर्थी", panchami: "पंचमी", shashthi: "षष्ठी",
+  saptami: "सप्तमी", ashtami: "अष्टमी", navami: "नवमी", dashami: "दशमी", ekadashi: "एकादशी", dwadashi: "द्वादशी", trayodashi: "त्रयोदशी",
+  chaturdashi: "चतुर्दशी", purnima: "पूर्णिमा", amavasya: "अमावस्या" };
+const NAK_HI = { ashwini: "अश्विनी", bharani: "भरणी", krittika: "कृत्तिका", rohini: "रोहिणी", mrigashira: "मृगशिरा", ardra: "आर्द्रा",
+  punarvasu: "पुनर्वसु", pushya: "पुष्य", ashlesha: "आश्लेषा", magha: "मघा", "purva phalguni": "पूर्वा फाल्गुनी", "uttara phalguni": "उत्तरा फाल्गुनी",
+  hasta: "हस्त", chitra: "चित्रा", swati: "स्वाती", vishakha: "विशाखा", anuradha: "अनुराधा", jyeshtha: "ज्येष्ठा", mula: "मूल",
+  "purva ashadha": "पूर्वाषाढ़ा", "uttara ashadha": "उत्तराषाढ़ा", shravana: "श्रवण", dhanishta: "धनिष्ठा", shatabhisha: "शतभिषा",
+  "purva bhadrapada": "पूर्वा भाद्रपद", "uttara bhadrapada": "उत्तरा भाद्रपद", revati: "रेवती" };
+const angaHi = (a, map) => a ? (a.name_hi || map[(a.name || "").toLowerCase()] || a.name) : "—";
+const pakshaHi = (p) => ({ shukla: "शुक्ल पक्ष", krishna: "कृष्ण पक्ष" }[(p || "").toLowerCase()] || p || "");
+
+function timeAgo(ms) {
+  if (!ms) return "";
+  const m = Math.floor((Date.now() - ms) / 60000);
+  if (m < 1) return "अभी";
+  if (m < 60) return `${m} मिनट पहले`;
+  if (m < 1440) return `${Math.floor(m / 60)} घंटे पहले`;
+  if (m < 10080) return `${Math.floor(m / 1440)} दिन पहले`;
+  return hindiShortDate(istDate(ms));
+}
+function greeting() {
+  const h = +fmtHour.format(Date.now());
+  if (h >= 4 && h < 12) return ["शुभ प्रभात, बनारस!", "dawn"];
+  if (h >= 12 && h < 17) return ["नमस्ते, बनारस!", "dusk"];
+  if (h >= 17 && h < 21) return ["शुभ संध्या, बनारस!", "dusk"];
+  return ["शुभ रात्रि, बनारस!", "night"];
+}
+const maps = (q) => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+
+// ---------- icons ----------
+const ICON = {
+  home: '<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>',
+  news: '<path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>',
+  panchang: '<path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14v11z"/>',
+  explore: '<path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>',
+  more: '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>',
+  back: '<path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>',
+  bell: '<path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>',
+  close: '<path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>',
+  right: '<path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/>',
+  heart: '<path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>',
+  heartOn: '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>',
+  share: '<path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11A2.99 2.99 0 0 0 21 5a3 3 0 1 0-5.91.7L8.04 9.81A3 3 0 1 0 6 15c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65A2.92 2.92 0 1 0 18 16.08z"/>',
+  pin: '<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>',
+  info: '<path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>',
+  refresh: '<path d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>',
+  star: '<path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>',
+  lock: '<path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 0 1 6.2 0v2z"/>',
+  check: '<path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>',
+  down: '<path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/>',
+};
+const icon = (n) => `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${ICON[n]}</svg>`;
+
+// ---------- illustrated riverfront (same artwork as the Android app) ----------
+const PALETTES = {
+  dawn: { sky: ["#6E5A9E", "#E77A63", "#F7B267", "#FCD9A0"], sun: "#FFE08A", far: "#8A4B3A", near: "#5B2E24", water: ["#E59A6A", "#7D4E5C"], glow: "#FFD27A", lamps: false, sunY: .55 },
+  dusk: { sky: ["#3E3B73", "#C0546A", "#F08A4B", "#F9C46B"], sun: "#FFC857", far: "#6B3226", near: "#3D1C17", water: ["#D9774A", "#4B2A3D"], glow: "#FFB347", lamps: true, sunY: .55 },
+  night: { sky: ["#0E1630", "#1F2752", "#4A3260", "#8C4A3C"], sun: "#FFF3C4", far: "#9C5A22", near: "#3A2015", water: ["#3A2A3E", "#0E1226"], glow: "#FFB13B", lamps: true, sunY: .25 },
+};
+const BUILDINGS = [[0, .07, .10], [.06, .05, .14], [.13, .06, .09], [.27, .05, .12], [.33, .06, .08], [.47, .05, .13], [.53, .07, .10], [.70, .06, .11], [.77, .05, .15], [.83, .07, .09], [.92, .08, .12]];
+const SPIRES = [[.22, .07, .30], [.41, .10, .42], [.64, .08, .34], [.88, .05, .22]];
+function drawScene(cv) {
+  const p = PALETTES[cv.dataset.scene] || PALETTES.dusk;
+  const w = cv.clientWidth, h = cv.clientHeight;
+  if (!w || !h) return;
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+  const c = cv.getContext("2d"); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const horizon = h * .66;
+  let g = c.createLinearGradient(0, 0, 0, horizon);
+  p.sky.forEach((col, i) => g.addColorStop(i / (p.sky.length - 1), col));
+  c.fillStyle = g; c.fillRect(0, 0, w, horizon + 1);
+  const sx = w * .78, sy = horizon * p.sunY, r = Math.min(w, h) * .09;
+  g = c.createRadialGradient(sx, sy, 0, sx, sy, r * 3.2);
+  g.addColorStop(0, p.sun + "8C"); g.addColorStop(1, p.sun + "00");
+  c.fillStyle = g; c.beginPath(); c.arc(sx, sy, r * 3.2, 0, 7); c.fill();
+  c.fillStyle = p.sun; c.beginPath(); c.arc(sx, sy, r, 0, 7); c.fill();
+  c.fillStyle = p.far;
+  for (const [x, bw, bh] of BUILDINGS) c.fillRect(x * w, horizon - bh * h, bw * w + 1, bh * h);
+  for (const [cx0, sw, sh] of SPIRES) {
+    const cx = cx0 * w, half = sw * w / 2, ht = sh * h, base = horizon, top = base - ht, sww = sw * w;
+    c.fillStyle = p.far; c.beginPath(); c.moveTo(cx - half, base);
+    c.bezierCurveTo(cx - half * 1.05, base - ht * .55, cx - half * .35, base - ht * .85, cx, top);
+    c.bezierCurveTo(cx + half * .35, base - ht * .85, cx + half * 1.05, base - ht * .55, cx + half, base); c.fill();
+    c.beginPath(); c.arc(cx, top - sww * .05, sww * .07, 0, 7); c.fill();
+    c.strokeStyle = p.far; c.lineWidth = Math.max(1, sww * .03); c.beginPath(); c.moveTo(cx, top); c.lineTo(cx, top - sww * .45); c.stroke();
+    c.fillStyle = "#FF7A1A"; c.beginPath(); c.moveTo(cx, top - sww * .45); c.lineTo(cx + sww * .28, top - sww * .36); c.lineTo(cx, top - sww * .27); c.fill();
+  }
+  if (p.lamps) { c.fillStyle = p.glow; for (let x = w * .03; x < w; x += w * .045) { c.beginPath(); c.arc(x, horizon - h * .035, Math.max(1, h * .008), 0, 7); c.fill(); } }
+  const step = h * .018;
+  for (let i = 0; i < 3; i++) { c.globalAlpha = .85 - i * .15; c.fillStyle = p.near; c.fillRect(0, horizon + i * step, w, step * .7); }
+  c.globalAlpha = 1;
+  const river = horizon + 3 * step;
+  g = c.createLinearGradient(0, river, 0, h); g.addColorStop(0, p.water[0]); g.addColorStop(1, p.water[1]);
+  c.fillStyle = g; c.fillRect(0, river, w, h - river);
+  c.strokeStyle = p.glow + "8C"; c.lineWidth = Math.max(1, h * .008);
+  for (let y = river + h * .03, k = 0; y < h; y += h * .035, k++) {
+    const len = w * Math.max(.03, .10 - k * .008); c.beginPath(); c.moveTo(sx - len / 2, y); c.lineTo(sx + len / 2, y); c.stroke();
+  }
+  const boat = (x, y, bw) => { c.fillStyle = p.near; c.beginPath(); c.moveTo(x, y); c.quadraticCurveTo(x + bw / 2, y + bw * .22, x + bw, y); c.lineTo(x + bw * .85, y + bw * .06); c.lineTo(x + bw * .15, y + bw * .06); c.fill(); };
+  boat(w * .12, river + h * .12, w * .16); boat(w * .42, river + h * .2, w * .12);
+}
+const scene = (name) => `<canvas class="scene" data-scene="${name}" aria-hidden="true"></canvas>`;
+const drawAll = () => document.querySelectorAll("canvas.scene").forEach(drawScene);
+// A photo that fails to load (offline, or blocked) is swapped for the illustration.
+window.imgFail = (img, sceneName) => { const cv = document.createElement("canvas"); cv.className = "scene"; cv.dataset.scene = sceneName; img.replaceWith(cv); drawScene(cv); };
+const photo = (url, fallback) => url ? `<img src="${esc(url)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="imgFail(this,'${fallback}')">` : scene(fallback);
+
+// ---------- data ----------
+const S = { feed: null, source: "", files: {}, cityId: store.get("city", "varanasi"), saved: store.get("saved", {}),
+  newsTab: 0, newsQuery: "", newsSearch: false, eventsTab: 0, bizTab: 0, comTab: 0, exploreQuery: "", stack: [] };
+
+async function fetchText(name, ref) {
+  const bases = ref ? [RAW + ref + "/"] : ["./", RAW + "main/"];
+  for (const base of bases) {
+    try {
+      const res = await fetch(base + name + (base === "./" ? "" : "?t=" + Math.floor(Date.now() / 60000)), { cache: "no-store" });
+      if (res.status === 404) return { text: null, from: base, status: 404 };
+      if (res.ok) return { text: await res.text(), from: base, status: 200 };
+    } catch (e) { /* try the next source */ }
+  }
+  return { text: null, from: null, status: 0 };
+}
+async function loadFiles() {
+  if (window.BB_DATA) {
+    S.source = "snapshot from " + window.BB_DATA.taken;
+    for (const n of FILES) S.files[n] = { text: window.BB_DATA.files[n] ?? null, from: "embedded snapshot", status: window.BB_DATA.files[n] == null ? 404 : 200 };
+    return;
+  }
+  let ref = null;
+  try { ref = new URLSearchParams(location.search).get("ref"); } catch (e) { /* no query */ }
+  const results = await Promise.all(FILES.map((n) => fetchText(n, ref)));
+  FILES.forEach((n, i) => { S.files[n] = results[i]; });
+  const from = results.find((r) => r.from)?.from;
+  S.source = from === "./" ? "this site" : from ? "GitHub (" + (ref || "main") + ")" : "unavailable";
+}
+const json = (name) => { try { const t = S.files[name]?.text; return t ? JSON.parse(t) : null; } catch (e) { return undefined; } };
+const str = (o, k) => (o && o[k] != null && String(o[k]).trim() !== "" ? String(o[k]) : null);
+
+function assembleFeed() {
+  const parseNews = (arr) => (Array.isArray(arr) ? arr : []).filter((o) => str(o, "title")).map((o) => ({
+    id: str(o, "id") || o.title, title: o.title, summary: str(o, "summary") || str(o, "content") || "",
+    cityId: str(o, "cityId") || "", cityName: str(o, "cityName") || "", imageUrl: str(o, "imageUrl"), sourceUrl: str(o, "sourceUrl"),
+    sourceName: str(o, "sourceName") || "", isBreaking: !!o.isBreaking, ts: parseMs(str(o, "firstSeenAt")) }));
+  const parseEvents = (obj) => ((obj && obj.events) || []).filter((o) => str(o, "name")).map((o) => ({
+    id: str(o, "id") || o.name, name: o.name, category: str(o, "category") || "general", start: parseMs(str(o, "start")),
+    allDay: o.all_day !== false, venue: str(o.location, "name"), description: str(o, "description") || "",
+    sourceUrl: str(o, "source_url"), imageUrl: str(o, "image_url"), approx: (str(o, "date_confidence") || "confirmed") !== "confirmed" }));
+  const hidden = json("hidden.json") || {};
+  const hn = new Set(hidden.news || []), he = new Set(hidden.events || []);
+  const seen = new Set();
+  const news = [...parseNews(json("manual-news.json")), ...parseNews(json("news.json"))]
+    .filter((n) => !hn.has(n.id) && !seen.has(n.id) && seen.add(n.id)).sort((a, b) => b.ts - a.ts);
+  const events = [...parseEvents(json("events.json")), ...parseEvents(json("manual-events.json"))]
+    .filter((e) => !he.has(e.id)).sort((a, b) => a.start - b.start);
+  const cal = json("varanasi-panchang-calendar.json");
+  const observances = ((cal && cal.observances) || []).slice().sort((a, b) => (a.date < b.date ? -1 : 1));
+  return { news, events, panchang: json("varanasi-panchang-daily.json") || null, calendar: cal || null, observances };
+}
+function cities() {
+  const m = new Map();
+  for (const n of S.feed.news) if (n.cityId && !m.has(n.cityId)) m.set(n.cityId, n.cityName);
+  return [...m];
+}
+const cityName = () => (cities().find(([id]) => id === S.cityId) || [null, "वाराणसी"])[1];
+const isSaved = (id) => !!S.saved[id];
+function toggleSaved(id) { S.saved[id] = !S.saved[id]; store.set("saved", S.saved); }
+
+// ---------- navigation ----------
+const TABS = [["home", "Home"], ["news", "News"], ["panchang", "Panchang"], ["explore", "Explore"], ["more", "More"]];
+const PARENT_TAB = { events: "explore", business: "explore", community: "explore", check: "more" };
+const ROUTES = ["home", "news", "panchang", "explore", "more", "events", "business", "community", "check"];
+const current = () => { const h = location.hash.slice(1); return ROUTES.includes(h) ? h : "home"; };
+function go(r) { if (current() === r) render(); else location.hash = r; }
+function back() { if (S.stack.length > 1) history.back(); else go(PARENT_TAB[current()] || "home"); }
+window.addEventListener("hashchange", () => { S.stack.push(current()); render(); window.scrollTo(0, 0); });
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 2200); }
+
+const header = (title, withBack = true, trailing = "") =>
+  `<div class="hdr">${withBack ? `<button class="icon-btn" data-act="back" aria-label="वापस">${icon("back")}</button>` : ""}<h1>${esc(title)}</h1>${trailing}</div>`;
+const utabs = (labels, sel, key) => `<div class="utabs" role="tablist">${labels.map((l, i) =>
+  `<button role="tab" aria-selected="${i === sel}" class="${i === sel ? "on" : ""}" data-tab="${key}" data-i="${i}">${esc(l)}</button>`).join("")}</div>`;
+
+// ---------- screens ----------
+function homeScreen() {
+  const [greet, sc] = greeting();
+  const top = S.feed.news.slice(0, 5);
+  return `<div class="screen">
+    <div class="mast"><span class="logo" aria-hidden="true">🛕</span><div style="flex:1"><b>BANARAS BUZZ</b><span>अपना बनारस, हर दिन</span></div>
+      <a class="icon-btn" href="#news" aria-label="ताज़ा खबरें" style="color:var(--saffron)">${icon("bell")}</a></div>
+    <div class="media hero">${scene(sc)}<div class="shade"></div><div class="on-photo"><div class="greet">${greet} ☀️</div><div>Your daily Banaras briefing</div></div></div>
+    <div class="qgrid">
+      <a class="tile qtile" href="#news"><span class="e">📰</span><b>आज की\n5 बड़ी खबरें</b><span>Local News</span></a>
+      <a class="tile qtile" href="#panchang"><span class="e">🌞</span><b>आज का पंचांग</b><span>Tithi, Nakshatra</span></a>
+      <a class="tile qtile" href="#events"><span class="e">📅</span><b>आज बनारस में</b><span>Events &amp; More</span></a>
+      <a class="tile qtile" href="#business"><span class="e">🏪</span><b>लोकल बिजनेस</b><span>Shops &amp; Markets</span></a>
+    </div>
+    <a class="tile strip" href="#community"><span style="font-size:22px">📍</span><div style="flex:1"><b>My Banaras</b><div class="muted small">Stories • Photos • City pulse</div></div><span style="color:var(--saffron);width:24px">${icon("right")}</span></a>
+    ${top.length ? `<div style="display:flex;align-items:center"><h2 class="sec" style="flex:1">आज की 5 बड़ी खबरें</h2><a href="#news" style="color:var(--saffron);font-weight:600;font-size:13.5px">सभी देखें</a></div>
+    ${top.map((n, i) => `<a class="row-link" ${n.sourceUrl ? `href="${esc(n.sourceUrl)}" target="_blank" rel="noopener"` : ""}><span class="num">${i + 1}</span>
+      <div style="min-width:0"><div class="clamp2" style="font-weight:600">${esc(n.title)}</div><div class="muted small">${esc([n.cityName, timeAgo(n.ts)].filter(Boolean).join(" • "))}</div></div></a>`).join("")}` : ""}
+  </div>`;
+}
+
+function newsScreen() {
+  const q = S.newsQuery.trim().toLowerCase();
+  const list = S.feed.news.filter((n) => (S.newsTab === 1 ? n.cityId === S.cityId : S.newsTab === 2 ? n.isBreaking : true)
+    && (!q || (n.title + " " + n.summary).toLowerCase().includes(q))).slice(0, 150);
+  const citySel = `<label class="city"><span class="sr" hidden>शहर</span><select id="news-city" data-act="city" style="border:0;background:none;font-weight:600">
+    ${cities().map(([id, name]) => `<option value="${esc(id)}" ${id === S.cityId ? "selected" : ""}>${esc(name)}</option>`).join("")}</select></label>`;
+  const lead = list.find((n) => n.imageUrl) || list[0];
+  const rest = list.filter((n) => n !== lead);
+  return `<div class="screen">
+    ${header("Top News", true, `<button class="icon-btn" data-act="news-search" aria-label="खोजें">${icon(S.newsSearch ? "close" : "explore")}</button>${citySel}`)}
+    ${S.newsSearch ? `<input id="news-q" class="search" type="search" placeholder="खबरें खोजें…" value="${esc(S.newsQuery)}" data-input="news">` : ""}
+    ${utabs(["Top Stories", "Local", "Breaking"], S.newsTab, "news")}
+    ${!lead ? `<div class="empty">अभी यहाँ कोई खबर नहीं है।</div>` : `
+    <a class="media lead" ${lead.sourceUrl ? `href="${esc(lead.sourceUrl)}" target="_blank" rel="noopener"` : ""}>${photo(lead.imageUrl, "night")}<div class="shade"></div>
+      <div class="on-photo">${lead.isBreaking ? `<span class="badge">ब्रेकिंग</span>` : ""}<h2 class="clamp3">${esc(lead.title)}</h2>
+      <div class="small">🕑 ${esc([timeAgo(lead.ts), lead.cityName, lead.sourceName].filter(Boolean).join(" • "))}</div></div></a>
+    ${rest.map((n) => `<a class="row-link" ${n.sourceUrl ? `href="${esc(n.sourceUrl)}" target="_blank" rel="noopener"` : ""}>
+      <span class="media thumb">${photo(n.imageUrl, "dusk")}</span>
+      <div style="min-width:0"><div class="clamp3" style="font-weight:600;line-height:1.35">${esc(n.title)}</div>
+      <div class="muted small">${esc([timeAgo(n.ts), n.sourceName].filter(Boolean).join(" • "))}</div></div></a>`).join("")}`}
+  </div>`;
+}
+
+function panchangScreen() {
+  const p = S.feed.panchang;
+  const head = `<div class="pan-head"><span style="font-size:28px">☀️</span><div><h1>आज का पंचांग</h1>${p && p.date ? `<div style="font-weight:500;color:var(--ink-soft)">${hindiLongDate(p.date)}</div>` : ""}</div><span style="font-size:28px">🔆</span></div>`;
+  if (!p) return `<div class="screen"><div class="pan">${head}</div><div class="empty">अभी पंचांग उपलब्ध नहीं है। थोड़ी देर बाद फिर देखें।</div></div>`;
+  const t = (p.tithi || [])[0], n = (p.nakshatra || [])[0];
+  const ends = (a) => (a && a.ends_at ? `<div class="muted small">${clockShort(parseMs(a.ends_at))} तक</div>` : "");
+  const rk = p.rahu_kaal, ab = p.abhijit_muhurat;
+  const todays = [...new Set([...(p.festivals_and_vrats || []).map((f) => (typeof f === "string" ? f : f.name_hi || f.name)),
+    ...S.feed.observances.filter((o) => o.date === p.date).map((o) => o.name_hi || o.name)])].filter(Boolean);
+  const upcoming = S.feed.observances.filter((o) => o.date >= todayIso()).slice(0, 12);
+  const typeHi = (t) => ({ vrat: "व्रत", both: "व्रत व त्योहार" }[t] || "त्योहार");
+  const month = p.lunar_month ? `<div class="small" style="color:var(--saffron-deep)">${esc(p.lunar_month.purnimanta_hi || p.lunar_month.purnimanta)} मास</div>` : "";
+  return `<div class="screen"><div class="pan" style="display:flex;flex-direction:column;gap:10px">${head}
+    ${p.date !== todayIso() ? `<div class="stale">यह पंचांग ${hindiShortDate(p.date)} का है — नया पंचांग जल्द अपडेट होगा।</div>` : month}
+    <div class="pgrid">
+      <div class="ptile"><h3>तिथि</h3><div>${esc(pakshaHi(t && t.paksha))}</div><div class="big">${esc(angaHi(t, TITHI_HI))}</div>${ends(t)}</div>
+      <div class="ptile"><h3>नक्षत्र</h3><div class="big">${esc(angaHi(n, NAK_HI))}</div>${ends(n)}</div>
+      <div class="ptile"><h3>राहुकाल</h3><div style="font-weight:700;color:var(--saffron-deep)">${rk ? `${clockShort(parseMs(rk.start))} – ${clockShort(parseMs(rk.end))}` : "—"}</div><div class="muted small">(सावधान रहें)</div></div>
+      <div class="ptile"><div style="display:flex;gap:6px;align-items:center"><span style="font-size:22px">☀️</span><div style="text-align:left"><b>सूर्योदय</b><div style="font-weight:700;color:var(--saffron-deep)">${clock(parseMs(p.sunrise))}</div></div></div>
+        <div class="small" style="color:var(--saffron-deep)">सूर्यास्त ${clock(parseMs(p.sunset))}</div></div>
+    </div>
+    <div class="band"><h3>शुभ मुहूर्त</h3><div style="font-weight:600;color:var(--ink-soft)">अभिजित मुहूर्त</div>
+      <div style="font-size:19px;font-weight:700">${ab ? `${clockShort(parseMs(ab.start))} – ${clockShort(parseMs(ab.end))}` : "आज उपलब्ध नहीं"}</div></div>
+    <div class="band"><b style="font-size:17px">आज के व्रत और त्योहार</b><div style="color:var(--ink-soft)">${todays.length ? esc(todays.join(" • ")) : "आज कोई विशेष व्रत या त्योहार नहीं"}</div></div>
+    <div class="facts">
+      <div>योग<b>${esc(angaHi((p.yoga || [])[0], {}))}</b></div><div>करण<b>${esc(angaHi((p.karana || [])[0], {}))}</b></div>
+      <div>चंद्रोदय<b>${p.moonrise ? clock(parseMs(p.moonrise)) : "—"}</b></div>
+    </div></div>
+    <div class="media" style="height:160px;margin:0 -16px">${scene("dawn")}</div>
+    <h2 class="sec">आने वाले व्रत और त्योहार</h2>
+    ${upcoming.length ? upcoming.map((o) => { const d = new Date(o.date + "T12:00:00Z"); return `<div class="row-link">
+      <div class="datebox"><b>${d.getUTCDate()}</b><span class="small">${MONTH_HI[d.getUTCMonth()]}</span></div>
+      <div style="min-width:0"><b>${esc(o.name_hi || o.name)}</b>
+      <div class="small" style="color:var(--saffron-deep)">${esc([typeHi(o.type), [pakshaHi(o.paksha), TITHI_HI[(o.tithi || "").toLowerCase()] || o.tithi].filter(Boolean).join(" ")].filter(Boolean).join(" • "))}</div>
+      ${o.description ? `<div class="muted small clamp2">${esc(o.description)}</div>` : ""}</div></div>`; }).join("") : `<div class="empty">आने वाले दिनों की सूची जल्द अपडेट होगी।</div>`}
+  </div>`;
+}
+
+const CAT_HI = { religious: "धार्मिक", cultural: "सांस्कृतिक", tourism: "पर्यटन", general: "सामान्य" };
+function eventCard({ title, when, venue, img, sc, desc = "", href, label = "View Details" }) {
+  return `<div class="card"><div class="media" style="height:150px">${photo(img, sc)}</div>
+    <div style="padding:14px;display:flex;flex-direction:column;gap:4px"><b class="clamp2" style="font-size:17px">${esc(title)}</b>
+    ${when ? `<div class="small" style="color:var(--ink-soft)">📅 ${esc(when)}</div>` : ""}${venue ? `<div class="small" style="color:var(--ink-soft)">📍 ${esc(venue)}</div>` : ""}
+    ${desc ? `<div class="muted small clamp2">${esc(desc)}</div>` : ""}
+    ${href ? `<div style="display:flex;justify-content:flex-end;margin-top:4px"><a class="outline" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)} →</a></div>` : ""}</div></div>`;
+}
+function eventsScreen() {
+  const today = todayIso(), end = addDays(today, [0, 6, 30][S.eventsTab]);
+  const day = (e) => (e.start ? istDate(e.start) : null);
+  const list = S.feed.events.filter((e) => { const d = day(e); return d && d >= today && d <= end; });
+  const later = list.length ? [] : S.feed.events.filter((e) => day(e) > end).slice(0, 5);
+  const p = S.feed.panchang;
+  const sunset = p && p.date === today && p.sunset ? ` (सूर्यास्त ${clockShort(parseMs(p.sunset))})` : "";
+  const card = (e) => { const d = day(e); return eventCard({ title: e.name,
+    when: [d === today ? "आज" : d === addDays(today, 1) ? "कल" : hindiShortDate(d), !e.allDay && e.start ? clockShort(e.start) : null, CAT_HI[e.category], e.approx ? "तिथि अनुमानित" : null].filter(Boolean).join(" • "),
+    venue: e.venue, img: e.imageUrl, sc: e.category === "religious" ? "dusk" : "dawn", desc: e.description, href: e.sourceUrl }); };
+  return `<div class="screen">${header("Events in Banaras")}${utabs(["Today", "This Week", "This Month"], S.eventsTab, "events")}
+    ${eventCard({ title: "Ganga Aarti at Dashashwamedh Ghat", when: "रोज़ • सूर्यास्त के बाद" + sunset, venue: "Dashashwamedh Ghat", sc: "night", href: maps("Dashashwamedh Ghat Varanasi"), label: "Directions" })}
+    ${list.map(card).join("")}
+    ${list.length ? "" : `<div class="muted">${later.length ? "इस अवधि में कोई और कार्यक्रम नहीं — आगे के कार्यक्रम:" : "इस अवधि में कोई और कार्यक्रम दर्ज नहीं है।"}</div>${later.map(card).join("")}`}
+  </div>`;
+}
+
+const PLACES = [
+  ["kachori-gali", "Kachori Gali", "Kachori-sabzi & jalebi breakfast lane", "Chowk", "Food", "🥟", ["#FFC56E", "#E5732E"], "Kachori Gali Varanasi", "सुबह का नाश्ता"],
+  ["godowlia-chaat", "Godowlia Chaat", "Tamatar chaat, palak patta chaat", "Godowlia", "Food", "🍲", ["#FFC56E", "#E5732E"], "Chaat Godowlia Varanasi"],
+  ["malaiyo", "Malaiyo", "Winter-only saffron milk foam", "Chowk & Pakka Mahal", "Food", "🥛", ["#FFE9A8", "#F2B33D"], "Malaiyo Varanasi", "सर्दियों में"],
+  ["banarasi-silk", "Banarasi Silk Weavers", "Handloom sarees & brocade", "Peeli Kothi", "Shopping", "🧣", ["#B83B5E", "#F08A5D"], "Banarasi saree weavers Peeli Kothi Varanasi"],
+  ["thatheri-bazaar", "Thatheri Bazaar", "Brass & copper utensils", "Chowk", "Shopping", "🏺", ["#E8B04B", "#9C6A1E"], "Thatheri Bazaar Varanasi"],
+  ["vishwanath-gali", "Vishwanath Gali", "Puja items, bangles, wooden toys", "Near Kashi Vishwanath", "Shopping", "🪔", ["#B83B5E", "#F08A5D"], "Vishwanath Gali Varanasi"],
+  ["godowlia-market", "Godowlia Market", "Clothes, footwear, everyday shopping", "Godowlia", "Shopping", "🛍️", ["#F7A072", "#D1495B"], "Godowlia Market Varanasi"],
+  ["boat-ride", "Boat Rides", "Sunrise & aarti boat rides", "Dashashwamedh Ghat", "Services", "⛵", ["#7FB3D5", "#2E5E8C"], "Boat ride Dashashwamedh Ghat Varanasi"],
+  ["prepaid-auto", "Prepaid Auto Booth", "Fixed-fare autos from the station", "Varanasi Junction", "Services", "🛺", ["#9BD17B", "#3F8F4E"], "Prepaid auto booth Varanasi Junction"],
+  ["tourist-info", "Tourist Information", "Maps, guides and help desks", "Varanasi Cantt", "Services", "ℹ️", ["#7FB3D5", "#2E5E8C"], "Tourist information centre Varanasi"],
+].map(([id, name, tagline, area, cat, emoji, colors, q, tag]) => ({ id, name, tagline, area, cat, emoji, colors, q, tag }));
+const emojiArt = (e, cols) => `<span class="emoji-art" style="background:linear-gradient(135deg,${cols[0]},${cols[1]})">${e}</span>`;
+
+function businessScreen() {
+  const cats = ["All", "Food", "Shopping", "Services"];
+  const list = PLACES.filter((p) => S.bizTab === 0 || p.cat === cats[S.bizTab]);
+  return `<div class="screen">${header("Local Business")}
+    <div class="chips">${cats.map((c, i) => `<button class="${i === S.bizTab ? "on" : ""}" data-tab="biz" data-i="${i}">${c}</button>`).join("")}</div>
+    ${list.map((p) => `<div class="card place"><a class="art" href="${maps(p.q)}" target="_blank" rel="noopener">${emojiArt(p.emoji, p.colors)}</a>
+      <a class="body" href="${maps(p.q)}" target="_blank" rel="noopener"><b style="font-size:16px">${esc(p.name)}</b><div class="small" style="color:var(--ink-soft)">${esc(p.tagline)}</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:6px"><span class="muted small" style="flex:1">📍 ${esc(p.area)}</span>${p.tag ? `<span class="badge">${p.tag}</span>` : ""}</div></a>
+      <button class="heart ${isSaved(p.id) ? "on" : ""}" data-act="save" data-id="${p.id}" aria-pressed="${isSaved(p.id)}" aria-label="सहेजें">${icon(isSaved(p.id) ? "heartOn" : "heart")}</button></div>`).join("")}
+    <button class="tile" data-act="soon" data-msg="बिज़नेस लिस्टिंग जल्द आ रही है" style="border:0;padding:18px;text-align:center"><b style="font-size:16px">🏪 अपना बिज़नेस जोड़ें</b><div class="muted small">Offers &amp; deals from local shops — coming soon</div></button>
+  </div>`;
+}
+
+const TILES = [["Temples", "dawn", null, null, maps("Temples in Varanasi")], ["Ghats", "dusk", null, null, maps("Ghats in Varanasi")],
+  ["Food", null, "🥟", ["#FFC56E", "#E5732E"], "#business"], ["Culture", null, "🪔", ["#8E2D4F", "#F2A541"], "#events"],
+  ["Shopping", null, "🧣", ["#B83B5E", "#F08A5D"], "#business"], ["Tourism", "night", null, null, maps("Tourist attractions in Varanasi")]];
+function exploreScreen() {
+  return `<div class="screen">${header("Explore Banaras", false)}
+    <input id="explore-q" class="search" type="search" placeholder="Search news, events, places…" value="${esc(S.exploreQuery)}" data-input="explore">
+    <div id="explore-body" style="display:flex;flex-direction:column;gap:14px">${exploreBody()}</div></div>`;
+}
+function exploreBody() {
+  const q = S.exploreQuery.trim().toLowerCase();
+  if (q) {
+    const places = PLACES.filter((p) => (p.name + " " + p.tagline + " " + p.area).toLowerCase().includes(q));
+    const events = S.feed.events.filter((e) => (e.name + " " + e.description + " " + (e.venue || "")).toLowerCase().includes(q)).slice(0, 10);
+    const news = S.feed.news.filter((n) => (n.title + " " + n.summary).toLowerCase().includes(q)).slice(0, 20);
+    const row = (e, t, s, href) => `<a class="row-link" ${href ? `href="${esc(href)}" target="_blank" rel="noopener"` : ""}><span style="font-size:20px">${e}</span><div style="min-width:0"><div class="clamp2" style="font-weight:600">${esc(t)}</div>${s ? `<div class="muted small">${esc(s)}</div>` : ""}</div></a>`;
+    const all = [...places.map((p) => row("🏪", p.name, p.area, maps(p.q))), ...events.map((e) => row("📅", e.name, e.venue, e.sourceUrl)), ...news.map((n) => row("📰", n.title, timeAgo(n.ts), n.sourceUrl))];
+    return all.length ? all.join("") : `<div class="empty">कुछ नहीं मिला।</div>`;
+  }
+  const ext = (h) => (h.startsWith("#") ? "" : ` target="_blank" rel="noopener"`);
+  return `<div class="xgrid">${TILES.map(([l, sc, e, cols, href]) => `<a class="media xtile" href="${esc(href)}"${ext(href)}>${sc ? scene(sc) : emojiArt(e, cols)}<div class="shade"></div><span class="lbl">${l}</span></a>`).join("")}</div>
+    <h2 class="sec">Quick Links</h2>
+    <div class="qlinks">
+      <a href="https://shrikashivishwanath.org/" target="_blank" rel="noopener"><span class="circ">🙏</span>Live Darshan</a>
+      <a href="#community"><span class="circ">📍</span>My Banaras</a>
+      <a href="${maps("Bus stand Varanasi")}" target="_blank" rel="noopener"><span class="circ">🛺</span>Bus/Auto</a>
+      <a href="${maps("Varanasi")}" target="_blank" rel="noopener"><span class="circ">🗺️</span>Maps</a></div>`;
+}
+
+const POLL = ["अस्सी घाट", "दशाश्वमेध घाट", "सारनाथ", "बीएचयू", "रामनगर किला"];
+function communityScreen() {
+  const withImg = S.feed.news.filter((n) => n.imageUrl);
+  let body;
+  if (S.comTab === 0) {
+    body = withImg.slice(0, 40).map((n) => { const liked = isSaved("like-" + n.id); return `<div class="card">
+      <div style="display:flex;gap:10px;align-items:center;padding:12px"><span class="avatar">${esc((n.sourceName || "B").slice(0, 1))}</span>
+        <div><b>${esc(n.sourceName || "Banaras Buzz")}</b><div class="muted small">${esc([timeAgo(n.ts), n.cityName].filter(Boolean).join(" • "))}</div></div></div>
+      <div class="clamp3" style="padding:0 12px 10px">${esc(n.title)}</div>
+      <a class="media" style="display:block;height:190px" ${n.sourceUrl ? `href="${esc(n.sourceUrl)}" target="_blank" rel="noopener"` : ""}>${photo(n.imageUrl, "dusk")}</a>
+      <div style="display:flex;align-items:center;padding:2px 4px">
+        <button class="heart" style="color:${liked ? "var(--heart)" : "var(--ink-soft)"}" data-act="like" data-id="${esc(n.id)}" aria-pressed="${liked}" aria-label="पसंद">${icon(liked ? "heartOn" : "heart")}</button>
+        ${n.sourceUrl ? `<a href="${esc(n.sourceUrl)}" target="_blank" rel="noopener" style="color:var(--saffron);font-weight:600;font-size:13.5px;padding:8px">पूरी खबर →</a>` : ""}
+        <span style="flex:1"></span><button class="heart" data-act="share" data-id="${esc(n.id)}" aria-label="शेयर" style="color:var(--ink-soft)">${icon("share")}</button></div></div>`; }).join("") || `<div class="empty">अभी कोई कहानी नहीं है।</div>`;
+  } else if (S.comTab === 1) {
+    body = withImg.length ? `<div class="photos">${withImg.slice(0, 60).map((n) => `<a class="media" ${n.sourceUrl ? `href="${esc(n.sourceUrl)}" target="_blank" rel="noopener"` : ""} title="${esc(n.title)}">${photo(n.imageUrl, "dusk")}</a>`).join("")}</div>` : `<div class="empty">अभी कोई फ़ोटो नहीं है।</div>`;
+  } else {
+    const voted = store.get("poll", null);
+    body = `<div class="card poll" style="padding:16px;display:flex;flex-direction:column;gap:10px"><b style="font-size:17px">बनारस में आपकी पसंदीदा जगह?</b>
+      ${POLL.map((o) => `<button class="${o === voted ? "on" : ""}" data-act="vote" data-v="${esc(o)}">${o === voted ? "✓ " : ""}${esc(o)}</button>`).join("")}
+      ${voted ? `<div class="muted small">धन्यवाद! सामुदायिक नतीजे जल्द दिखेंगे।</div>` : ""}</div>`;
+  }
+  return `<div class="screen">${header("My Banaras")}${utabs(["Stories", "Photos", "Polls"], S.comTab, "com")}${body}<div style="height:56px"></div></div>
+    <button class="fab" data-act="soon" data-msg="पोस्ट करने की सुविधा जल्द आ रही है">+ Post</button>`;
+}
+
+function moreScreen() {
+  const row = (ic, t, s, attrs) => `<${attrs.startsWith("href") ? "a" : "button"} ${attrs}><span class="ic">${icon(ic)}</span><span class="t"><b>${t}</b><span class="muted small">${esc(s)}</span></span><span class="muted" style="width:24px">${icon("right")}</span></${attrs.startsWith("href") ? "a" : "button"}>`;
+  return `<div class="screen">${header("More", false)}
+    <div class="menu">
+      ${row("check", "Data check", "सभी फ़ीड और पंचांग की जाँच", 'href="#check"')}
+      ${row("pin", "My City Settings", "आपका शहर: " + cityName(), 'data-act="city-dialog"')}
+      ${row("bell", "Notifications", "News, Events, Panchang", 'data-act="soon" data-msg="सूचनाएँ जल्द आ रही हैं"')}
+      ${row("refresh", "Refresh", "ताज़ा खबरें और पंचांग लाएँ", 'data-act="refresh"')}
+      ${row("info", "About Banaras Buzz", "Our Mission", 'data-act="about"')}
+      ${row("share", "Share App", "With Friends & Family", 'data-act="share-app"')}
+      ${row("star", "Feedback", "Help us improve", 'href="https://play.google.com/store/apps/details?id=com.banarasbuzz.app" target="_blank" rel="noopener"')}
+      ${row("lock", "Terms & Privacy", "Your Data Matters", 'href="https://prabhat-twr.github.io/vns-news-api/privacy.html" target="_blank" rel="noopener"')}
+    </div>
+    <div class="media" style="height:130px;border-radius:20px">${scene("dawn")}<div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 30%,rgba(255,243,224,.75))"></div>
+      <b style="position:absolute;right:18px;top:50%;transform:translateY(-50%);color:#2B1A0F;font-size:16px;text-align:right">Together for a<br>Better Banaras ❤️</b></div>
+  </div>`;
+}
+
+// ---------- data check ----------
+function checks() {
+  const out = [];
+  const today = todayIso();
+  const add = (title, status, detail, rows) => out.push({ title, status, detail, rows });
+  for (const n of FILES) {
+    const f = S.files[n];
+    const parsed = json(n);
+    if (!f || f.status === 0) add(n, "bad", "लोड नहीं हुआ — नेटवर्क या फ़ाइल की समस्या।");
+    else if (f.status === 404) add(n, n.startsWith("manual") || n === "hidden.json" ? "ok" : "bad", "फ़ाइल मौजूद नहीं है।");
+    else if (parsed === undefined) add(n, "bad", "JSON सही नहीं है (parse error)।");
+  }
+  const news = S.feed.news;
+  const newest = news[0]?.ts || 0, ageH = newest ? (Date.now() - newest) / 3.6e6 : Infinity;
+  add("खबरें (news.json)", news.length && ageH < 6 ? "ok" : news.length && ageH < 48 ? "warn" : "bad",
+    news.length ? `${news.length} खबरें, सबसे नई ${timeAgo(newest)}` : "कोई खबर नहीं मिली",
+    [["शहर", cities().map(([, n]) => n).join(", ") || "—"], ["ब्रेकिंग", news.filter((n) => n.isBreaking).length], ["फ़ोटो वाली", news.filter((n) => n.imageUrl).length]]);
+  const p = S.feed.panchang;
+  if (!p) add("पंचांग (daily)", "bad", "पंचांग फ़ाइल नहीं मिली");
+  else {
+    const rise = parseMs(p.sunrise), set = parseMs(p.sunset), rk = p.rahu_kaal, ab = p.abhijit_muhurat;
+    const issues = [];
+    if (!(rise && set && rise < set)) issues.push("सूर्योदय/सूर्यास्त गलत");
+    if (rk && !(parseMs(rk.start) >= rise && parseMs(rk.end) <= set + 60000)) issues.push("राहुकाल दिन के बाहर");
+    if (ab && !(parseMs(ab.start) > rise && parseMs(ab.end) < set)) issues.push("अभिजित दिन के बाहर");
+    if (!(p.tithi || []).length || !(p.nakshatra || []).length) issues.push("तिथि/नक्षत्र खाली");
+    const fresh = p.date === today;
+    add("पंचांग (daily)", issues.length ? "bad" : fresh ? "ok" : "warn",
+      issues.length ? issues.join(", ") : fresh ? "आज का पंचांग, सभी मान सही क्रम में" : `पुराना: ${p.date} का पंचांग (आज ${today})`,
+      [["दिनांक", p.date], ["वार", p.vara_hi || p.vara], ["मास", p.lunar_month ? `${p.lunar_month.purnimanta} (पूर्णिमांत), ${p.lunar_month.amanta} (अमांत)${p.lunar_month.adhik ? ", अधिक" : ""}` : "—"],
+       ["तिथि", (p.tithi || []).map((a) => `${a.paksha || ""} ${a.name}${a.ends_at ? " → " + clockShort(parseMs(a.ends_at)) : ""}`).join("; ")],
+       ["नक्षत्र", (p.nakshatra || []).map((a) => `${a.name}${a.ends_at ? " → " + clockShort(parseMs(a.ends_at)) : ""}`).join("; ")],
+       ["योग", (p.yoga || []).map((a) => `${a.name}${a.ends_at ? " → " + clockShort(parseMs(a.ends_at)) : ""}`).join("; ")],
+       ["करण", (p.karana || []).map((a) => `${a.name}${a.ends_at ? " → " + clockShort(parseMs(a.ends_at)) : ""}`).join("; ")],
+       ["सूर्योदय / सूर्यास्त", `${clockShort(rise)} / ${clockShort(set)}`],
+       ["चंद्रोदय / चंद्रास्त", `${clockShort(parseMs(p.moonrise)) || "—"} / ${clockShort(parseMs(p.moonset)) || "—"}`],
+       ["राहुकाल", rk ? `${clockShort(parseMs(rk.start))} – ${clockShort(parseMs(rk.end))}` : "—"],
+       ["यमगंड", p.yamaganda_kaal ? `${clockShort(parseMs(p.yamaganda_kaal.start))} – ${clockShort(parseMs(p.yamaganda_kaal.end))}` : "—"],
+       ["गुलिक", p.gulika_kaal ? `${clockShort(parseMs(p.gulika_kaal.start))} – ${clockShort(parseMs(p.gulika_kaal.end))}` : "—"],
+       ["अभिजित", ab ? `${clockShort(parseMs(ab.start))} – ${clockShort(parseMs(ab.end))}` : "—"],
+       ["विधि", p.calculation_method || "—"], ["बनाया गया", p.generated_at ? new Date(parseMs(p.generated_at)).toLocaleString("en-IN", { timeZone: IST }) : "—"]]);
+  }
+  const cal = S.feed.calendar, obs = S.feed.observances;
+  if (!cal) add("व्रत-त्योहार कैलेंडर", "bad", "कैलेंडर फ़ाइल नहीं मिली");
+  else {
+    const w = cal.window || {};
+    const covers = w.start <= today && today <= w.end;
+    const ahead = obs.filter((o) => o.date >= today);
+    add("व्रत-त्योहार कैलेंडर", covers && ahead.length ? "ok" : ahead.length ? "warn" : "bad",
+      covers ? `${w.start} से ${w.end} तक, आगे ${ahead.length} व्रत/त्योहार` : `अवधि ${w.start || "?"} – ${w.end || "?"} में आज शामिल नहीं`,
+      ahead.slice(0, 8).map((o) => [o.date, o.name_hi || o.name]));
+  }
+  const ev = S.feed.events, up = ev.filter((e) => e.start && istDate(e.start) >= today);
+  const evFile = json("events.json");
+  add("कार्यक्रम (events.json)", up.length ? "ok" : "warn",
+    up.length ? `आगे ${up.length} कार्यक्रम` : `कोई आगामी कार्यक्रम नहीं (कुल ${ev.length}, फ़ाइल ${evFile && evFile.generated_at ? evFile.generated_at.slice(0, 10) : "?"} की)`);
+  return out;
+}
+function checkScreen() {
+  const list = checks();
+  const label = { ok: "ठीक", warn: "ध्यान दें", bad: "समस्या" };
+  const counts = ["ok", "warn", "bad"].map((s) => list.filter((c) => c.status === s).length);
+  return `<div class="screen">${header("Data check")}
+    <div class="tile" style="padding:14px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <span class="pill ok">${counts[0]} ठीक</span><span class="pill warn">${counts[1]} ध्यान दें</span><span class="pill bad">${counts[2]} समस्या</span>
+      <span class="muted small" style="flex-basis:100%">डेटा स्रोत: ${esc(S.source)} • आज (IST): ${todayIso()}</span></div>
+    <div class="card">${list.map((c) => `<div class="chk"><span class="pill ${c.status}">${label[c.status]}</span>
+      <div style="min-width:0"><b>${esc(c.title)}</b><div class="small" style="color:var(--ink-soft)">${esc(c.detail)}</div>
+      ${c.rows && c.rows.length ? `<table class="kv" style="margin-top:6px"><tbody>${c.rows.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("")}</tbody></table>` : ""}</div></div>`).join("")}</div>
+  </div>`;
+}
+
+// ---------- render + events ----------
+const SCREENS = { home: homeScreen, news: newsScreen, panchang: panchangScreen, explore: exploreScreen, more: moreScreen,
+  events: eventsScreen, business: businessScreen, community: communityScreen, check: checkScreen };
+function render() {
+  const r = current();
+  const tab = PARENT_TAB[r] || r;
+  $("#tabs").innerHTML = TABS.map(([id, l]) => `<a href="#${id}" class="${tab === id ? "on" : ""}" ${tab === id ? 'aria-current="page"' : ""}>${icon(id)}${l}</a>`).join("");
+  if (!S.feed) return;
+  $("#app").innerHTML = SCREENS[r]();
+  drawAll();
+}
+function modal(html) { const m = $("#modal"); m.innerHTML = `<div class="modal-bg" data-act="close-modal"><div class="modal" role="dialog" aria-modal="true">${html}</div></div>`; m.hidden = false; }
+function closeModal() { $("#modal").hidden = true; $("#modal").innerHTML = ""; }
+
+document.addEventListener("click", async (ev) => {
+  const t = ev.target.closest("[data-act],[data-tab]");
+  if (!t) return;
+  if (t.dataset.tab) {
+    const i = +t.dataset.i;
+    ({ news: () => (S.newsTab = i), events: () => (S.eventsTab = i), biz: () => (S.bizTab = i), com: () => (S.comTab = i) })[t.dataset.tab]();
+    render(); return;
+  }
+  const act = t.dataset.act;
+  if (act === "close-modal") { if (ev.target === t) closeModal(); return; }
+  if (act === "back") back();
+  else if (act === "news-search") { S.newsSearch = !S.newsSearch; if (!S.newsSearch) S.newsQuery = ""; render(); $("#news-q")?.focus(); }
+  else if (act === "save") { toggleSaved(t.dataset.id); toast(isSaved(t.dataset.id) ? "सहेजा गया" : "हटाया गया"); render(); }
+  else if (act === "like") { toggleSaved("like-" + t.dataset.id); render(); }
+  else if (act === "vote") { store.set("poll", t.dataset.v); render(); }
+  else if (act === "soon") toast(t.dataset.msg);
+  else if (act === "share" || act === "share-app") {
+    const n = act === "share" ? S.feed.news.find((x) => x.id === t.dataset.id) : null;
+    const text = n ? `${n.title}\n${n.sourceUrl || ""}\n— via Banaras Buzz` : "Banaras Buzz — अपना बनारस, हर दिन\nhttps://prabhat-twr.github.io/vns-news-api/";
+    try { await navigator.clipboard.writeText(text); toast("लिंक कॉपी हो गया"); } catch (e) { toast("कॉपी नहीं हो सका"); }
+  } else if (act === "refresh") { toast("अपडेट हो रहा है…"); await boot(); toast("अपडेट हो गया"); }
+  else if (act === "about") modal(`<h2>Banaras Buzz</h2><p style="margin:0">वाराणसी, मिर्ज़ापुर और जौनपुर की ताज़ा खबरें, रोज़ का पंचांग, व्रत-त्योहार और शहर के कार्यक्रम — एक ही जगह। खबरें मूल स्रोतों से ली जाती हैं और हर खबर पर उसका स्रोत दिखाया जाता है।</p><button class="ok-btn" data-act="close-modal-btn">ठीक है</button>`);
+  else if (act === "close-modal-btn") closeModal();
+  else if (act === "city-dialog") modal(`<h2>अपना शहर चुनें</h2>${cities().map(([id, name]) => `<label><input type="radio" name="city" id="city-${esc(id)}" value="${esc(id)}" ${id === S.cityId ? "checked" : ""} data-input="city">${esc(name)}</label>`).join("") || "शहरों की सूची अभी उपलब्ध नहीं है।"}<button class="ok-btn" data-act="close-modal-btn">ठीक है</button>`);
+});
+document.addEventListener("change", (ev) => {
+  const t = ev.target;
+  if (t.id === "news-city") { S.cityId = t.value; store.set("city", S.cityId); S.newsTab = 1; render(); }
+  if (t.dataset.input === "city") { S.cityId = t.value; store.set("city", S.cityId); closeModal(); render(); }
+});
+document.addEventListener("input", (ev) => {
+  const t = ev.target;
+  if (t.dataset.input === "explore") { S.exploreQuery = t.value; $("#explore-body").innerHTML = exploreBody(); drawAll(); }
+  if (t.dataset.input === "news") {
+    S.newsQuery = t.value; const pos = t.selectionStart; render();
+    const box = $("#news-q"); if (box) { box.focus(); box.setSelectionRange(pos, pos); }
+  }
+});
+document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !$("#modal").hidden) closeModal(); });
+let resizeTimer;
+window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(drawAll, 120); });
+
+async function boot() {
+  await loadFiles();
+  S.feed = assembleFeed();
+  render();
+}
+S.stack.push(current());
+render();
+boot();
+</script>
+</body>
+</html>
