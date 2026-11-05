@@ -76,6 +76,40 @@ class FeedViewModel @JvmOverloads constructor(
     var loaded by mutableStateOf(false)
         internal set
 
+    /** Full-year panchang, downloaded the first time the user looks beyond today. */
+    var year by mutableStateOf<YearPanchang?>(null)
+        internal set
+    var yearLoading by mutableStateOf(false)
+        private set
+    var yearFailed by mutableStateOf(false)
+        private set
+
+    /** Date shown on the Panchang screen; null means today. */
+    var selectedDate by mutableStateOf<java.time.LocalDate?>(null)
+
+    fun ensureYear(force: Boolean = false) {
+        if (yearLoading || (year != null && !force)) return
+        viewModelScope.launch {
+            yearLoading = true
+            yearFailed = false
+            val y = Repository.loadYear(getApplication<Application>())
+            if (y != null) year = y else yearFailed = true
+            yearLoading = false
+        }
+    }
+
+    /** Panchang for a date: today's feed entry for today, else the year file. */
+    fun panchangFor(date: java.time.LocalDate): Panchang? {
+        val key = date.toString()
+        if (date == todayIst()) {
+            return feed.panchang?.takeIf { it.date == key } ?: year?.days?.get(key) ?: feed.panchang
+        }
+        return year?.days?.get(key)
+    }
+
+    /** Vrat and tyohar: the whole year when loaded, else the next 45 days. */
+    fun allObservances(): List<Observance> = year?.observances ?: feed.observances
+
     /** City picked in "My City Settings" — a cityId from news.json. */
     var city by mutableStateOf("varanasi")
 
@@ -121,7 +155,7 @@ class FeedViewModel @JvmOverloads constructor(
         .distinctBy { it.first }
 }
 
-enum class Route { HOME, NEWS, PANCHANG, EXPLORE, MORE, EVENTS, BUSINESS, COMMUNITY }
+enum class Route { HOME, NEWS, PANCHANG, EXPLORE, MORE, EVENTS, BUSINESS, COMMUNITY, YEAR }
 
 private data class Tab(val route: Route, val label: String, val icon: ImageVector)
 
@@ -137,6 +171,7 @@ private val tabRoutes = tabs.map { it.route }.toSet()
 /** Which bottom tab lights up for a route. */
 private fun Route.tab(): Route = when (this) {
     Route.EVENTS, Route.BUSINESS, Route.COMMUNITY -> Route.EXPLORE
+    Route.YEAR -> Route.PANCHANG
     else -> this
 }
 
@@ -252,6 +287,7 @@ fun BuzzApp(vm: FeedViewModel = viewModel(), startRoute: Route = Route.HOME) {
                     Route.EVENTS -> EventsScreen(vm, actions)
                     Route.BUSINESS -> BusinessScreen(vm, actions)
                     Route.COMMUNITY -> CommunityScreen(vm, actions)
+                    Route.YEAR -> YearScreen(vm, actions)
                 }
             }
         }

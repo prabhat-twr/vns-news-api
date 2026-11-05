@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T12:50:43+05:30",
+  "generated_at": "2026-11-05T15:53:31+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
@@ -9,11 +9,6 @@
   "days": [
     {
       "date": "2026-11-05",
-      "location": {
-        "name": "Varanasi, Uttar Pradesh, India",
-        "lat": 25.3176,
-        "lng": 82.9739
-      },
       "vara": "Thursday (Guruvara)",
       "vara_hi": "गुरुवार",
       "lunar_month": {
@@ -108,19 +103,10 @@
           "name_hi": "रमा एकादशी",
           "type": "vrat"
         }
-      ],
-      "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
-      "data_source": "calculated",
-      "confidence": "calculated",
-      "source_url": null
+      ]
     },
     {
       "date": "2026-11-06",
-      "location": {
-        "name": "Varanasi, Uttar Pradesh, India",
-        "lat": 25.3176,
-        "lng": 82.9739
-      },
       "vara": "Friday (Shukravara)",
       "vara_hi": "शुक्रवार",
       "lunar_month": {
@@ -215,19 +201,10 @@
           "name_hi": "शुक्र प्रदोष व्रत",
           "type": "vrat"
         }
-      ],
-      "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
-      "data_source": "calculated",
-      "confidence": "calculated",
-      "source_url": null
+      ]
     },
     {
       "date": "2026-11-07",
-      "location": {
-        "name": "Varanasi, Uttar Pradesh, India",
-        "lat": 25.3176,
-        "lng": 82.9739
-      },
       "vara": "Saturday (Shanivara)",
       "vara_hi": "शनिवार",
       "lunar_month": {
@@ -317,19 +294,10 @@
           "name_hi": "मासिक शिवरात्रि",
           "type": "vrat"
         }
-      ],
-      "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
-      "data_source": "calculated",
-      "confidence": "calculated",
-      "source_url": null
+      ]
     },
     {
       "date": "2026-11-08",
-      "location": {
-        "name": "Varanasi, Uttar Pradesh, India",
-        "lat": 25.3176,
-        "lng": 82.9739
-      },
       "vara": "Sunday (Ravivara)",
       "vara_hi": "रविवार",
       "lunar_month": {
@@ -419,19 +387,10 @@
           "name_hi": "नरक चतुर्दशी (छोटी दिवाली)",
           "type": "tyohar"
         }
-      ],
-      "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
-      "data_source": "calculated",
-      "confidence": "calculated",
-      "source_url": null
+      ]
     },
     {
       "date": "2026-11-09",
-      "location": {
-        "name": "Varanasi, Uttar Pradesh, India",
-        "lat": 25.3176,
-        "lng": 82.9739
-      },
       "vara": "Monday (Somavara)",
       "vara_hi": "सोमवार",
       "lunar_month": {
@@ -515,19 +474,10 @@
         "start": "2026-11-09T11:19:00+05:30",
         "end": "2026-11-09T12:03:00+05:30"
       },
-      "festivals_and_vrats": [],
-      "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
-      "data_source": "calculated",
-      "confidence": "calculated",
-      "source_url": null
+      "festivals_and_vrats": []
     },
     {
       "date": "2026-11-10",
-      "location": {
-        "name": "Varanasi, Uttar Pradesh, India",
-        "lat": 25.3176,
-        "lng": 82.9739
-      },
       "vara": "Tuesday (Mangalavara)",
       "vara_hi": "मंगलवार",
       "lunar_month": {
@@ -617,19 +567,10 @@
           "name_hi": "गोवर्धन पूजा",
           "type": "tyohar"
         }
-      ],
-      "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
-      "data_source": "calculated",
-      "confidence": "calculated",
-      "source_url": null
+      ]
     },
     {
       "date": "2026-11-11",
-      "location": {
-        "name": "Varanasi, Uttar Pradesh, India",
-        "lat": 25.3176,
-        "lng": 82.9739
-      },
       "vara": "Wednesday (Budhavara)",
       "vara_hi": "बुधवार",
       "lunar_month": {
@@ -719,19 +660,10 @@
           "name_hi": "भाई दूज",
           "type": "tyohar"
         }
-      ],
-      "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
-      "data_source": "calculated",
-      "confidence": "calculated",
-      "source_url": null
+      ]
     },
     {
       "date": "2026-11-12",
-      "location": {
-        "name": "Varanasi, Uttar Pradesh, India",
-        "lat": 25.3176,
-        "lng": 82.9739
-      },
       "vara": "Thursday (Guruvara)",
       "vara_hi": "गुरुवार",
       "lunar_month": {
@@ -810,11 +742,7 @@
         "start": "2026-11-12T11:20:00+05:30",
         "end": "2026-11-12T12:04:00+05:30"
       },
-      "festivals_and_vrats": [],
-      "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
-      "data_source": "calculated",
-      "confidence": "calculated",
-      "source_url": null
+      "festivals_and_vrats": []
     }
   ]
 }

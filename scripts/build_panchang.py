@@ -7,6 +7,8 @@ Calculate the Varanasi panchang and write the two JSON feeds the apps read.
     varanasi-panchang-calendar.json  vrat and tyohar dates for the coming weeks
     varanasi-panchang-days.json      the daily panchang for today and the next 7 days,
                                      so apps show the right day even if a run is missed
+    varanasi-panchang-year.json      the daily panchang for every day of the next 12
+                                     months, plus every vrat and tyohar in that period
 
 Nothing is scraped. Positions come from NASA JPL's DE421 ephemeris through
 Skyfield (the Drik Ganita method: real apparent Sun and Moon positions, with
@@ -451,7 +453,8 @@ FESTIVALS = [
     ("Maha Shivaratri", "महाशिवरात्रि", "both", 10, T("Krishna", 14), "midnight",
      "Great night of Shiva; Kashi Vishwanath's biggest festival."),
     ("Holika Dahan", "होलिका दहन", "tyohar", 11, T("Shukla", 15), "sunset", "Bonfire on the eve of Holi."),
-    ("Holi", "होली", "tyohar", 11, T("Krishna", 1), "sunrise", "Festival of colours."),
+    # Holi (Dhulandi) is the day after Holika Dahan, whichever tithi is at sunrise.
+    ("Holi", "होली", "tyohar", 11, T("Shukla", 15), "day_after_sunset", "Festival of colours."),
 ]
 
 # Recurring vrats: (english, hindi, tithi index, kaal, description)
@@ -546,7 +549,13 @@ class Calendar:
             month_en = ("Adhik " if adhik else "") + MONTHS[pm][0]
             month_hi = ("अधिक " if adhik else "") + MONTHS[pm][1]
             for en, hi, typ, kaal, desc, generic in hits:
-                d = self.day_for(s, e, kaal)
+                shown_idx, shown_month = idx, month_en
+                if kaal == "day_after_sunset":
+                    d = self.day_for(s, e, "sunset") + timedelta(days=1)
+                    shown_idx = T("Krishna", 1)  # Chaitra Krishna Pratipada in the purnimanta reckoning
+                    shown_month = MONTHS[(m + 1) % 12][0]
+                else:
+                    d = self.day_for(s, e, kaal)
                 if en == "PRADOSH":
                     en, hi = PRADOSH_DAY[d.weekday()]
                 elif idx in (T("Shukla", 15), T("Krishna", 15)) and generic:
@@ -559,9 +568,9 @@ class Calendar:
                     "name_hi": hi,
                     "type": typ,
                     "date": d.isoformat(),
-                    "tithi": tithi_name(idx)[0],
-                    "paksha": paksha(idx),
-                    "month": month_en,
+                    "tithi": tithi_name(shown_idx)[0],
+                    "paksha": paksha(shown_idx),
+                    "month": shown_month,
                     "description": desc,
                     "date_confidence": "calculated",
                     "source_url": None,
@@ -616,6 +625,7 @@ def main() -> None:
     parser.add_argument("--ephemeris-dir", default=".ephemeris", help="where de421.bsp is cached")
     parser.add_argument("--out-dir", default=".", help="where to write the JSON files")
     parser.add_argument("--ahead", type=int, default=8, help="days of daily panchang in the days file")
+    parser.add_argument("--year-days", type=int, default=366, help="days covered by the year file (0 to skip)")
     args = parser.parse_args()
 
     today = date.fromisoformat(args.date) if args.date else datetime.now(IST).date()
@@ -624,10 +634,25 @@ def main() -> None:
 
     sky = Sky(eph_dir)
     panchang = Panchang(sky)
-    observances = Calendar(panchang).build(today, args.days)
-    daily = panchang.daily(today, observances)
+    span = max(args.days, args.ahead, args.year_days)
+    # One calendar for the longest window; the shorter files take their slice of it.
+    all_observances = Calendar(panchang).build(today, span)
 
+    def upto(n: int) -> list[dict]:
+        last = (today + timedelta(days=n)).isoformat()
+        return [o for o in all_observances if o["date"] < last]
+
+    observances = upto(args.days)
+    daily = panchang.daily(today, all_observances)
     generated = daily["generated_at"]
+    meta_keys = ("generated_at", "location", "calculation_method", "data_source", "confidence", "source_url")
+
+    def bare(d: dict) -> dict:
+        return {k: v for k, v in d.items() if k not in meta_keys}
+
+    n_days = max(args.ahead, args.year_days)
+    all_days = [bare(daily)] + [bare(panchang.daily(today + timedelta(days=i), all_observances)) for i in range(1, n_days)]
+
     calendar = {
         "generated_at": generated,
         "location": daily["location"],
@@ -635,20 +660,29 @@ def main() -> None:
         "calculation_method": daily["calculation_method"],
         "observances": observances,
     }
-
     days = {
         "generated_at": generated,
         "location": daily["location"],
         "calculation_method": daily["calculation_method"],
-        "days": [dict(daily)] + [panchang.daily(today + timedelta(days=i), observances) for i in range(1, args.ahead)],
+        "days": all_days[: args.ahead],
     }
-    for d in days["days"]:
-        d.pop("generated_at", None)
 
     out = Path(args.out_dir)
     for name, payload in (("varanasi-panchang-daily.json", daily), ("varanasi-panchang-calendar.json", calendar),
                           ("varanasi-panchang-days.json", days)):
         (out / name).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if args.year_days:
+        year = {
+            "generated_at": generated,
+            "location": daily["location"],
+            "calculation_method": daily["calculation_method"],
+            "window": {"start": today.isoformat(), "end": (today + timedelta(days=args.year_days - 1)).isoformat()},
+            "days": all_days[: args.year_days],
+            "observances": upto(args.year_days),
+        }
+        # Compact: about 600 KB raw, ~60 KB as served (GitHub gzips it).
+        (out / "varanasi-panchang-year.json").write_text(
+            json.dumps(year, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     t = daily["tithi"][0]
     print(f"{today}: {t['paksha']} {t['name']}, {daily['nakshatra'][0]['name']}; "
           f"sunrise {daily['sunrise'][11:16]}, {len(observances)} observances in calendar")

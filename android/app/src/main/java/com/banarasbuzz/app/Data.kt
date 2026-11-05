@@ -77,6 +77,14 @@ data class Observance(
     val description: String,
 )
 
+/** Daily panchang for every day of the next 12 months, plus the year's vrat and tyohar. */
+data class YearPanchang(
+    val days: Map<String, Panchang>,
+    val observances: List<Observance>,
+    val start: String,
+    val end: String,
+)
+
 data class Feed(
     val news: List<NewsItem> = emptyList(),
     val events: List<EventItem> = emptyList(),
@@ -263,7 +271,54 @@ private fun parseHidden(text: String?, key: String): Set<String> {
     }
 }
 
+internal fun parseYear(text: String?): YearPanchang? {
+    if (text == null) return null
+    return try {
+        val o = JSONObject(text)
+        val arr = o.optJSONArray("days") ?: return null
+        val days = LinkedHashMap<String, Panchang>()
+        for (i in 0 until arr.length()) {
+            parsePanchang(arr.optJSONObject(i))?.let { days[it.date] = it }
+        }
+        val window = o.optJSONObject("window")
+        YearPanchang(
+            days = days,
+            observances = parseObservances(text),
+            start = window?.str("start") ?: days.keys.firstOrNull().orEmpty(),
+            end = window?.str("end") ?: days.keys.lastOrNull().orEmpty(),
+        )
+    } catch (e: Exception) {
+        null
+    }
+}
+
 object Repository {
+    private const val YEAR_FILE = "varanasi-panchang-year.json"
+
+    /**
+     * The year file (~60 KB to download). Kept in the cache and fetched again only when it is
+     * over 12 hours old or no longer starts by today; the cached copy is used when offline.
+     */
+    suspend fun loadYear(context: Context): YearPanchang? = withContext(Dispatchers.IO) {
+        val cache = File(context.cacheDir, YEAR_FILE)
+        val cached = if (cache.exists()) parseYear(cache.readText()) else null
+        val fresh = System.currentTimeMillis() - cache.lastModified() < 12 * 3_600_000L
+        if (cached != null && fresh && cached.start <= todayIst().toString()) return@withContext cached
+        try {
+            val conn = URL(Config.RAW_BASE + YEAR_FILE + "?t=" + System.currentTimeMillis() / 60000)
+                .openConnection() as HttpURLConnection
+            conn.connectTimeout = 10_000
+            conn.readTimeout = 30_000
+            if (conn.responseCode != 200) throw IOException("HTTP ${conn.responseCode}")
+            val text = conn.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
+            val parsed = parseYear(text) ?: throw IOException("bad year file")
+            cache.writeText(text)
+            parsed
+        } catch (e: Exception) {
+            cached
+        }
+    }
+
     suspend fun load(context: Context): Feed = withContext(Dispatchers.IO) {
         var offline = false
 

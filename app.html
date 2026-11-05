@@ -331,7 +331,7 @@ const photo = (url, fallback) => url ? `<img src="${esc(url)}" alt="" loading="l
 
 // ---------- data ----------
 const S = { feed: null, source: "", files: {}, cityId: store.get("city", "varanasi"), saved: store.get("saved", {}),
-  newsTab: 0, newsQuery: "", newsSearch: false, eventsTab: 0, bizTab: 0, comTab: 0, exploreQuery: "", stack: [] };
+  newsTab: 0, newsQuery: "", newsSearch: false, panDate: null, year: null, yearState: "idle", yearFilter: 0, eventsTab: 0, bizTab: 0, comTab: 0, exploreQuery: "", stack: [] };
 
 async function fetchText(name, ref) {
   const bases = ref ? [RAW + ref + "/"] : ["./", RAW + "main/"];
@@ -383,6 +383,24 @@ function assembleFeed() {
   const panchang = days.find((d) => d.date === todayIso()) || json("varanasi-panchang-daily.json") || null;
   return { news, events, panchang, calendar: cal || null, observances, daysAhead: days.filter((d) => d.date >= todayIso()).length };
 }
+// The year file (~60 KB gzipped) is loaded only when someone looks beyond today.
+async function ensureYear() {
+  if (S.year || S.yearState === "loading") return;
+  S.yearState = "loading";
+  let text = null;
+  if (window.BB_DATA) text = window.BB_DATA.files["varanasi-panchang-year.json"] ?? null;
+  else {
+    let ref = null;
+    try { ref = new URLSearchParams(location.search).get("ref"); } catch (e) { /* no query */ }
+    text = (await fetchText("varanasi-panchang-year.json", ref)).text;
+  }
+  try { S.year = text ? JSON.parse(text) : null; } catch (e) { S.year = null; }
+  S.yearState = S.year ? "ready" : "failed";
+  render();
+}
+const yearDay = (iso) => (S.year && S.year.days ? S.year.days.find((d) => d.date === iso) : null);
+const allObservances = () => (S.year && S.year.observances) || S.feed.observances;
+
 function cities() {
   const m = new Map();
   for (const n of S.feed.news) if (n.cityId && !m.has(n.cityId)) m.set(n.cityId, n.cityName);
@@ -394,8 +412,8 @@ function toggleSaved(id) { S.saved[id] = !S.saved[id]; store.set("saved", S.save
 
 // ---------- navigation ----------
 const TABS = [["home", "Home"], ["news", "News"], ["panchang", "Panchang"], ["explore", "Explore"], ["more", "More"]];
-const PARENT_TAB = { events: "explore", business: "explore", community: "explore", check: "more" };
-const ROUTES = ["home", "news", "panchang", "explore", "more", "events", "business", "community", "check"];
+const PARENT_TAB = { events: "explore", business: "explore", community: "explore", check: "more", year: "panchang" };
+const ROUTES = ["home", "news", "panchang", "explore", "more", "events", "business", "community", "check", "year"];
 const current = () => { const h = location.hash.slice(1); return ROUTES.includes(h) ? h : "home"; };
 function go(r) { if (current() === r) render(); else location.hash = r; }
 function back() { if (S.stack.length > 1) history.back(); else go(PARENT_TAB[current()] || "home"); }
@@ -452,19 +470,35 @@ function newsScreen() {
 }
 
 function panchangScreen() {
-  const p = S.feed.panchang;
-  const head = `<div class="pan-head"><span style="font-size:28px">☀️</span><div><h1>आज का पंचांग</h1>${p && p.date ? `<div style="font-weight:500;color:var(--ink-soft)">${hindiLongDate(p.date)}</div>` : ""}</div><span style="font-size:28px">🔆</span></div>`;
-  if (!p) return `<div class="screen"><div class="pan">${head}</div><div class="empty">अभी पंचांग उपलब्ध नहीं है। थोड़ी देर बाद फिर देखें।</div></div>`;
+  const today = todayIso();
+  const sel = S.panDate && S.panDate > today ? S.panDate : today;
+  const isToday = sel === today;
+  if (!isToday) ensureYear();
+  const p = isToday ? (S.feed.panchang && S.feed.panchang.date === today ? S.feed.panchang : yearDay(today) || S.feed.panchang) : yearDay(sel);
+  const last = (S.year && S.year.window && S.year.window.end) || addDays(today, 365);
+  const head = `<div class="pan-head"><span style="font-size:28px">☀️</span><div><h1>${isToday ? "आज का पंचांग" : "पंचांग"}</h1><div style="font-weight:500;color:var(--ink-soft)">${hindiLongDate(isToday && p ? p.date : sel)}</div></div><span style="font-size:28px">🔆</span></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="outline" data-act="pan-day" data-d="${addDays(sel, -1)}" ${isToday ? "disabled style=\"opacity:.35\"" : ""} aria-label="पिछला दिन">◀</button>
+      <input id="pan-date" type="date" class="search" style="flex:1;min-width:0;padding-left:12px;background-image:none" min="${today}" max="${last}" value="${sel}" aria-label="तारीख चुनें">
+      <button class="outline" data-act="pan-day" data-d="${addDays(sel, 1)}" ${sel >= last ? "disabled style=\"opacity:.35\"" : ""} aria-label="अगला दिन">▶</button>
+      ${isToday ? "" : `<button class="outline" data-act="pan-day" data-d="${today}">आज</button>`}
+    </div>`;
+  if (!p) {
+    const msg = isToday ? "अभी पंचांग उपलब्ध नहीं है। थोड़ी देर बाद फिर देखें।"
+      : S.yearState === "failed" ? "साल भर का पंचांग लोड नहीं हो सका। इंटरनेट जाँचें और फिर कोशिश करें।"
+      : S.yearState === "ready" ? "इस तारीख का पंचांग उपलब्ध नहीं है।" : "साल भर का पंचांग लाया जा रहा है…";
+    return `<div class="screen"><div class="pan" style="display:flex;flex-direction:column;gap:10px">${head}</div><div class="empty">${msg}</div></div>`;
+  }
   const t = (p.tithi || [])[0], n = (p.nakshatra || [])[0];
   const ends = (a) => (a && a.ends_at ? `<div class="muted small">${clockShort(parseMs(a.ends_at))} तक</div>` : "");
   const rk = p.rahu_kaal, ab = p.abhijit_muhurat;
   const todays = [...new Set([...(p.festivals_and_vrats || []).map((f) => (typeof f === "string" ? f : f.name_hi || f.name)),
-    ...S.feed.observances.filter((o) => o.date === p.date).map((o) => o.name_hi || o.name)])].filter(Boolean);
-  const upcoming = S.feed.observances.filter((o) => o.date >= todayIso()).slice(0, 12);
+    ...allObservances().filter((o) => o.date === p.date).map((o) => o.name_hi || o.name)])].filter(Boolean);
+  const upcoming = allObservances().filter((o) => o.date >= today).slice(0, 12);
   const typeHi = (t) => ({ vrat: "व्रत", both: "व्रत व त्योहार" }[t] || "त्योहार");
   const month = p.lunar_month ? `<div class="small" style="color:var(--saffron-deep)">${esc(p.lunar_month.purnimanta_hi || p.lunar_month.purnimanta)} मास</div>` : "";
   return `<div class="screen"><div class="pan" style="display:flex;flex-direction:column;gap:10px">${head}
-    ${p.date !== todayIso() ? `<button class="stale" data-act="refresh" style="border:0;background:var(--tile-strong);border-radius:10px;padding:8px;font-weight:600">यह पंचांग ${hindiShortDate(p.date)} का है — ताज़ा करने के लिए यहाँ टैप करें</button>` : month}
+    ${isToday && p.date !== today ? `<button class="stale" data-act="refresh" style="border:0;background:var(--tile-strong);border-radius:10px;padding:8px;font-weight:600">यह पंचांग ${hindiShortDate(p.date)} का है — ताज़ा करने के लिए यहाँ टैप करें</button>` : month}
     <div class="pgrid">
       <div class="ptile"><h3>तिथि</h3><div>${esc(pakshaHi(t && t.paksha))}</div><div class="big">${esc(angaHi(t, TITHI_HI))}</div>${ends(t)}</div>
       <div class="ptile"><h3>नक्षत्र</h3><div class="big">${esc(angaHi(n, NAK_HI))}</div>${ends(n)}</div>
@@ -474,14 +508,14 @@ function panchangScreen() {
     </div>
     <div class="band"><h3>शुभ मुहूर्त</h3><div style="font-weight:600;color:var(--ink-soft)">अभिजित मुहूर्त</div>
       <div style="font-size:19px;font-weight:700">${ab ? `${clockShort(parseMs(ab.start))} – ${clockShort(parseMs(ab.end))}` : "आज उपलब्ध नहीं"}</div></div>
-    <div class="band"><b style="font-size:17px">आज के व्रत और त्योहार</b><div style="color:var(--ink-soft)">${todays.length ? esc(todays.join(" • ")) : "आज कोई विशेष व्रत या त्योहार नहीं"}</div></div>
+    <div class="band"><b style="font-size:17px">${isToday ? "आज के" : "इस दिन के"} व्रत और त्योहार</b><div style="color:var(--ink-soft)">${todays.length ? esc(todays.join(" • ")) : "कोई विशेष व्रत या त्योहार नहीं"}</div></div>
     <div class="facts">
       <div>योग<b>${esc(angaHi((p.yoga || [])[0], {}))}</b></div><div>करण<b>${esc(angaHi((p.karana || [])[0], {}))}</b></div>
       <div>चंद्रोदय<b>${p.moonrise ? clock(parseMs(p.moonrise)) : "—"}</b></div>
     </div></div>
     <div class="media" style="height:160px;margin:0 -16px">${scene("dawn")}</div>
-    <h2 class="sec">आने वाले व्रत और त्योहार</h2>
-    ${upcoming.length ? upcoming.map((o) => { const d = new Date(o.date + "T12:00:00Z"); return `<div class="row-link">
+    <div style="display:flex;align-items:center"><h2 class="sec" style="flex:1">आने वाले व्रत और त्योहार</h2><a href="#year" style="color:var(--saffron);font-weight:700">पूरा साल →</a></div>
+    ${upcoming.length ? upcoming.map((o) => { const d = new Date(o.date + "T12:00:00Z"); return `<div class="row-link" role="button" tabindex="0" style="cursor:pointer" data-act="pan-day" data-d="${o.date}">
       <div class="datebox"><b>${d.getUTCDate()}</b><span class="small">${MONTH_HI[d.getUTCMonth()]}</span></div>
       <div style="min-width:0"><b>${esc(o.name_hi || o.name)}</b>
       <div class="small" style="color:var(--saffron-deep)">${esc([typeHi(o.type), [pakshaHi(o.paksha), TITHI_HI[(o.tithi || "").toLowerCase()] || o.tithi].filter(Boolean).join(" ")].filter(Boolean).join(" • "))}</div>
@@ -613,6 +647,30 @@ function moreScreen() {
   </div>`;
 }
 
+// ---------- full-year vrat & tyohar ----------
+const YEAR_FILTERS = ["सभी", "त्योहार", "एकादशी", "अन्य व्रत"];
+const WD_SHORT = ["रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि"];
+function yearScreen() {
+  ensureYear();
+  const head = `${header("साल भर के व्रत-त्योहार")}<div class="chips">${YEAR_FILTERS.map((f, i) => `<button class="${i === S.yearFilter ? "on" : ""}" data-tab="year" data-i="${i}">${f}</button>`).join("")}</div>`;
+  if (!S.year) return `<div class="screen">${head}<div class="empty">${S.yearState === "failed" ? "लोड नहीं हो सका। इंटरनेट जाँचें और फिर कोशिश करें।" : "साल भर का पंचांग लाया जा रहा है…"}</div></div>`;
+  const today = todayIso();
+  const list = (S.year.observances || []).filter((o) => o.date >= today && [
+    true, o.type !== "vrat", /Ekadashi/.test(o.name), o.type === "vrat" && !/Ekadashi/.test(o.name)][S.yearFilter]);
+  const groups = {};
+  for (const o of list) (groups[o.date.slice(0, 7)] ||= []).push(o);
+  const w = S.year.window || {};
+  return `<div class="screen">${head}
+    <div class="muted small">${list.length} व्रत-त्योहार · ${w.start ? hindiShortDate(w.start) : ""} से ${w.end ? hindiShortDate(w.end) + " " + w.end.slice(0, 4) : ""} तक</div>
+    ${Object.entries(groups).map(([ym, items]) => `<h2 class="sec">${MONTH_HI[+ym.slice(5, 7) - 1]} ${ym.slice(0, 4)}</h2>
+      ${items.map((o) => { const d = new Date(o.date + "T12:00:00Z"); const fest = o.type !== "vrat"; return `<div class="row-link" role="button" tabindex="0" style="cursor:pointer;${fest ? "background:var(--tile)" : ""}" data-act="pan-day" data-d="${o.date}">
+        <div class="datebox" style="background:none"><b>${d.getUTCDate()}</b><span class="small">${WD_SHORT[d.getUTCDay()]}</span></div>
+        <div style="min-width:0;flex:1"><b style="font-weight:${fest ? 700 : 600}">${esc(o.name_hi || o.name)}</b>
+        <div class="small" style="color:var(--saffron-deep)">${esc([pakshaHi(o.paksha), TITHI_HI[(o.tithi || "").toLowerCase()] || o.tithi].filter(Boolean).join(" "))}</div></div>
+        <span class="muted">›</span></div>`; }).join("")}`).join("")}
+  </div>`;
+}
+
 // ---------- data check ----------
 function checks() {
   const out = [];
@@ -654,7 +712,8 @@ function checks() {
        ["गुलिक", p.gulika_kaal ? `${clockShort(parseMs(p.gulika_kaal.start))} – ${clockShort(parseMs(p.gulika_kaal.end))}` : "—"],
        ["अभिजित", ab ? `${clockShort(parseMs(ab.start))} – ${clockShort(parseMs(ab.end))}` : "—"],
        ["आगे के दिन तैयार", S.feed.daysAhead ? `${S.feed.daysAhead} दिन (8-दिन फ़ाइल से)` : "नहीं (केवल एक दिन की फ़ाइल)"],
-       ["विधि", p.calculation_method || "—"], ["बनाया गया", p.generated_at ? new Date(parseMs(p.generated_at)).toLocaleString("en-IN", { timeZone: IST }) : "—"]]);
+       ["विधि", p.calculation_method || (json("varanasi-panchang-days.json") || {}).calculation_method || "—"],
+       ["बनाया गया", ((g) => (g ? new Date(parseMs(g)).toLocaleString("en-IN", { timeZone: IST }) : "—"))(p.generated_at || (json("varanasi-panchang-days.json") || {}).generated_at)]]);
   }
   const cal = S.feed.calendar, obs = S.feed.observances;
   if (!cal) add("व्रत-त्योहार कैलेंडर", "bad", "कैलेंडर फ़ाइल नहीं मिली");
@@ -665,6 +724,19 @@ function checks() {
     add("व्रत-त्योहार कैलेंडर", covers && ahead.length ? "ok" : ahead.length ? "warn" : "bad",
       covers ? `${w.start} से ${w.end} तक, आगे ${ahead.length} व्रत/त्योहार` : `अवधि ${w.start || "?"} – ${w.end || "?"} में आज शामिल नहीं`,
       ahead.slice(0, 8).map((o) => [o.date, o.name_hi || o.name]));
+  }
+  ensureYear();
+  if (!S.year) add("साल भर का पंचांग (year.json)", S.yearState === "failed" ? "bad" : "warn", S.yearState === "failed" ? "फ़ाइल लोड नहीं हुई" : "लोड हो रहा है…");
+  else {
+    const ydays = S.year.days || [], w = S.year.window || {};
+    const bad = ydays.filter((d) => !(d.tithi || []).length || !(parseMs(d.sunrise) < parseMs(d.sunset))).map((d) => d.date);
+    let gaps = 0;
+    for (let i = 1; i < ydays.length; i++) if (addDays(ydays[i - 1].date, 1) !== ydays[i].date) gaps++;
+    const ok = w.start <= today && ydays.length >= 365 && !bad.length && !gaps;
+    add("साल भर का पंचांग (year.json)", ok ? "ok" : "warn",
+      `${ydays.length} दिन (${w.start} – ${w.end}), ${(S.year.observances || []).length} व्रत-त्योहार`,
+      [["बीच में छूटे दिन", gaps], ["गड़बड़ दिन", bad.length ? bad.slice(0, 5).join(", ") : "कोई नहीं"],
+       ["उदाहरण", ["Diwali", "Holi", "Maha Shivaratri", "Makar Sankranti"].map((n) => { const o = (S.year.observances || []).find((x) => x.name.startsWith(n)); return o ? `${o.name_hi || o.name}: ${o.date}` : null; }).filter(Boolean).join("; ")]]);
   }
   const ev = S.feed.events, up = ev.filter((e) => e.start && istDate(e.start) >= today);
   const evFile = json("events.json");
@@ -687,7 +759,7 @@ function checkScreen() {
 }
 
 // ---------- render + events ----------
-const SCREENS = { home: homeScreen, news: newsScreen, panchang: panchangScreen, explore: exploreScreen, more: moreScreen,
+const SCREENS = { home: homeScreen, news: newsScreen, panchang: panchangScreen, explore: exploreScreen, more: moreScreen, year: yearScreen,
   events: eventsScreen, business: businessScreen, community: communityScreen, check: checkScreen };
 function render() {
   const r = current();
@@ -705,11 +777,12 @@ document.addEventListener("click", async (ev) => {
   if (!t) return;
   if (t.dataset.tab) {
     const i = +t.dataset.i;
-    ({ news: () => (S.newsTab = i), events: () => (S.eventsTab = i), biz: () => (S.bizTab = i), com: () => (S.comTab = i) })[t.dataset.tab]();
+    ({ news: () => (S.newsTab = i), events: () => (S.eventsTab = i), biz: () => (S.bizTab = i), com: () => (S.comTab = i), year: () => (S.yearFilter = i) })[t.dataset.tab]();
     render(); return;
   }
   const act = t.dataset.act;
   if (act === "close-modal") { if (ev.target === t) closeModal(); return; }
+  if (act === "pan-day") { S.panDate = t.dataset.d === todayIso() ? null : t.dataset.d; if (current() === "panchang") { render(); window.scrollTo(0, 0); } else go("panchang"); return; }
   if (act === "back") back();
   else if (act === "news-search") { S.newsSearch = !S.newsSearch; if (!S.newsSearch) S.newsQuery = ""; render(); $("#news-q")?.focus(); }
   else if (act === "save") { toggleSaved(t.dataset.id); toast(isSaved(t.dataset.id) ? "सहेजा गया" : "हटाया गया"); render(); }
@@ -727,6 +800,7 @@ document.addEventListener("click", async (ev) => {
 });
 document.addEventListener("change", (ev) => {
   const t = ev.target;
+  if (t.id === "pan-date" && t.value) { S.panDate = t.value === todayIso() ? null : t.value; render(); return; }
   if (t.id === "news-city") { S.cityId = t.value; store.set("city", S.cityId); S.newsTab = 1; render(); }
   if (t.dataset.input === "city") { S.cityId = t.value; store.set("city", S.cityId); closeModal(); render(); }
 });
@@ -738,7 +812,10 @@ document.addEventListener("input", (ev) => {
     const box = $("#news-q"); if (box) { box.focus(); box.setSelectionRange(pos, pos); }
   }
 });
-document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !$("#modal").hidden) closeModal(); });
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape" && !$("#modal").hidden) closeModal();
+  if ((ev.key === "Enter" || ev.key === " ") && ev.target.matches('[role="button"][data-act]')) { ev.preventDefault(); ev.target.click(); }
+});
 let resizeTimer;
 window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(drawAll, 120); });
 
