@@ -60,9 +60,8 @@ object StickyPanchang {
         var sunset = SolarDay.event(date, rising = false)
         val festivals = mutableListOf<String>()
         try {
-            val f = File(context.cacheDir, "varanasi-panchang-daily.json")
-            if (f.exists()) {
-                val o = JSONObject(f.readText())
+            val o = cachedPanchangJson(context)
+            if (o != null) {
                 if (o.optString("date") == date.toString()) {
                     o.optJSONArray("tithi")?.optJSONObject(0)?.let { t ->
                         val name = t.optString("name_hi").ifBlank { tithiInHindi(t.optString("name")) }

@@ -72,11 +72,19 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
         val pDate = parseIsoDate(p.date)
         if (pDate != null && pDate != todayIst()) {
             Text(
-                "यह पंचांग ${hindiShortDate(pDate)} का है — नया पंचांग जल्द अपडेट होगा।",
-                fontSize = 12.sp,
+                if (vm.loading) "नया पंचांग लाया जा रहा है…"
+                else "यह पंचांग ${hindiShortDate(pDate)} का है — ताज़ा करने के लिए यहाँ टैप करें",
+                fontSize = 12.5.sp,
+                fontWeight = FontWeight.SemiBold,
                 color = BB.SaffronDeep,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 2.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(BB.TileStrong)
+                    .clickable(enabled = !vm.loading) { vm.refresh() }
+                    .padding(8.dp),
             )
         }
 

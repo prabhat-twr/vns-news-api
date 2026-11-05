@@ -116,9 +116,7 @@ object PanchangAlerts {
     fun windows(context: Context, date: LocalDate): DayWindows {
         val calculated = computeWindows(date)
         return try {
-            val file = File(context.cacheDir, "varanasi-panchang-daily.json")
-            if (!file.exists()) return calculated
-            val o = JSONObject(file.readText())
+            val o = cachedPanchangJson(context) ?: return calculated
             if (o.optString("date") != date.toString()) return calculated
             fun window(key: String): TimeWindow? {
                 val w = o.optJSONObject(key) ?: return null
