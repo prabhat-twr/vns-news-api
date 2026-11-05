@@ -90,6 +90,8 @@ data class Feed(
     val events: List<EventItem> = emptyList(),
     val panchang: Panchang? = null,
     val observances: List<Observance> = emptyList(),
+    /** Daily panchang for today and the next 7 days (varanasi-panchang-days.json), by date. */
+    val nextDays: Map<String, Panchang> = emptyMap(),
     val offline: Boolean = false,
 )
 
@@ -299,23 +301,29 @@ object Repository {
      * The year file (~60 KB to download). Kept in the cache and fetched again only when it is
      * over 12 hours old or no longer starts by today; the cached copy is used when offline.
      */
-    suspend fun loadYear(context: Context): YearPanchang? = withContext(Dispatchers.IO) {
+    /** Why the year file could not be loaded. */
+    enum class YearProblem { NOT_PUBLISHED, OFFLINE }
+
+    suspend fun loadYear(context: Context): Pair<YearPanchang?, YearProblem?> = withContext(Dispatchers.IO) {
         val cache = File(context.cacheDir, YEAR_FILE)
         val cached = if (cache.exists()) parseYear(cache.readText()) else null
         val fresh = System.currentTimeMillis() - cache.lastModified() < 12 * 3_600_000L
-        if (cached != null && fresh && cached.start <= todayIst().toString()) return@withContext cached
+        if (cached != null && fresh && cached.start <= todayIst().toString()) return@withContext cached to null
         try {
             val conn = URL(Config.RAW_BASE + YEAR_FILE + "?t=" + System.currentTimeMillis() / 60000)
                 .openConnection() as HttpURLConnection
             conn.connectTimeout = 10_000
             conn.readTimeout = 30_000
-            if (conn.responseCode != 200) throw IOException("HTTP ${conn.responseCode}")
+            val code = conn.responseCode
+            // A 404 means the server is reachable but the file is not published (yet).
+            if (code == 404) return@withContext cached to (if (cached == null) YearProblem.NOT_PUBLISHED else null)
+            if (code != 200) throw IOException("HTTP $code")
             val text = conn.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
             val parsed = parseYear(text) ?: throw IOException("bad year file")
             cache.writeText(text)
-            parsed
+            parsed to null
         } catch (e: Exception) {
-            cached
+            cached to (if (cached == null) YearProblem.OFFLINE else null)
         }
     }
 
@@ -356,7 +364,15 @@ internal fun assembleFeed(fetch: (String) -> String?): Feed {
     val eventsFile = fetch("events.json")
     val manualEvents = fetch("manual-events.json")
     val hidden = fetch("hidden.json")
-    val panchang = parsePanchang(todaysPanchangJson(fetch("varanasi-panchang-days.json"), fetch("varanasi-panchang-daily.json")))
+    val daysText = fetch("varanasi-panchang-days.json")
+    val panchang = parsePanchang(todaysPanchangJson(daysText, fetch("varanasi-panchang-daily.json")))
+    val nextDays = LinkedHashMap<String, Panchang>()
+    try {
+        val arr = daysText?.let { JSONObject(it).optJSONArray("days") }
+        if (arr != null) for (i in 0 until arr.length()) parsePanchang(arr.optJSONObject(i))?.let { nextDays[it.date] = it }
+    } catch (e: Exception) {
+        // No upcoming days; the year file covers them when available.
+    }
     val observances = parseObservances(fetch("varanasi-panchang-calendar.json"))
 
     val hiddenNews = parseHidden(hidden, "news")
@@ -376,5 +392,6 @@ internal fun assembleFeed(fetch: (String) -> String?): Feed {
         events = events,
         panchang = panchang,
         observances = observances,
+        nextDays = nextDays,
     )
 }

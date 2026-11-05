@@ -64,7 +64,7 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
     val lastDay = vm.year?.end?.let(::parseIsoDate) ?: today.plusDays(365)
     val scroll = rememberScrollState()
     LaunchedEffect(selected) {
-        if (!isToday) vm.ensureYear()
+        if (!isToday && vm.feed.nextDays[selected.toString()] == null) vm.ensureYear()
         scroll.animateScrollTo(0)
     }
     val p = vm.panchangFor(selected)
@@ -127,7 +127,9 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
                 isToday -> EmptyNote("अभी पंचांग उपलब्ध नहीं है। थोड़ी देर बाद फिर देखें।")
                 vm.yearLoading || (vm.year == null && !vm.yearFailed) -> EmptyNote("साल भर का पंचांग लाया जा रहा है…")
                 vm.yearFailed -> Text(
-                    "पंचांग लोड नहीं हो सका। इंटरनेट जाँचें और दोबारा कोशिश के लिए यहाँ टैप करें।",
+                    if (vm.yearProblem == Repository.YearProblem.NOT_PUBLISHED)
+                        "इस तारीख का पंचांग अभी सर्वर पर प्रकाशित नहीं हुआ है। अभी अगले 7 दिन देखे जा सकते हैं। दोबारा जाँचने के लिए टैप करें।"
+                    else "इंटरनेट नहीं मिला, इसलिए इस तारीख का पंचांग नहीं लाया जा सका। दोबारा कोशिश के लिए टैप करें।",
                     color = BB.SaffronDeep,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center,

@@ -384,21 +384,27 @@ function assembleFeed() {
   return { news, events, panchang, calendar: cal || null, observances, daysAhead: days.filter((d) => d.date >= todayIso()).length };
 }
 // The year file (~60 KB gzipped) is loaded only when someone looks beyond today.
-async function ensureYear() {
+// Tries once; after a failure only an explicit retry (force) downloads again, so redraws don't loop.
+async function ensureYear(force = false) {
   if (S.year || S.yearState === "loading") return;
+  if (!force && (S.yearState === "missing" || S.yearState === "failed")) return;
   S.yearState = "loading";
   let text = null;
   if (window.BB_DATA) text = window.BB_DATA.files["varanasi-panchang-year.json"] ?? null;
   else {
     let ref = null;
     try { ref = new URLSearchParams(location.search).get("ref"); } catch (e) { /* no query */ }
-    text = (await fetchText("varanasi-panchang-year.json", ref)).text;
+    const r = await fetchText("varanasi-panchang-year.json", ref);
+    text = r.text;
+    if (r.status === 404) { S.yearState = "missing"; render(); return; }
   }
   try { S.year = text ? JSON.parse(text) : null; } catch (e) { S.year = null; }
-  S.yearState = S.year ? "ready" : "failed";
+  S.yearState = S.year ? "ready" : window.BB_DATA ? "missing" : "failed";
   render();
 }
-const yearDay = (iso) => (S.year && S.year.days ? S.year.days.find((d) => d.date === iso) : null);
+// A date's panchang: the year file, or the 8-day file for the coming week.
+const yearDay = (iso) => (S.year && S.year.days ? S.year.days.find((d) => d.date === iso) : null)
+  || ((json("varanasi-panchang-days.json") || {}).days || []).find((d) => d.date === iso) || null;
 const allObservances = () => (S.year && S.year.observances) || S.feed.observances;
 
 function cities() {
@@ -473,7 +479,8 @@ function panchangScreen() {
   const today = todayIso();
   const sel = S.panDate && S.panDate > today ? S.panDate : today;
   const isToday = sel === today;
-  if (!isToday) ensureYear();
+  const p0 = isToday ? null : yearDay(sel);
+  if (!isToday && !p0) ensureYear();
   const p = isToday ? (S.feed.panchang && S.feed.panchang.date === today ? S.feed.panchang : yearDay(today) || S.feed.panchang) : yearDay(sel);
   const last = (S.year && S.year.window && S.year.window.end) || addDays(today, 365);
   const head = `<div class="pan-head"><span style="font-size:28px">☀️</span><div><h1>${isToday ? "आज का पंचांग" : "पंचांग"}</h1><div style="font-weight:500;color:var(--ink-soft)">${hindiLongDate(isToday && p ? p.date : sel)}</div></div><span style="font-size:28px">🔆</span></div>
@@ -485,9 +492,12 @@ function panchangScreen() {
     </div>`;
   if (!p) {
     const msg = isToday ? "अभी पंचांग उपलब्ध नहीं है। थोड़ी देर बाद फिर देखें।"
-      : S.yearState === "failed" ? "साल भर का पंचांग लोड नहीं हो सका। इंटरनेट जाँचें और फिर कोशिश करें।"
+      : S.yearState === "missing" ? "इस तारीख का पंचांग अभी सर्वर पर प्रकाशित नहीं हुआ है। अभी अगले 7 दिन देखे जा सकते हैं।"
+      : S.yearState === "failed" ? "इंटरनेट नहीं मिला, इसलिए इस तारीख का पंचांग नहीं लाया जा सका।"
       : S.yearState === "ready" ? "इस तारीख का पंचांग उपलब्ध नहीं है।" : "साल भर का पंचांग लाया जा रहा है…";
-    return `<div class="screen"><div class="pan" style="display:flex;flex-direction:column;gap:10px">${head}</div><div class="empty">${msg}</div></div>`;
+    const retry = !isToday && (S.yearState === "missing" || S.yearState === "failed")
+      ? `<button class="outline" data-act="year-retry" style="align-self:center">दोबारा कोशिश करें</button>` : "";
+    return `<div class="screen"><div class="pan" style="display:flex;flex-direction:column;gap:10px">${head}</div><div class="empty">${msg}</div>${retry}</div>`;
   }
   const t = (p.tithi || [])[0], n = (p.nakshatra || [])[0];
   const ends = (a) => (a && a.ends_at ? `<div class="muted small">${clockShort(parseMs(a.ends_at))} तक</div>` : "");
@@ -653,7 +663,7 @@ const WD_SHORT = ["रवि", "सोम", "मंगल", "बुध", "गु
 function yearScreen() {
   ensureYear();
   const head = `${header("साल भर के व्रत-त्योहार")}<div class="chips">${YEAR_FILTERS.map((f, i) => `<button class="${i === S.yearFilter ? "on" : ""}" data-tab="year" data-i="${i}">${f}</button>`).join("")}</div>`;
-  if (!S.year) return `<div class="screen">${head}<div class="empty">${S.yearState === "failed" ? "लोड नहीं हो सका। इंटरनेट जाँचें और फिर कोशिश करें।" : "साल भर का पंचांग लाया जा रहा है…"}</div></div>`;
+  if (!S.year) return `<div class="screen">${head}${S.yearState === "missing" || S.yearState === "failed" ? `<button class="outline" data-act="year-retry" style="align-self:center">दोबारा कोशिश करें</button>` : ""}<div class="empty">${S.yearState === "missing" ? "साल भर की सूची अभी सर्वर पर प्रकाशित नहीं हुई है।" : S.yearState === "failed" ? "इंटरनेट नहीं मिला, इसलिए सूची नहीं लाई जा सकी।" : "साल भर का पंचांग लाया जा रहा है…"}</div></div>`;
   const today = todayIso();
   const list = (S.year.observances || []).filter((o) => o.date >= today && [
     true, o.type !== "vrat", /Ekadashi/.test(o.name), o.type === "vrat" && !/Ekadashi/.test(o.name)][S.yearFilter]);
@@ -726,7 +736,8 @@ function checks() {
       ahead.slice(0, 8).map((o) => [o.date, o.name_hi || o.name]));
   }
   ensureYear();
-  if (!S.year) add("साल भर का पंचांग (year.json)", S.yearState === "failed" ? "bad" : "warn", S.yearState === "failed" ? "फ़ाइल लोड नहीं हुई" : "लोड हो रहा है…");
+  if (!S.year) add("साल भर का पंचांग (year.json)", S.yearState === "loading" || S.yearState === "idle" ? "warn" : "bad",
+    S.yearState === "missing" ? "फ़ाइल सर्वर पर नहीं है (अभी प्रकाशित नहीं हुई)" : S.yearState === "failed" ? "नेटवर्क की वजह से लोड नहीं हुई" : "लोड हो रहा है…");
   else {
     const ydays = S.year.days || [], w = S.year.window || {};
     const bad = ydays.filter((d) => !(d.tithi || []).length || !(parseMs(d.sunrise) < parseMs(d.sunset))).map((d) => d.date);
@@ -783,6 +794,7 @@ document.addEventListener("click", async (ev) => {
   const act = t.dataset.act;
   if (act === "close-modal") { if (ev.target === t) closeModal(); return; }
   if (act === "pan-day") { S.panDate = t.dataset.d === todayIso() ? null : t.dataset.d; if (current() === "panchang") { render(); window.scrollTo(0, 0); } else go("panchang"); return; }
+  if (act === "year-retry") { ensureYear(true); render(); return; }
   if (act === "back") back();
   else if (act === "news-search") { S.newsSearch = !S.newsSearch; if (!S.newsSearch) S.newsQuery = ""; render(); $("#news-q")?.focus(); }
   else if (act === "save") { toggleSaved(t.dataset.id); toast(isSaved(t.dataset.id) ? "सहेजा गया" : "हटाया गया"); render(); }

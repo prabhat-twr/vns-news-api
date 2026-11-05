@@ -83,6 +83,9 @@ class FeedViewModel @JvmOverloads constructor(
         private set
     var yearFailed by mutableStateOf(false)
         private set
+    /** Why the year file is missing, when it is. */
+    var yearProblem by mutableStateOf<Repository.YearProblem?>(null)
+        private set
 
     /** Date shown on the Panchang screen; null means today. */
     var selectedDate by mutableStateOf<java.time.LocalDate?>(null)
@@ -92,7 +95,8 @@ class FeedViewModel @JvmOverloads constructor(
         viewModelScope.launch {
             yearLoading = true
             yearFailed = false
-            val y = Repository.loadYear(getApplication<Application>())
+            val (y, problem) = Repository.loadYear(getApplication<Application>())
+            yearProblem = problem
             if (y != null) year = y else yearFailed = true
             yearLoading = false
         }
@@ -102,9 +106,10 @@ class FeedViewModel @JvmOverloads constructor(
     fun panchangFor(date: java.time.LocalDate): Panchang? {
         val key = date.toString()
         if (date == todayIst()) {
-            return feed.panchang?.takeIf { it.date == key } ?: year?.days?.get(key) ?: feed.panchang
+            return feed.panchang?.takeIf { it.date == key } ?: year?.days?.get(key) ?: feed.nextDays[key] ?: feed.panchang
         }
-        return year?.days?.get(key)
+        // The next 7 days come with the regular feed; further dates need the year file.
+        return year?.days?.get(key) ?: feed.nextDays[key]
     }
 
     /** Vrat and tyohar: the whole year when loaded, else the next 45 days. */

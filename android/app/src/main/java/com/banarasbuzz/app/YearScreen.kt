@@ -47,7 +47,9 @@ fun YearScreen(vm: FeedViewModel, actions: AppActions) {
         when {
             year == null && (vm.yearLoading || !vm.yearFailed) -> EmptyNote("साल भर का पंचांग लाया जा रहा है…")
             year == null -> Text(
-                "लोड नहीं हो सका। इंटरनेट जाँचें और दोबारा कोशिश के लिए यहाँ टैप करें।",
+                if (vm.yearProblem == Repository.YearProblem.NOT_PUBLISHED)
+                    "साल भर की सूची अभी सर्वर पर प्रकाशित नहीं हुई है। दोबारा जाँचने के लिए टैप करें।"
+                else "इंटरनेट नहीं मिला, इसलिए सूची नहीं लाई जा सकी। दोबारा कोशिश के लिए टैप करें।",
                 color = BB.SaffronDeep,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,
