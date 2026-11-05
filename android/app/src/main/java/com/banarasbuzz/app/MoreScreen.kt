@@ -57,6 +57,7 @@ fun MoreScreen(vm: FeedViewModel, actions: AppActions) {
     val context = LocalContext.current
     var cityDialog by remember { mutableStateOf(false) }
     var aboutDialog by remember { mutableStateOf(false) }
+    var alertDialog by remember { mutableStateOf(false) }
     val cities = vm.cities()
     val cityName = cities.firstOrNull { it.first == vm.city }?.second ?: "वाराणसी"
 
@@ -73,8 +74,8 @@ fun MoreScreen(vm: FeedViewModel, actions: AppActions) {
                 .background(Color.White)
         ) {
             MoreRow(Icons.Filled.LocationOn, "My City Settings", "आपका शहर: $cityName") { cityDialog = true }
-            MoreRow(Icons.Filled.Notifications, "Notifications", "News, Events, Panchang") {
-                actions.say("सूचनाएँ जल्द आ रही हैं")
+            MoreRow(Icons.Filled.Notifications, "Notifications", "राहुकाल और शुभ मुहूर्त अलर्ट") {
+                alertDialog = true
             }
             MoreRow(Icons.Filled.Refresh, "Refresh", if (vm.loading) "अपडेट हो रहा है…" else "ताज़ा खबरें और पंचांग लाएँ") {
                 vm.refresh()
@@ -146,6 +147,9 @@ fun MoreScreen(vm: FeedViewModel, actions: AppActions) {
             confirmButton = { TextButton(onClick = { cityDialog = false }) { Text("ठीक है", color = BB.Saffron) } },
             containerColor = BB.Cream,
         )
+    }
+    if (alertDialog) {
+        AlertSettingsDialog(onDismiss = { alertDialog = false }, say = actions.say)
     }
     if (aboutDialog) {
         AlertDialog(

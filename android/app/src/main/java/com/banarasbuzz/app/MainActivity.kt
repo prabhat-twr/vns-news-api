@@ -55,8 +55,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        // Keep Rahu Kaal / Shubh Muhurat alarms armed (cheap; does nothing if alerts are off).
+        PanchangAlerts.schedule(this)
+        val start = intent?.getStringExtra(PanchangAlerts.EXTRA_ROUTE)
+            ?.let { r -> Route.entries.firstOrNull { it.name == r } } ?: Route.HOME
         setContent {
-            BanarasTheme { BuzzApp() }
+            BanarasTheme { BuzzApp(startRoute = start) }
         }
     }
 }
@@ -219,7 +223,7 @@ fun BuzzApp(vm: FeedViewModel = viewModel(), startRoute: Route = Route.HOME) {
                 when (current) {
                     Route.HOME -> HomeScreen(vm, actions)
                     Route.NEWS -> NewsScreen(vm, actions)
-                    Route.PANCHANG -> PanchangScreen(vm)
+                    Route.PANCHANG -> PanchangScreen(vm, actions)
                     Route.EXPLORE -> ExploreScreen(vm, actions)
                     Route.MORE -> MoreScreen(vm, actions)
                     Route.EVENTS -> EventsScreen(vm, actions)

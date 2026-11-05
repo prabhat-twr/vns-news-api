@@ -1,6 +1,7 @@
 package com.banarasbuzz.app
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,7 +37,10 @@ private val PanchangTile = Color(0xFFFFF1DC)
 private val PanchangTileGold = Color(0xFFFCE3B5)
 
 @Composable
-fun PanchangScreen(vm: FeedViewModel) {
+fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
+    val context = LocalContext.current
+    var alertDialog by remember { mutableStateOf(false) }
+    if (alertDialog) AlertSettingsDialog(onDismiss = { alertDialog = false }, say = actions.say)
     val p = vm.feed.panchang
     Column(
         Modifier
@@ -117,6 +126,35 @@ fun PanchangScreen(vm: FeedViewModel) {
                     Spacer(Modifier.height(4.dp))
                     Text("सूर्यास्त ${clock(p.sunset)}", fontSize = 13.sp, color = BB.SaffronDeep)
                 }
+            }
+
+            // Entry point for the Rahu Kaal / Shubh Muhurat notifications.
+            val alertsOn = remember(alertDialog) { AlertPrefs.anyEnabled(context) }
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(14.dp))
+                    .background(Color.White)
+                    .clickable { alertDialog = true }
+                    .padding(horizontal = 14.dp, vertical = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text("🔔", fontSize = 18.sp)
+                Spacer(Modifier.width(10.dp))
+                Column(Modifier.weight(1f)) {
+                    Text("राहुकाल और शुभ मुहूर्त अलर्ट", fontWeight = FontWeight.SemiBold, color = BB.Ink, fontSize = 14.5.sp)
+                    Text(if (alertsOn) "चालू — बदलने के लिए टैप करें" else "शुरू होते ही फ़ोन पर सूचना पाएँ", fontSize = 12.5.sp, color = BB.Muted)
+                }
+                Text(
+                    if (alertsOn) "चालू" else "चालू करें",
+                    color = if (alertsOn) BB.Saffron else Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 13.sp,
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(if (alertsOn) BB.Tile else BB.Saffron)
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                )
             }
 
             GoldBand {
