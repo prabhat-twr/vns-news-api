@@ -1,29 +1,16 @@
 {
-  "generated_at": "2026-11-05T15:53:31+05:30",
+  "generated_at": "2026-11-06T05:21:07+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-05",
-    "end": "2026-12-19"
+    "start": "2026-11-06",
+    "end": "2026-12-20"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "rama-ekadashi-2026-11-05",
-      "name": "Rama Ekadashi",
-      "name_hi": "रमा एकादशी",
-      "type": "vrat",
-      "date": "2026-11-05",
-      "tithi": "Ekadashi",
-      "paksha": "Krishna",
-      "month": "Kartika",
-      "description": "Ekadashi fast dedicated to Lord Vishnu.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "dhanteras-2026-11-06",
       "name": "Dhanteras",
@@ -268,6 +255,19 @@
       "paksha": "Shukla",
       "month": "Margashirsha",
       "description": "Wedding of Rama and Sita.",
+      "date_confidence": "calculated",
+      "source_url": null
+    },
+    {
+      "id": "mokshada-ekadashi-2026-12-20",
+      "name": "Mokshada Ekadashi",
+      "name_hi": "मोक्षदा एकादशी",
+      "type": "vrat",
+      "date": "2026-12-20",
+      "tithi": "Ekadashi",
+      "paksha": "Shukla",
+      "month": "Margashirsha",
+      "description": "Ekadashi fast dedicated to Lord Vishnu.",
       "date_confidence": "calculated",
       "source_url": null
     }

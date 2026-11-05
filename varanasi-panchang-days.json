@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T15:53:31+05:30",
+  "generated_at": "2026-11-06T05:21:07+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
@@ -7,104 +7,6 @@
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "days": [
-    {
-      "date": "2026-11-05",
-      "vara": "Thursday (Guruvara)",
-      "vara_hi": "गुरुवार",
-      "lunar_month": {
-        "purnimanta": "Kartika",
-        "purnimanta_hi": "कार्तिक",
-        "amanta": "Ashwin",
-        "adhik": false
-      },
-      "tithi": [
-        {
-          "name": "Ekadashi",
-          "name_hi": "एकादशी",
-          "paksha": "Krishna",
-          "ends_at": "2026-11-05T10:36:00+05:30"
-        },
-        {
-          "name": "Dwadashi",
-          "name_hi": "द्वादशी",
-          "paksha": "Krishna",
-          "ends_at": null
-        }
-      ],
-      "nakshatra": [
-        {
-          "name": "Uttara Phalguni",
-          "name_hi": "उत्तरा फाल्गुनी",
-          "ends_at": "2026-11-06T03:55:00+05:30"
-        },
-        {
-          "name": "Hasta",
-          "name_hi": "हस्त",
-          "ends_at": null
-        }
-      ],
-      "yoga": [
-        {
-          "name": "Indra",
-          "name_hi": "इन्द्र",
-          "ends_at": "2026-11-05T06:26:00+05:30"
-        },
-        {
-          "name": "Vaidhriti",
-          "name_hi": "वैधृति",
-          "ends_at": "2026-11-06T05:09:00+05:30"
-        },
-        {
-          "name": "Vishkambha",
-          "name_hi": "विष्कुम्भ",
-          "ends_at": null
-        }
-      ],
-      "karana": [
-        {
-          "name": "Balava",
-          "name_hi": "बालव",
-          "ends_at": "2026-11-05T10:36:00+05:30"
-        },
-        {
-          "name": "Kaulava",
-          "name_hi": "कौलव",
-          "ends_at": "2026-11-05T22:30:00+05:30"
-        },
-        {
-          "name": "Taitila",
-          "name_hi": "तैतिल",
-          "ends_at": null
-        }
-      ],
-      "sunrise": "2026-11-05T06:08:00+05:30",
-      "sunset": "2026-11-05T17:14:00+05:30",
-      "moonrise": "2026-11-06T03:15:00+05:30",
-      "moonset": "2026-11-05T14:41:00+05:30",
-      "rahu_kaal": {
-        "start": "2026-11-05T13:04:00+05:30",
-        "end": "2026-11-05T14:28:00+05:30"
-      },
-      "yamaganda_kaal": {
-        "start": "2026-11-05T06:08:00+05:30",
-        "end": "2026-11-05T07:31:00+05:30"
-      },
-      "gulika_kaal": {
-        "start": "2026-11-05T08:54:00+05:30",
-        "end": "2026-11-05T10:18:00+05:30"
-      },
-      "abhijit_muhurat": {
-        "start": "2026-11-05T11:19:00+05:30",
-        "end": "2026-11-05T12:03:00+05:30"
-      },
-      "festivals_and_vrats": [
-        {
-          "name": "Rama Ekadashi",
-          "name_hi": "रमा एकादशी",
-          "type": "vrat"
-        }
-      ]
-    },
     {
       "date": "2026-11-06",
       "vara": "Friday (Shukravara)",
@@ -743,6 +645,99 @@
         "end": "2026-11-12T12:04:00+05:30"
       },
       "festivals_and_vrats": []
+    },
+    {
+      "date": "2026-11-13",
+      "vara": "Friday (Shukravara)",
+      "vara_hi": "शुक्रवार",
+      "lunar_month": {
+        "purnimanta": "Kartika",
+        "purnimanta_hi": "कार्तिक",
+        "amanta": "Kartika",
+        "adhik": false
+      },
+      "tithi": [
+        {
+          "name": "Chaturthi",
+          "name_hi": "चतुर्थी",
+          "paksha": "Shukla",
+          "ends_at": "2026-11-13T20:43:00+05:30"
+        },
+        {
+          "name": "Panchami",
+          "name_hi": "पंचमी",
+          "paksha": "Shukla",
+          "ends_at": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Mula",
+          "name_hi": "मूल",
+          "ends_at": "2026-11-13T17:17:00+05:30"
+        },
+        {
+          "name": "Purva Ashadha",
+          "name_hi": "पूर्वाषाढ़ा",
+          "ends_at": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Dhriti",
+          "name_hi": "धृति",
+          "ends_at": "2026-11-14T05:22:00+05:30"
+        },
+        {
+          "name": "Shula",
+          "name_hi": "शूल",
+          "ends_at": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Vanija",
+          "name_hi": "वणिज",
+          "ends_at": "2026-11-13T07:24:00+05:30"
+        },
+        {
+          "name": "Vishti",
+          "name_hi": "विष्टि",
+          "ends_at": "2026-11-13T20:43:00+05:30"
+        },
+        {
+          "name": "Bava",
+          "name_hi": "बव",
+          "ends_at": null
+        }
+      ],
+      "sunrise": "2026-11-13T06:13:00+05:30",
+      "sunset": "2026-11-13T17:10:00+05:30",
+      "moonrise": "2026-11-13T09:43:00+05:30",
+      "moonset": "2026-11-13T20:11:00+05:30",
+      "rahu_kaal": {
+        "start": "2026-11-13T10:20:00+05:30",
+        "end": "2026-11-13T11:42:00+05:30"
+      },
+      "yamaganda_kaal": {
+        "start": "2026-11-13T14:26:00+05:30",
+        "end": "2026-11-13T15:48:00+05:30"
+      },
+      "gulika_kaal": {
+        "start": "2026-11-13T07:35:00+05:30",
+        "end": "2026-11-13T08:57:00+05:30"
+      },
+      "abhijit_muhurat": {
+        "start": "2026-11-13T11:20:00+05:30",
+        "end": "2026-11-13T12:04:00+05:30"
+      },
+      "festivals_and_vrats": [
+        {
+          "name": "Vinayaka Chaturthi",
+          "name_hi": "विनायक चतुर्थी",
+          "type": "vrat"
+        }
+      ]
     }
   ]
 }
