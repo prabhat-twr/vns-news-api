@@ -5,6 +5,8 @@ Calculate the Varanasi panchang and write the two JSON feeds the apps read.
     varanasi-panchang-daily.json     today's tithi, nakshatra, yoga, karana,
                                      sun/moon rise and set, rahu kaal, muhurat
     varanasi-panchang-calendar.json  vrat and tyohar dates for the coming weeks
+    varanasi-panchang-days.json      the daily panchang for today and the next 7 days,
+                                     so apps show the right day even if a run is missed
 
 Nothing is scraped. Positions come from NASA JPL's DE421 ephemeris through
 Skyfield (the Drik Ganita method: real apparent Sun and Moon positions, with
@@ -613,6 +615,7 @@ def main() -> None:
     parser.add_argument("--days", type=int, default=45, help="calendar window length in days")
     parser.add_argument("--ephemeris-dir", default=".ephemeris", help="where de421.bsp is cached")
     parser.add_argument("--out-dir", default=".", help="where to write the JSON files")
+    parser.add_argument("--ahead", type=int, default=8, help="days of daily panchang in the days file")
     args = parser.parse_args()
 
     today = date.fromisoformat(args.date) if args.date else datetime.now(IST).date()
@@ -633,8 +636,18 @@ def main() -> None:
         "observances": observances,
     }
 
+    days = {
+        "generated_at": generated,
+        "location": daily["location"],
+        "calculation_method": daily["calculation_method"],
+        "days": [dict(daily)] + [panchang.daily(today + timedelta(days=i), observances) for i in range(1, args.ahead)],
+    }
+    for d in days["days"]:
+        d.pop("generated_at", None)
+
     out = Path(args.out_dir)
-    for name, payload in (("varanasi-panchang-daily.json", daily), ("varanasi-panchang-calendar.json", calendar)):
+    for name, payload in (("varanasi-panchang-daily.json", daily), ("varanasi-panchang-calendar.json", calendar),
+                          ("varanasi-panchang-days.json", days)):
         (out / name).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     t = daily["tithi"][0]
     print(f"{today}: {t['paksha']} {t['name']}, {daily['nakshatra'][0]['name']}; "

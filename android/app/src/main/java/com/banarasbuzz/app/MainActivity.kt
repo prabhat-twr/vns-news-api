@@ -86,10 +86,21 @@ class FeedViewModel @JvmOverloads constructor(
         if (autoLoad) refresh()
     }
 
+    private var loadedAtMillis = 0L
+    private var loadedForDate: java.time.LocalDate? = null
+
+    /** Reload when coming back to the app if the data is over 15 minutes old or the day has changed. */
+    fun refreshIfStale() {
+        val old = System.currentTimeMillis() - loadedAtMillis > 15 * 60_000
+        if (loaded && (old || loadedForDate != todayIst())) refresh()
+    }
+
     fun refresh() {
         if (loading) return
         viewModelScope.launch {
             loading = true
+            loadedAtMillis = System.currentTimeMillis()
+            loadedForDate = todayIst()
             feed = Repository.load(getApplication<Application>())
             loaded = true
             // New panchang files may have arrived: refresh the pinned notification and alarms.
@@ -182,6 +193,16 @@ fun BuzzApp(vm: FeedViewModel = viewModel(), startRoute: Route = Route.HOME) {
     }
 
     BackHandler(enabled = current != Route.HOME) { actions.back() }
+
+    // Coming back to the app (e.g. the next morning): reload if the data is stale.
+    val lifecycle = androidx.compose.ui.platform.LocalLifecycleOwner.current.lifecycle
+    androidx.compose.runtime.DisposableEffect(lifecycle) {
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, e ->
+            if (e == androidx.lifecycle.Lifecycle.Event.ON_RESUME) vm.refreshIfStale()
+        }
+        lifecycle.addObserver(observer)
+        onDispose { lifecycle.removeObserver(observer) }
+    }
 
     Scaffold(
         containerColor = BB.Cream,

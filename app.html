@@ -195,7 +195,7 @@ canvas.scene { display: block; width: 100%; height: 100%; }
 "use strict";
 const RAW = "https://raw.githubusercontent.com/prabhat-twr/vns-news-api/";
 const FILES = ["news.json", "manual-news.json", "events.json", "manual-events.json", "hidden.json",
-  "varanasi-panchang-daily.json", "varanasi-panchang-calendar.json"];
+  "varanasi-panchang-daily.json", "varanasi-panchang-calendar.json", "varanasi-panchang-days.json"];
 
 // ---------- small helpers ----------
 const $ = (s) => document.querySelector(s);
@@ -378,7 +378,10 @@ function assembleFeed() {
     .filter((e) => !he.has(e.id)).sort((a, b) => a.start - b.start);
   const cal = json("varanasi-panchang-calendar.json");
   const observances = ((cal && cal.observances) || []).slice().sort((a, b) => (a.date < b.date ? -1 : 1));
-  return { news, events, panchang: json("varanasi-panchang-daily.json") || null, calendar: cal || null, observances };
+  // Today's entry from the 8-day file when there is one; otherwise the single-day file.
+  const days = (json("varanasi-panchang-days.json") || {}).days || [];
+  const panchang = days.find((d) => d.date === todayIso()) || json("varanasi-panchang-daily.json") || null;
+  return { news, events, panchang, calendar: cal || null, observances, daysAhead: days.filter((d) => d.date >= todayIso()).length };
 }
 function cities() {
   const m = new Map();
@@ -461,7 +464,7 @@ function panchangScreen() {
   const typeHi = (t) => ({ vrat: "व्रत", both: "व्रत व त्योहार" }[t] || "त्योहार");
   const month = p.lunar_month ? `<div class="small" style="color:var(--saffron-deep)">${esc(p.lunar_month.purnimanta_hi || p.lunar_month.purnimanta)} मास</div>` : "";
   return `<div class="screen"><div class="pan" style="display:flex;flex-direction:column;gap:10px">${head}
-    ${p.date !== todayIso() ? `<div class="stale">यह पंचांग ${hindiShortDate(p.date)} का है — नया पंचांग जल्द अपडेट होगा।</div>` : month}
+    ${p.date !== todayIso() ? `<button class="stale" data-act="refresh" style="border:0;background:var(--tile-strong);border-radius:10px;padding:8px;font-weight:600">यह पंचांग ${hindiShortDate(p.date)} का है — ताज़ा करने के लिए यहाँ टैप करें</button>` : month}
     <div class="pgrid">
       <div class="ptile"><h3>तिथि</h3><div>${esc(pakshaHi(t && t.paksha))}</div><div class="big">${esc(angaHi(t, TITHI_HI))}</div>${ends(t)}</div>
       <div class="ptile"><h3>नक्षत्र</h3><div class="big">${esc(angaHi(n, NAK_HI))}</div>${ends(n)}</div>
@@ -619,7 +622,7 @@ function checks() {
     const f = S.files[n];
     const parsed = json(n);
     if (!f || f.status === 0) add(n, "bad", "लोड नहीं हुआ — नेटवर्क या फ़ाइल की समस्या।");
-    else if (f.status === 404) add(n, n.startsWith("manual") || n === "hidden.json" ? "ok" : "bad", "फ़ाइल मौजूद नहीं है।");
+    else if (f.status === 404) add(n, n.startsWith("manual") || n === "hidden.json" ? "ok" : n === "varanasi-panchang-days.json" ? "warn" : "bad", "फ़ाइल मौजूद नहीं है।");
     else if (parsed === undefined) add(n, "bad", "JSON सही नहीं है (parse error)।");
   }
   const news = S.feed.news;
@@ -650,6 +653,7 @@ function checks() {
        ["यमगंड", p.yamaganda_kaal ? `${clockShort(parseMs(p.yamaganda_kaal.start))} – ${clockShort(parseMs(p.yamaganda_kaal.end))}` : "—"],
        ["गुलिक", p.gulika_kaal ? `${clockShort(parseMs(p.gulika_kaal.start))} – ${clockShort(parseMs(p.gulika_kaal.end))}` : "—"],
        ["अभिजित", ab ? `${clockShort(parseMs(ab.start))} – ${clockShort(parseMs(ab.end))}` : "—"],
+       ["आगे के दिन तैयार", S.feed.daysAhead ? `${S.feed.daysAhead} दिन (8-दिन फ़ाइल से)` : "नहीं (केवल एक दिन की फ़ाइल)"],
        ["विधि", p.calculation_method || "—"], ["बनाया गया", p.generated_at ? new Date(parseMs(p.generated_at)).toLocaleString("en-IN", { timeZone: IST }) : "—"]]);
   }
   const cal = S.feed.calendar, obs = S.feed.observances;
@@ -741,8 +745,13 @@ window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer
 async function boot() {
   await loadFiles();
   S.feed = assembleFeed();
+  S.loadedAt = Date.now(); S.loadedFor = todayIso();
   render();
 }
+// Back on the tab after a while, or on a new day: reload the feeds.
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && S.feed && (S.loadedFor !== todayIso() || Date.now() - S.loadedAt > 15 * 60000)) boot();
+});
 S.stack.push(current());
 render();
 boot();

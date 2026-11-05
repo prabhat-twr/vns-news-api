@@ -176,10 +176,36 @@ private fun parseWindow(o: JSONObject?): TimeWindow? {
     return if (start == 0L || end == 0L) null else TimeWindow(start, end)
 }
 
-private fun parsePanchang(text: String?): Panchang? {
-    if (text == null) return null
+/**
+ * Today's panchang as a JSON object: the matching day from the 8-day file if there is one,
+ * otherwise the single-day file (which may be older; the UI says so).
+ */
+internal fun todaysPanchangJson(daysText: String?, dailyText: String?, today: String = todayIst().toString()): JSONObject? {
+    try {
+        val days = daysText?.let { JSONObject(it).optJSONArray("days") }
+        if (days != null) for (i in 0 until days.length()) {
+            val d = days.optJSONObject(i) ?: continue
+            if (d.optString("date") == today) return d
+        }
+    } catch (e: Exception) {
+        // Fall through to the single-day file.
+    }
     return try {
-        val o = JSONObject(text)
+        dailyText?.let { JSONObject(it) }
+    } catch (e: Exception) {
+        null
+    }
+}
+
+/** Reads today's panchang from the files the app last downloaded (used by alerts and the pinned notification). */
+fun cachedPanchangJson(context: android.content.Context): JSONObject? {
+    fun read(name: String) = File(context.cacheDir, name).takeIf { it.exists() }?.readText()
+    return todaysPanchangJson(read("varanasi-panchang-days.json"), read("varanasi-panchang-daily.json"))
+}
+
+private fun parsePanchang(o: JSONObject?): Panchang? {
+    if (o == null) return null
+    return try {
         val fest = o.optJSONArray("festivals_and_vrats")
         Panchang(
             date = o.str("date") ?: return null,
@@ -275,7 +301,7 @@ internal fun assembleFeed(fetch: (String) -> String?): Feed {
     val eventsFile = fetch("events.json")
     val manualEvents = fetch("manual-events.json")
     val hidden = fetch("hidden.json")
-    val panchang = parsePanchang(fetch("varanasi-panchang-daily.json"))
+    val panchang = parsePanchang(todaysPanchangJson(fetch("varanasi-panchang-days.json"), fetch("varanasi-panchang-daily.json")))
     val observances = parseObservances(fetch("varanasi-panchang-calendar.json"))
 
     val hiddenNews = parseHidden(hidden, "news")

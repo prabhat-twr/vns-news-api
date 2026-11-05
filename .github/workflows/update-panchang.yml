@@ -48,19 +48,21 @@ jobs:
         run: |
           python -m json.tool varanasi-panchang-daily.json > /dev/null
           python -m json.tool varanasi-panchang-calendar.json > /dev/null
+          python -m json.tool varanasi-panchang-days.json > /dev/null
 
       - name: Commit and push if changed
         run: |
           # generated_at changes every run; only commit when the panchang itself changed.
           strip() { git show "HEAD:$1" 2>/dev/null | grep -v '"generated_at"'; }
-          if diff -q <(strip varanasi-panchang-daily.json) <(grep -v '"generated_at"' varanasi-panchang-daily.json) >/dev/null &&
-             diff -q <(strip varanasi-panchang-calendar.json) <(grep -v '"generated_at"' varanasi-panchang-calendar.json) >/dev/null; then
+          unchanged() { diff -q <(strip "$1") <(grep -v '"generated_at"' "$1") >/dev/null; }
+          if unchanged varanasi-panchang-daily.json && unchanged varanasi-panchang-calendar.json &&
+             unchanged varanasi-panchang-days.json; then
             echo "Panchang unchanged."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add varanasi-panchang-daily.json varanasi-panchang-calendar.json
+          git add varanasi-panchang-daily.json varanasi-panchang-calendar.json varanasi-panchang-days.json
           git commit -m "Auto update Varanasi panchang"
           # The news workflow pushes hourly too; rebase onto it before pushing.
           for i in 1 2 3; do
