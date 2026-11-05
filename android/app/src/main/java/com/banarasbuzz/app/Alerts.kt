@@ -101,7 +101,9 @@ object AlertPrefs {
     fun setEnabled(c: Context, k: AlertKind, on: Boolean) = p(c).edit().putBoolean(k.id, on).apply()
     fun early(c: Context) = p(c).getBoolean("early", true)
     fun setEarly(c: Context, on: Boolean) = p(c).edit().putBoolean("early", on).apply()
-    fun anyEnabled(c: Context) = AlertKind.entries.any { enabled(c, it) }
+    fun sticky(c: Context) = p(c).getBoolean("sticky", false)
+    fun setSticky(c: Context, on: Boolean) = p(c).edit().putBoolean("sticky", on).apply()
+    fun anyEnabled(c: Context) = sticky(c) || AlertKind.entries.any { enabled(c, it) }
 }
 
 object PanchangAlerts {
@@ -179,9 +181,10 @@ object PanchangAlerts {
                 setAlarm(alarms, context, earlyAt, pending(context, kind, early = true))
             }
         }
+        StickyPanchang.update(context)
     }
 
-    private fun setAlarm(alarms: AlarmManager, context: Context, at: Long, pi: PendingIntent) {
+    fun setAlarm(alarms: AlarmManager, context: Context, at: Long, pi: PendingIntent) {
         try {
             if (canScheduleExact(context)) {
                 alarms.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
@@ -275,6 +278,7 @@ class AlertReceiver : BroadcastReceiver() {
             Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED, Intent.ACTION_TIME_CHANGED,
             Intent.ACTION_TIMEZONE_CHANGED, AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED,
             -> PanchangAlerts.schedule(context)
+            StickyPanchang.ACTION_UPDATE -> StickyPanchang.update(context)
             else -> PanchangAlerts.handle(context, intent)
         }
     }

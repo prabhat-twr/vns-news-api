@@ -143,7 +143,7 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
                 Spacer(Modifier.width(10.dp))
                 Column(Modifier.weight(1f)) {
                     Text("राहुकाल और शुभ मुहूर्त अलर्ट", fontWeight = FontWeight.SemiBold, color = BB.Ink, fontSize = 14.5.sp)
-                    Text(if (alertsOn) "चालू — बदलने के लिए टैप करें" else "शुरू होते ही फ़ोन पर सूचना पाएँ", fontSize = 12.5.sp, color = BB.Muted)
+                    Text(if (alertsOn) "चालू — बदलने के लिए टैप करें" else "नोटिफिकेशन बार व लॉक स्क्रीन पर पिन करें", fontSize = 12.5.sp, color = BB.Muted)
                 }
                 Text(
                     if (alertsOn) "चालू" else "चालू करें",

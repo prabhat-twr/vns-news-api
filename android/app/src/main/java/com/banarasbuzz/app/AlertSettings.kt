@@ -57,7 +57,17 @@ fun AlertSettingsDialog(onDismiss: () -> Unit, say: (String) -> Unit) {
     var rahu by remember { mutableStateOf(AlertPrefs.enabled(context, AlertKind.RAHU)) }
     var shubh by remember { mutableStateOf(AlertPrefs.enabled(context, AlertKind.SHUBH)) }
     var early by remember { mutableStateOf(AlertPrefs.early(context)) }
-    var pending by remember { mutableStateOf<AlertKind?>(null) }
+    var sticky by remember { mutableStateOf(AlertPrefs.sticky(context)) }
+    // What the user was switching on when we had to ask for notification permission:
+    // an AlertKind id, or "sticky".
+    var pending by remember { mutableStateOf<String?>(null) }
+
+    fun applySticky(on: Boolean) {
+        AlertPrefs.setSticky(context, on)
+        sticky = on
+        StickyPanchang.update(context)
+        if (on) say("आज का पंचांग नोटिफिकेशन बार में पिन हुआ")
+    }
 
     fun apply(kind: AlertKind, on: Boolean) {
         AlertPrefs.setEnabled(context, kind, on)
@@ -67,18 +77,35 @@ fun AlertSettingsDialog(onDismiss: () -> Unit, say: (String) -> Unit) {
     }
 
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-        val kind = pending
+        val key = pending
         pending = null
-        if (kind == null) return@rememberLauncherForActivityResult
-        if (granted) apply(kind, true) else say("सूचनाओं की अनुमति नहीं मिली — फ़ोन की सेटिंग में चालू करें")
+        if (key == null) return@rememberLauncherForActivityResult
+        if (!granted) {
+            say("सूचनाओं की अनुमति नहीं मिली — फ़ोन की सेटिंग में चालू करें")
+        } else if (key == "sticky") {
+            applySticky(true)
+        } else {
+            AlertKind.entries.firstOrNull { it.id == key }?.let { apply(it, true) }
+        }
     }
 
+    fun needsPermission(on: Boolean) = on && Build.VERSION.SDK_INT >= 33 && !PanchangAlerts.canNotify(context)
+
     fun toggle(kind: AlertKind, on: Boolean) {
-        if (on && Build.VERSION.SDK_INT >= 33 && !PanchangAlerts.canNotify(context)) {
-            pending = kind
+        if (needsPermission(on)) {
+            pending = kind.id
             permission.launch(Manifest.permission.POST_NOTIFICATIONS)
         } else {
             apply(kind, on)
+        }
+    }
+
+    fun toggleSticky(on: Boolean) {
+        if (needsPermission(on)) {
+            pending = "sticky"
+            permission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            applySticky(on)
         }
     }
 
@@ -93,6 +120,12 @@ fun AlertSettingsDialog(onDismiss: () -> Unit, say: (String) -> Unit) {
         title = { Text("पंचांग अलर्ट", fontWeight = FontWeight.Bold) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                AlertRow(
+                    "📌", "नोटिफिकेशन बार व लॉक स्क्रीन पर पिन करें",
+                    "आज का राहुकाल, शुभ मुहूर्त और तिथि हमेशा दिखेंगे, उलटी गिनती के साथ",
+                    sticky,
+                ) { toggleSticky(it) }
+                Text("शुरू होने पर अलग से सूचना (आवाज़ के साथ)", fontSize = 12.5.sp, color = BB.Muted, fontWeight = FontWeight.SemiBold)
                 AlertRow(
                     "🌑", "राहुकाल अलर्ट",
                     "आज ${clockShort(w.rahu.start)} – ${clockShort(w.rahu.end)}",
@@ -114,7 +147,7 @@ fun AlertSettingsDialog(onDismiss: () -> Unit, say: (String) -> Unit) {
                     fontSize = 12.5.sp,
                     color = BB.Muted,
                 )
-                if ((rahu || shubh) && !notifyOk) {
+                if ((sticky || rahu || shubh) && !notifyOk) {
                     Hint("सूचनाएँ बंद हैं। यहाँ टैप करके चालू करें।") {
                         context.startActivity(
                             Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
@@ -122,7 +155,7 @@ fun AlertSettingsDialog(onDismiss: () -> Unit, say: (String) -> Unit) {
                         )
                     }
                 }
-                if ((rahu || shubh) && !exactOk && Build.VERSION.SDK_INT >= 31) {
+                if ((sticky || rahu || shubh) && !exactOk && Build.VERSION.SDK_INT >= 31) {
                     Hint("ठीक समय पर अलर्ट के लिए \"अलार्म और रिमाइंडर\" की अनुमति दें। इसके बिना सूचना कुछ मिनट देर से आ सकती है।") {
                         context.startActivity(
                             Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:" + context.packageName))

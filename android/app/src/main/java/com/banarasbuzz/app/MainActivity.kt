@@ -92,6 +92,8 @@ class FeedViewModel @JvmOverloads constructor(
             loading = true
             feed = Repository.load(getApplication<Application>())
             loaded = true
+            // New panchang files may have arrived: refresh the pinned notification and alarms.
+            PanchangAlerts.schedule(getApplication<Application>())
             loading = false
         }
     }
