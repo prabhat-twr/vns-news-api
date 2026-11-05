@@ -1,5 +1,6 @@
 package com.banarasbuzz.app
 
+import android.app.DatePickerDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,6 +34,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.time.LocalDate
+
+@Composable
+private fun DayButton(label: String, enabled: Boolean, onClick: () -> Unit) {
+    Text(
+        label,
+        fontWeight = FontWeight.Bold,
+        color = if (enabled) BB.Saffron else BB.Line,
+        modifier = Modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color.White)
+            .clickable(enabled = enabled, onClick = onClick)
+            .padding(horizontal = 14.dp, vertical = 10.dp),
+    )
+}
 
 private val PanchangTile = Color(0xFFFFF1DC)
 private val PanchangTileGold = Color(0xFFFCE3B5)
@@ -41,12 +58,21 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
     val context = LocalContext.current
     var alertDialog by remember { mutableStateOf(false) }
     if (alertDialog) AlertSettingsDialog(onDismiss = { alertDialog = false }, say = actions.say)
-    val p = vm.feed.panchang
+    val today = todayIst()
+    val selected = vm.selectedDate?.takeIf { !it.isBefore(today) } ?: today
+    val isToday = selected == today
+    val lastDay = vm.year?.end?.let(::parseIsoDate) ?: today.plusDays(365)
+    val scroll = rememberScrollState()
+    LaunchedEffect(selected) {
+        if (!isToday && vm.feed.nextDays[selected.toString()] == null) vm.ensureYear()
+        scroll.animateScrollTo(0)
+    }
+    val p = vm.panchangFor(selected)
     Column(
         Modifier
             .fillMaxSize()
             .background(Brush.verticalGradient(listOf(Color(0xFFFFEBCF), BB.Cream)))
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(scroll)
     ) {
         Row(
             Modifier
@@ -56,21 +82,71 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
         ) {
             Text("☀️", fontSize = 28.sp)
             Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("आज का पंचांग", fontSize = 26.sp, fontWeight = FontWeight.ExtraBold, color = BB.Ink)
-                val date = p?.date?.let(::parseIsoDate)
-                if (date != null) {
-                    Text(hindiLongDate(date), fontSize = 15.sp, color = BB.InkSoft, fontWeight = FontWeight.Medium)
-                }
+                Text(if (isToday) "आज का पंचांग" else "पंचांग", fontSize = 26.sp, fontWeight = FontWeight.ExtraBold, color = BB.Ink)
+                val date = if (isToday) p?.date?.let(::parseIsoDate) ?: today else selected
+                Text(hindiLongDate(date), fontSize = 15.sp, color = BB.InkSoft, fontWeight = FontWeight.Medium)
             }
             Text("🔆", fontSize = 28.sp)
         }
 
+        // Day navigation: previous / pick a date / next, and back to today.
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            DayButton("◀", enabled = !isToday) { vm.selectedDate = selected.minusDays(1) }
+            Text(
+                "📅 तारीख चुनें",
+                fontWeight = FontWeight.SemiBold,
+                color = BB.Ink,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Color.White)
+                    .clickable {
+                        DatePickerDialog(context, { _, y, m, d -> vm.selectedDate = LocalDate.of(y, m + 1, d) },
+                            selected.year, selected.monthValue - 1, selected.dayOfMonth,
+                        ).apply {
+                            datePicker.minDate = today.atStartOfDay(IST).toInstant().toEpochMilli()
+                            datePicker.maxDate = lastDay.atStartOfDay(IST).toInstant().toEpochMilli()
+                        }.show()
+                    }
+                    .padding(vertical = 10.dp),
+            )
+            DayButton("▶", enabled = selected.isBefore(lastDay)) { vm.selectedDate = selected.plusDays(1) }
+            if (!isToday) DayButton("आज", enabled = true) { vm.selectedDate = null }
+        }
+        Spacer(Modifier.height(4.dp))
+
         if (p == null) {
-            EmptyNote("अभी पंचांग उपलब्ध नहीं है। थोड़ी देर बाद फिर देखें।")
+            when {
+                isToday -> EmptyNote("अभी पंचांग उपलब्ध नहीं है। थोड़ी देर बाद फिर देखें।")
+                vm.yearLoading || (vm.year == null && !vm.yearFailed) -> EmptyNote("साल भर का पंचांग लाया जा रहा है…")
+                vm.yearFailed -> Text(
+                    if (vm.yearProblem == Repository.YearProblem.NOT_PUBLISHED)
+                        "इस तारीख का पंचांग अभी सर्वर पर प्रकाशित नहीं हुआ है। अभी अगले 7 दिन देखे जा सकते हैं। दोबारा जाँचने के लिए टैप करें।"
+                    else "इंटरनेट नहीं मिला, इसलिए इस तारीख का पंचांग नहीं लाया जा सका। दोबारा कोशिश के लिए टैप करें।",
+                    color = BB.SaffronDeep,
+                    fontWeight = FontWeight.SemiBold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(BB.TileStrong)
+                        .clickable { vm.ensureYear(force = true) }
+                        .padding(12.dp),
+                )
+                else -> EmptyNote("इस तारीख का पंचांग अभी उपलब्ध नहीं है।")
+            }
             return@Column
         }
         val pDate = parseIsoDate(p.date)
-        if (pDate != null && pDate != todayIst()) {
+        if (isToday && pDate != null && pDate != today) {
             Text(
                 if (vm.loading) "नया पंचांग लाया जा रहा है…"
                 else "यह पंचांग ${hindiShortDate(pDate)} का है — ताज़ा करने के लिए यहाँ टैप करें",
@@ -177,11 +253,11 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
                 )
             }
 
-            val todays = (p.festivals + vm.feed.observances.filter { it.date == p.date }.map { it.nameHi ?: it.name }).distinct()
+            val todays = (p.festivals + vm.allObservances().filter { it.date == p.date }.map { it.nameHi ?: it.name }).distinct()
             GoldBand {
-                Text("आज के व्रत और त्योहार", fontSize = 17.sp, fontWeight = FontWeight.Bold, color = BB.Ink)
+                Text(if (isToday) "आज के व्रत और त्योहार" else "इस दिन के व्रत और त्योहार", fontSize = 17.sp, fontWeight = FontWeight.Bold, color = BB.Ink)
                 Text(
-                    if (todays.isEmpty()) "आज कोई विशेष व्रत या त्योहार नहीं" else todays.joinToString(" • "),
+                    if (todays.isEmpty()) "कोई विशेष व्रत या त्योहार नहीं" else todays.joinToString(" • "),
                     fontSize = 15.sp,
                     color = BB.InkSoft,
                     textAlign = TextAlign.Center,
@@ -204,11 +280,23 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
         )
 
         // Upcoming vrat & tyohar
-        val upcoming = vm.feed.observances.filter { o ->
+        val upcoming = vm.allObservances().filter { o ->
             val d = parseIsoDate(o.date)
-            d != null && !d.isBefore(todayIst())
+            d != null && !d.isBefore(today)
         }
-        SectionTitle("आने वाले व्रत और त्योहार")
+        Row(Modifier.fillMaxWidth().padding(end = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+            SectionTitle("आने वाले व्रत और त्योहार", Modifier.weight(1f))
+            Text(
+                "पूरा साल →",
+                color = BB.Saffron,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(8.dp))
+                    .clickable { actions.go(Route.YEAR) }
+                    .padding(8.dp),
+            )
+        }
         if (upcoming.isEmpty()) {
             EmptyNote("आने वाले दिनों की सूची जल्द अपडेट होगी।")
         }
@@ -220,6 +308,7 @@ fun PanchangScreen(vm: FeedViewModel, actions: AppActions) {
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(16.dp))
                         .background(Color.White)
+                        .clickable(enabled = d != null) { vm.selectedDate = d }
                         .padding(12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {

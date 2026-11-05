@@ -93,18 +93,25 @@ object StickyPanchang {
         return Today(tithi, nakshatra, sunrise, sunset, festivals.distinct())
     }
 
-    /** Posts or refreshes the pinned notification (or removes it when switched off) and arms the next refresh. */
-    fun update(context: Context) {
-        val alarms = context.getSystemService(AlarmManager::class.java)
-        alarms.cancel(alarm(context))
-        val nm = NotificationManagerCompat.from(context)
-        if (!AlertPrefs.sticky(context) || !PanchangAlerts.canNotify(context)) {
-            nm.cancel(NOTIFICATION_ID)
-            return
-        }
-        createChannel(context)
+    const val ACTION_RESTORE = "com.banarasbuzz.app.STICKY_RESTORE"
+    const val ACTION_TURN_OFF = "com.banarasbuzz.app.STICKY_TURN_OFF"
 
-        val now = System.currentTimeMillis()
+    /** Everything the notification and the home-screen widget show, worked out once. */
+    class Status(
+        val date: LocalDate,
+        val title: String,
+        val line2: String,
+        val details: String,
+        val countdownTo: Long?,
+        val countdownLabel: String?,
+        val inRahu: Boolean,
+        val inShubh: Boolean,
+        val rahuRange: String,
+        val shubhRange: String?,
+        val nextRefresh: Long,
+    )
+
+    fun status(context: Context, now: Long = System.currentTimeMillis()): Status {
         val date = todayIst()
         val w = PanchangAlerts.windows(context, date)
         val shubhToday = date.dayOfWeek != DayOfWeek.WEDNESDAY
@@ -123,14 +130,14 @@ object StickyPanchang {
         ).minByOrNull { it.second.start }
         val title: String
         var countdownTo: Long? = null
-        var sub: String? = null
+        var label: String? = null
         when {
-            inRahu -> { title = "🌑 राहुकाल चल रहा है · ${clockShort(w.rahu.end)} तक"; countdownTo = w.rahu.end; sub = "समाप्त होने में" }
-            inShubh -> { title = "✨ शुभ मुहूर्त चल रहा है · ${clockShort(w.abhijit.end)} तक"; countdownTo = w.abhijit.end; sub = "समाप्त होने में" }
+            inRahu -> { title = "🌑 राहुकाल चल रहा है · ${clockShort(w.rahu.end)} तक"; countdownTo = w.rahu.end; label = "समाप्त होने में" }
+            inShubh -> { title = "✨ शुभ मुहूर्त चल रहा है · ${clockShort(w.abhijit.end)} तक"; countdownTo = w.abhijit.end; label = "समाप्त होने में" }
             upcoming != null -> {
                 title = "आगे: ${upcoming.first} ${clockShort(upcoming.second.start)} से"
                 countdownTo = upcoming.second.start
-                sub = "शुरू होने में"
+                label = "शुरू होने में"
             }
             else -> {
                 val tomorrow = PanchangAlerts.windows(context, date.plusDays(1))
@@ -149,40 +156,82 @@ object StickyPanchang {
             if (info.festivals.isNotEmpty()) add("आज: ${info.festivals.joinToString(", ")}")
         }.joinToString("\n")
 
-        val open = PendingIntent.getActivity(
-            context, 110,
-            Intent(context, MainActivity::class.java)
-                .putExtra(PanchangAlerts.EXTRA_ROUTE, Route.PANCHANG.name)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK),
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
-        )
+        val next = listOf(w.rahu.start, w.rahu.end, w.abhijit.start, w.abhijit.end, midnight)
+            .filter { it > now }.minOrNull() ?: midnight
+        return Status(date, title, line2, details, countdownTo, label, inRahu, inShubh, rahuRange,
+            if (shubhToday) shubhRange else null, next)
+    }
+
+    fun openPanchang(context: Context, code: Int): PendingIntent = PendingIntent.getActivity(
+        context, code,
+        Intent(context, MainActivity::class.java)
+            .putExtra(PanchangAlerts.EXTRA_ROUTE, Route.PANCHANG.name)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK),
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+    )
+
+    private fun broadcast(context: Context, action: String, code: Int): PendingIntent = PendingIntent.getBroadcast(
+        context, code,
+        Intent(context, AlertReceiver::class.java).setAction(action),
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+    )
+
+    /**
+     * Refreshes the pinned notification (or removes it when switched off) and any home-screen
+     * widgets, then arms the next refresh for as long as either is in use.
+     */
+    fun update(context: Context) {
+        val alarms = context.getSystemService(AlarmManager::class.java)
+        alarms.cancel(alarm(context))
+        val st = status(context)
+        val widgets = PanchangWidget.update(context, st)
+        val pinned = postNotification(context, st)
+        if (pinned || widgets) {
+            // Refresh again at the next start/end, or at midnight for the new day.
+            PanchangAlerts.setAlarm(alarms, context, st.nextRefresh + 1_000, alarm(context))
+        }
+    }
+
+    /** Swiping the pinned notification away brings it straight back; "बंद करें" is the way to remove it. */
+    fun turnOff(context: Context) {
+        AlertPrefs.setSticky(context, false)
+        update(context)
+    }
+
+    private fun postNotification(context: Context, st: Status): Boolean {
+        val nm = NotificationManagerCompat.from(context)
+        if (!AlertPrefs.sticky(context) || !PanchangAlerts.canNotify(context)) {
+            nm.cancel(NOTIFICATION_ID)
+            return false
+        }
+        createChannel(context)
         val b = NotificationCompat.Builder(context, CHANNEL)
-            .setSmallIcon(if (inRahu) R.drawable.ic_stat_rahu else R.drawable.ic_stat_shubh)
-            .setColor(if (inRahu) 0xFFB3261E.toInt() else 0xFFE8600F.toInt())
-            .setContentTitle(title)
-            .setContentText(line2)
-            .setStyle(NotificationCompat.BigTextStyle().bigText(details))
+            .setSmallIcon(if (st.inRahu) R.drawable.ic_stat_rahu else R.drawable.ic_stat_shubh)
+            .setColor(if (st.inRahu) 0xFFB3261E.toInt() else 0xFFE8600F.toInt())
+            .setContentTitle(st.title)
+            .setContentText(st.line2)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(st.details))
             .setOngoing(true)
             .setSilent(true)
             .setOnlyAlertOnce(true)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setCategory(NotificationCompat.CATEGORY_STATUS)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(open)
-        if (countdownTo != null) {
-            b.setWhen(countdownTo).setShowWhen(true).setUsesChronometer(true).setChronometerCountDown(true).setSubText(sub)
+            .setContentIntent(openPanchang(context, 110))
+            // Android 13+ lets users swipe away even ongoing notifications; put it straight back.
+            .setDeleteIntent(broadcast(context, ACTION_RESTORE, 51))
+            .addAction(0, "बंद करें", broadcast(context, ACTION_TURN_OFF, 52))
+        if (st.countdownTo != null) {
+            b.setWhen(st.countdownTo).setShowWhen(true).setUsesChronometer(true).setChronometerCountDown(true)
+                .setSubText(st.countdownLabel)
         } else {
             b.setShowWhen(false)
         }
-        try {
+        return try {
             nm.notify(NOTIFICATION_ID, b.build())
+            true
         } catch (e: SecurityException) {
-            return
+            false
         }
-
-        // Refresh again at the next start/end, or at midnight for the new day.
-        val next = listOf(w.rahu.start, w.rahu.end, w.abhijit.start, w.abhijit.end, midnight)
-            .filter { it > now }.minOrNull() ?: midnight
-        PanchangAlerts.setAlarm(alarms, context, next + 1_000, alarm(context))
     }
 }

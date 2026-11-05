@@ -49,20 +49,27 @@ jobs:
           python -m json.tool varanasi-panchang-daily.json > /dev/null
           python -m json.tool varanasi-panchang-calendar.json > /dev/null
           python -m json.tool varanasi-panchang-days.json > /dev/null
+          python -m json.tool varanasi-panchang-year.json > /dev/null
 
       - name: Commit and push if changed
         run: |
           # generated_at changes every run; only commit when the panchang itself changed.
-          strip() { git show "HEAD:$1" 2>/dev/null | grep -v '"generated_at"'; }
-          unchanged() { diff -q <(strip "$1") <(grep -v '"generated_at"' "$1") >/dev/null; }
+          # (Compared as JSON, since the year file is one compact line.)
+          unchanged() {
+            git show "HEAD:$1" > "$RUNNER_TEMP/old.json" 2>/dev/null || return 1
+            python -c 'import json, sys
+          a, b = (json.load(open(f, encoding="utf-8")) for f in sys.argv[1:])
+          for d in (a, b): d.pop("generated_at", None)
+          sys.exit(0 if a == b else 1)' "$RUNNER_TEMP/old.json" "$1"
+          }
           if unchanged varanasi-panchang-daily.json && unchanged varanasi-panchang-calendar.json &&
-             unchanged varanasi-panchang-days.json; then
+             unchanged varanasi-panchang-days.json && unchanged varanasi-panchang-year.json; then
             echo "Panchang unchanged."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add varanasi-panchang-daily.json varanasi-panchang-calendar.json varanasi-panchang-days.json
+          git add varanasi-panchang-daily.json varanasi-panchang-calendar.json varanasi-panchang-days.json varanasi-panchang-year.json
           git commit -m "Auto update Varanasi panchang"
           # The news workflow pushes hourly too; rebase onto it before pushing.
           for i in 1 2 3; do

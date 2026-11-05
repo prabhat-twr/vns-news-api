@@ -122,9 +122,14 @@ fun AlertSettingsDialog(onDismiss: () -> Unit, say: (String) -> Unit) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 AlertRow(
                     "📌", "नोटिफिकेशन बार व लॉक स्क्रीन पर पिन करें",
-                    "आज का राहुकाल, शुभ मुहूर्त और तिथि हमेशा दिखेंगे, उलटी गिनती के साथ",
+                    "हमेशा दिखेगा — स्वाइप करने पर वापस आ जाएगा। हटाने के लिए सूचना में \"बंद करें\" दबाएँ।",
                     sticky,
                 ) { toggleSticky(it) }
+                Hint("🏠 होम स्क्रीन पर विजेट जोड़ें — यह कभी नहीं हटेगा") {
+                    if (!PanchangWidget.requestPin(context)) {
+                        say("होम स्क्रीन पर खाली जगह को दबाकर रखें → विजेट → Banaras Buzz → आज का पंचांग")
+                    }
+                }
                 Text("शुरू होने पर अलग से सूचना (आवाज़ के साथ)", fontSize = 12.5.sp, color = BB.Muted, fontWeight = FontWeight.SemiBold)
                 AlertRow(
                     "🌑", "राहुकाल अलर्ट",

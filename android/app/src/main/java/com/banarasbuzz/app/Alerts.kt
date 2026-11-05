@@ -276,7 +276,8 @@ class AlertReceiver : BroadcastReceiver() {
             Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED, Intent.ACTION_TIME_CHANGED,
             Intent.ACTION_TIMEZONE_CHANGED, AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED,
             -> PanchangAlerts.schedule(context)
-            StickyPanchang.ACTION_UPDATE -> StickyPanchang.update(context)
+            StickyPanchang.ACTION_UPDATE, StickyPanchang.ACTION_RESTORE -> StickyPanchang.update(context)
+            StickyPanchang.ACTION_TURN_OFF -> StickyPanchang.turnOff(context)
             else -> PanchangAlerts.handle(context, intent)
         }
     }
