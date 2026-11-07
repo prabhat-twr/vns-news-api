@@ -111,8 +111,8 @@ fun HomeScreen(vm: FeedViewModel, actions: AppActions) {
                 QuickTile("🌞", "आज का पंचांग", "Tithi, Nakshatra", Modifier.weight(1f)) { actions.go(Route.PANCHANG) }
             }
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                QuickTile("📅", "आज बनारस में", "Events & More", Modifier.weight(1f)) { actions.go(Route.EVENTS) }
-                QuickTile("🏪", "लोकल बिजनेस", "Shops & Markets", Modifier.weight(1f)) { actions.go(Route.BUSINESS) }
+                QuickTile("📅", "आज बनारस में", "Events & More", Modifier.weight(1f), soon = !Features.EVENTS) { actions.go(Route.EVENTS) }
+                QuickTile("🏪", "लोकल बिजनेस", "Shops & Markets", Modifier.weight(1f), soon = !Features.BUSINESS) { actions.go(Route.BUSINESS) }
             }
         }
 
@@ -131,7 +131,11 @@ fun HomeScreen(vm: FeedViewModel, actions: AppActions) {
             Spacer(Modifier.width(10.dp))
             Column(Modifier.weight(1f)) {
                 Text("My Banaras", fontWeight = FontWeight.Bold, color = BB.Ink, fontSize = 15.sp)
-                Text("Stories • Photos • City pulse", color = BB.Muted, fontSize = 12.5.sp)
+                if (Features.COMMUNITY) {
+                    Text("Stories • Photos • City pulse", color = BB.Muted, fontSize = 12.5.sp)
+                } else {
+                    SoonBadge(Modifier.padding(top = 3.dp))
+                }
             }
             Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null, tint = BB.Saffron)
         }
@@ -215,6 +219,7 @@ private fun QuickTile(
     title: String,
     subtitle: String,
     modifier: Modifier,
+    soon: Boolean = false,
     onClick: () -> Unit,
 ) {
     Column(
@@ -237,6 +242,11 @@ private fun QuickTile(
             textAlign = TextAlign.Center,
             lineHeight = 19.sp,
         )
-        Text(subtitle, fontSize = 12.sp, color = BB.SaffronDeep, textAlign = TextAlign.Center)
+        if (soon) {
+            Spacer(Modifier.height(3.dp))
+            SoonBadge()
+        } else {
+            Text(subtitle, fontSize = 12.sp, color = BB.SaffronDeep, textAlign = TextAlign.Center)
+        }
     }
 }
