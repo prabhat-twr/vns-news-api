@@ -1,29 +1,16 @@
 {
-  "generated_at": "2026-11-07T05:00:15+05:30",
+  "generated_at": "2026-11-08T03:46:17+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-07",
-    "end": "2026-12-21"
+    "start": "2026-11-08",
+    "end": "2026-12-22"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "masik-shivaratri-2026-11-07",
-      "name": "Masik Shivaratri",
-      "name_hi": "मासिक शिवरात्रि",
-      "type": "vrat",
-      "date": "2026-11-07",
-      "tithi": "Chaturdashi",
-      "paksha": "Krishna",
-      "month": "Kartika",
-      "description": "Monthly night of Shiva.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "diwali-lakshmi-puja-2026-11-08",
       "name": "Diwali (Lakshmi Puja)",

@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-07T05:00:15+05:30",
-  "date": "2026-11-07",
+  "generated_at": "2026-11-08T03:46:17+05:30",
+  "date": "2026-11-08",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
-  "vara": "Saturday (Shanivara)",
-  "vara_hi": "शनिवार",
+  "vara": "Sunday (Ravivara)",
+  "vara_hi": "रविवार",
   "lunar_month": {
     "purnimanta": "Kartika",
     "purnimanta_hi": "कार्तिक",
@@ -16,24 +16,19 @@
   },
   "tithi": [
     {
-      "name": "Trayodashi",
-      "name_hi": "त्रयोदशी",
-      "paksha": "Krishna",
-      "ends_at": "2026-11-07T10:48:00+05:30"
-    },
-    {
       "name": "Chaturdashi",
       "name_hi": "चतुर्दशी",
+      "paksha": "Krishna",
+      "ends_at": "2026-11-08T11:28:00+05:30"
+    },
+    {
+      "name": "Amavasya",
+      "name_hi": "अमावस्या",
       "paksha": "Krishna",
       "ends_at": null
     }
   ],
   "nakshatra": [
-    {
-      "name": "Chitra",
-      "name_hi": "चित्रा",
-      "ends_at": "2026-11-08T05:52:00+05:30"
-    },
     {
       "name": "Swati",
       "name_hi": "स्वाती",
@@ -42,58 +37,63 @@
   ],
   "yoga": [
     {
-      "name": "Priti",
-      "name_hi": "प्रीति",
-      "ends_at": "2026-11-08T03:27:00+05:30"
-    },
-    {
       "name": "Ayushman",
       "name_hi": "आयुष्मान",
+      "ends_at": "2026-11-09T03:02:00+05:30"
+    },
+    {
+      "name": "Saubhagya",
+      "name_hi": "सौभाग्य",
       "ends_at": null
     }
   ],
   "karana": [
     {
-      "name": "Vanija",
-      "name_hi": "वणिज",
-      "ends_at": "2026-11-07T10:48:00+05:30"
-    },
-    {
-      "name": "Vishti",
-      "name_hi": "विष्टि",
-      "ends_at": "2026-11-07T23:05:00+05:30"
-    },
-    {
       "name": "Shakuni",
       "name_hi": "शकुनि",
+      "ends_at": "2026-11-08T11:28:00+05:30"
+    },
+    {
+      "name": "Chatushpada",
+      "name_hi": "चतुष्पद",
+      "ends_at": "2026-11-08T23:57:00+05:30"
+    },
+    {
+      "name": "Naga",
+      "name_hi": "नाग",
       "ends_at": null
     }
   ],
-  "sunrise": "2026-11-07T06:09:00+05:30",
-  "sunset": "2026-11-07T17:13:00+05:30",
-  "moonrise": "2026-11-08T05:07:00+05:30",
-  "moonset": "2026-11-07T15:46:00+05:30",
+  "sunrise": "2026-11-08T06:10:00+05:30",
+  "sunset": "2026-11-08T17:13:00+05:30",
+  "moonrise": "2026-11-09T06:04:00+05:30",
+  "moonset": "2026-11-08T16:21:00+05:30",
   "rahu_kaal": {
-    "start": "2026-11-07T08:55:00+05:30",
-    "end": "2026-11-07T10:18:00+05:30"
+    "start": "2026-11-08T15:50:00+05:30",
+    "end": "2026-11-08T17:13:00+05:30"
   },
   "yamaganda_kaal": {
-    "start": "2026-11-07T13:04:00+05:30",
-    "end": "2026-11-07T14:27:00+05:30"
+    "start": "2026-11-08T11:41:00+05:30",
+    "end": "2026-11-08T13:04:00+05:30"
   },
   "gulika_kaal": {
-    "start": "2026-11-07T06:09:00+05:30",
-    "end": "2026-11-07T07:32:00+05:30"
+    "start": "2026-11-08T14:27:00+05:30",
+    "end": "2026-11-08T15:50:00+05:30"
   },
   "abhijit_muhurat": {
-    "start": "2026-11-07T11:19:00+05:30",
-    "end": "2026-11-07T12:03:00+05:30"
+    "start": "2026-11-08T11:19:00+05:30",
+    "end": "2026-11-08T12:03:00+05:30"
   },
   "festivals_and_vrats": [
     {
-      "name": "Masik Shivaratri",
-      "name_hi": "मासिक शिवरात्रि",
-      "type": "vrat"
+      "name": "Diwali (Lakshmi Puja)",
+      "name_hi": "दीपावली (लक्ष्मी पूजा)",
+      "type": "tyohar"
+    },
+    {
+      "name": "Narak Chaturdashi (Chhoti Diwali)",
+      "name_hi": "नरक चतुर्दशी (छोटी दिवाली)",
+      "type": "tyohar"
     }
   ],
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
