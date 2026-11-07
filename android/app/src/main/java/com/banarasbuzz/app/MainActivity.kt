@@ -283,7 +283,9 @@ fun BuzzApp(vm: FeedViewModel = viewModel(), startRoute: Route = Route.HOME) {
             if (!vm.loaded && vm.loading) {
                 CircularProgressIndicator(Modifier.align(Alignment.Center), color = BB.Saffron)
             } else {
-                when (current) {
+                if (!Features.isLive(current)) {
+                    ComingSoonScreen(current, actions)
+                } else when (current) {
                     Route.HOME -> HomeScreen(vm, actions)
                     Route.NEWS -> NewsScreen(vm, actions)
                     Route.PANCHANG -> PanchangScreen(vm, actions)
