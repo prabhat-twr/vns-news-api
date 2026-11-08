@@ -1,42 +1,16 @@
 {
-  "generated_at": "2026-11-08T03:46:17+05:30",
+  "generated_at": "2026-11-09T03:57:34+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-08",
-    "end": "2026-12-22"
+    "start": "2026-11-09",
+    "end": "2026-12-23"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "diwali-lakshmi-puja-2026-11-08",
-      "name": "Diwali (Lakshmi Puja)",
-      "name_hi": "दीपावली (लक्ष्मी पूजा)",
-      "type": "tyohar",
-      "date": "2026-11-08",
-      "tithi": "Amavasya",
-      "paksha": "Krishna",
-      "month": "Kartika",
-      "description": "Festival of lights; Lakshmi Puja in the evening.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
-    {
-      "id": "narak-chaturdashi-chhoti-diwali-2026-11-08",
-      "name": "Narak Chaturdashi (Chhoti Diwali)",
-      "name_hi": "नरक चतुर्दशी (छोटी दिवाली)",
-      "type": "tyohar",
-      "date": "2026-11-08",
-      "tithi": "Chaturdashi",
-      "paksha": "Krishna",
-      "month": "Kartika",
-      "description": "Second day of Diwali.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "govardhan-puja-2026-11-10",
       "name": "Govardhan Puja",
@@ -242,6 +216,19 @@
       "paksha": "Shukla",
       "month": "Margashirsha",
       "description": "Evening worship of Shiva during pradosh kaal.",
+      "date_confidence": "calculated",
+      "source_url": null
+    },
+    {
+      "id": "margashirsha-purnima-vrat-2026-12-23",
+      "name": "Margashirsha Purnima Vrat",
+      "name_hi": "मार्गशीर्ष पूर्णिमा व्रत",
+      "type": "vrat",
+      "date": "2026-12-23",
+      "tithi": "Purnima",
+      "paksha": "Shukla",
+      "month": "Margashirsha",
+      "description": "Full-moon fast; Satyanarayan puja is common.",
       "date_confidence": "calculated",
       "source_url": null
     }
