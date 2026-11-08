@@ -1,8 +1,6 @@
 package com.banarasbuzz.app
 
 import android.app.Application
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
@@ -12,6 +10,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.DateRange
@@ -201,6 +200,8 @@ fun BuzzApp(vm: FeedViewModel = viewModel(), startRoute: Route = Route.HOME) {
 
     val snackbar = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+    // Web page being read in the in-app browser (null = none). Survives rotation.
+    var webUrl by rememberSaveable { mutableStateOf<String?>(null) }
 
     val actions = remember {
         AppActions(
@@ -216,13 +217,9 @@ fun BuzzApp(vm: FeedViewModel = viewModel(), startRoute: Route = Route.HOME) {
                 if (stack.size > 1) stack.removeAt(stack.lastIndex)
                 else { stack.clear(); stack.add(Route.HOME) }
             },
-            open = { url ->
-                runCatching {
-                    context.startActivity(
-                        Intent(Intent.ACTION_VIEW, Uri.parse(url)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    )
-                }
-            },
+            // Web links open in the in-app browser so readers stay in the app;
+            // maps, the Play Store and non-web links go to their own apps.
+            open = { url -> if (opensOutsideApp(url)) openExternally(context, url) else webUrl = url },
             say = { msg ->
                 scope.launch {
                     snackbar.currentSnackbarData?.dismiss()
@@ -244,56 +241,72 @@ fun BuzzApp(vm: FeedViewModel = viewModel(), startRoute: Route = Route.HOME) {
         onDispose { lifecycle.removeObserver(observer) }
     }
 
-    Scaffold(
-        containerColor = BB.Cream,
-        snackbarHost = { SnackbarHost(snackbar) },
-        bottomBar = {
-            NavigationBar(containerColor = Color.White, tonalElevation = 0.dp) {
-                tabs.forEach { t ->
-                    val selected = current.tab() == t.route
-                    NavigationBarItem(
-                        selected = selected,
-                        onClick = { actions.go(t.route) },
-                        icon = { Icon(t.icon, contentDescription = t.label) },
-                        label = {
-                            Text(
-                                t.label,
-                                fontSize = 11.sp,
-                                fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
-                            )
-                        },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = BB.Saffron,
-                            selectedTextColor = BB.Saffron,
-                            indicatorColor = BB.Tile,
-                            unselectedIconColor = BB.Muted,
-                            unselectedTextColor = BB.Muted,
-                        ),
-                    )
+    Box(Modifier.fillMaxSize()) {
+        Scaffold(
+            containerColor = BB.Cream,
+            snackbarHost = { SnackbarHost(snackbar) },
+            bottomBar = {
+                NavigationBar(containerColor = Color.White, tonalElevation = 0.dp) {
+                    tabs.forEach { t ->
+                        val selected = current.tab() == t.route
+                        NavigationBarItem(
+                            selected = selected,
+                            onClick = { actions.go(t.route) },
+                            icon = { Icon(t.icon, contentDescription = t.label) },
+                            label = {
+                                Text(
+                                    t.label,
+                                    fontSize = 11.sp,
+                                    fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+                                )
+                            },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = BB.Saffron,
+                                selectedTextColor = BB.Saffron,
+                                indicatorColor = BB.Tile,
+                                unselectedIconColor = BB.Muted,
+                                unselectedTextColor = BB.Muted,
+                            ),
+                        )
+                    }
+                }
+            },
+        ) { padding ->
+            Box(
+                Modifier
+                    .padding(padding)
+                    .fillMaxSize()
+                    .background(BB.Cream)
+            ) {
+                if (!vm.loaded && vm.loading) {
+                    CircularProgressIndicator(Modifier.align(Alignment.Center), color = BB.Saffron)
+                } else {
+                    if (!Features.isLive(current)) {
+                        ComingSoonScreen(current, actions)
+                    } else when (current) {
+                        Route.HOME -> HomeScreen(vm, actions)
+                        Route.NEWS -> NewsScreen(vm, actions)
+                        Route.PANCHANG -> PanchangScreen(vm, actions)
+                        Route.EXPLORE -> ExploreScreen(vm, actions)
+                        Route.MORE -> MoreScreen(vm, actions)
+                        Route.EVENTS -> EventsScreen(vm, actions)
+                        Route.BUSINESS -> BusinessScreen(vm, actions)
+                        Route.COMMUNITY -> CommunityScreen(vm, actions)
+                        Route.YEAR -> YearScreen(vm, actions)
+                    }
                 }
             }
-        },
-    ) { padding ->
-        Box(
-            Modifier
-                .padding(padding)
-                .fillMaxSize()
-                .background(BB.Cream)
-        ) {
-            if (!vm.loaded && vm.loading) {
-                CircularProgressIndicator(Modifier.align(Alignment.Center), color = BB.Saffron)
-            } else {
-                when (current) {
-                    Route.HOME -> HomeScreen(vm, actions)
-                    Route.NEWS -> NewsScreen(vm, actions)
-                    Route.PANCHANG -> PanchangScreen(vm, actions)
-                    Route.EXPLORE -> ExploreScreen(vm, actions)
-                    Route.MORE -> MoreScreen(vm, actions)
-                    Route.EVENTS -> EventsScreen(vm, actions)
-                    Route.BUSINESS -> BusinessScreen(vm, actions)
-                    Route.COMMUNITY -> CommunityScreen(vm, actions)
-                    Route.YEAR -> YearScreen(vm, actions)
-                }
+        }
+
+        // In-app browser on top of everything (tab bar hidden while reading).
+        webUrl?.let { url ->
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .background(BB.Cream)
+                    .systemBarsPadding()
+            ) {
+                WebScreen(url = url, onClose = { webUrl = null })
             }
         }
     }

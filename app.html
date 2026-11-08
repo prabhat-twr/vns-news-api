@@ -179,6 +179,7 @@ canvas.scene { display: block; width: 100%; height: 100%; }
 .modal .ok-btn { align-self: flex-end; border: 0; background: none; color: var(--saffron); font-weight: 700; padding: 8px 12px; }
 #toast { position: fixed; z-index: 50; left: 50%; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg);
   border-radius: 10px; padding: 10px 16px; font-size: 14px; max-width: calc(100% - 32px); }
+.soon { display: inline-block; margin-top: 4px; background: var(--muted); color: #fff; font-size: 11px; font-weight: 700; border-radius: 6px; padding: 1px 7px; }
 .loading { display: grid; place-items: center; min-height: 60vh; color: var(--muted); }
 @media (prefers-reduced-motion: no-preference) { .screen { animation: fade .18s ease-out; } @keyframes fade { from { opacity: .4; } to { opacity: 1; } } }
 </style>
@@ -442,10 +443,10 @@ function homeScreen() {
     <div class="qgrid">
       <a class="tile qtile" href="#news"><span class="e">📰</span><b>आज की\n5 बड़ी खबरें</b><span>Local News</span></a>
       <a class="tile qtile" href="#panchang"><span class="e">🌞</span><b>आज का पंचांग</b><span>Tithi, Nakshatra</span></a>
-      <a class="tile qtile" href="#events"><span class="e">📅</span><b>आज बनारस में</b><span>Events &amp; More</span></a>
-      <a class="tile qtile" href="#business"><span class="e">🏪</span><b>लोकल बिजनेस</b><span>Shops &amp; Markets</span></a>
+      <a class="tile qtile" href="#events"><span class="e">📅</span><b>आज बनारस में</b>${FEATURES.events ? "<span>Events &amp; More</span>" : SOON_BADGE}</a>
+      <a class="tile qtile" href="#business"><span class="e">🏪</span><b>लोकल बिजनेस</b>${FEATURES.business ? "<span>Shops &amp; Markets</span>" : SOON_BADGE}</a>
     </div>
-    <a class="tile strip" href="#community"><span style="font-size:22px">📍</span><div style="flex:1"><b>My Banaras</b><div class="muted small">Stories • Photos • City pulse</div></div><span style="color:var(--saffron);width:24px">${icon("right")}</span></a>
+    <a class="tile strip" href="#community"><span style="font-size:22px">📍</span><div style="flex:1"><b>My Banaras</b>${FEATURES.community ? `<div class="muted small">Stories • Photos • City pulse</div>` : SOON_BADGE}</div><span style="color:var(--saffron);width:24px">${icon("right")}</span></a>
     ${top.length ? `<div style="display:flex;align-items:center"><h2 class="sec" style="flex:1">आज की 5 बड़ी खबरें</h2><a href="#news" style="color:var(--saffron);font-weight:600;font-size:13.5px">सभी देखें</a></div>
     ${top.map((n, i) => `<a class="row-link" ${n.sourceUrl ? `href="${esc(n.sourceUrl)}" target="_blank" rel="noopener"` : ""}><span class="num">${i + 1}</span>
       <div style="min-width:0"><div class="clamp2" style="font-weight:600">${esc(n.title)}</div><div class="muted small">${esc([n.cityName, timeAgo(n.ts)].filter(Boolean).join(" • "))}</div></div></a>`).join("")}` : ""}
@@ -770,6 +771,33 @@ function checkScreen() {
 }
 
 // ---------- render + events ----------
+// Which sections are live. News and Panchang are; the rest show "coming soon" until their data
+// is ready. Set a flag to true to bring that section back.
+const FEATURES = { events: false, business: false, community: false, explore: false };
+const SOON_BADGE = `<span class="soon">जल्द आ रहा है</span>`;
+const SOON = {
+  events: ["आज बनारस में", "📅", "शहर के कार्यक्रम, एक जगह", ["घाटों और मंदिरों के आयोजन", "संगीत, नाटक और प्रदर्शनियाँ", "देव दीपावली, नाग नथैया जैसे बड़े पर्व"]],
+  business: ["लोकल बिजनेस", "🏪", "बनारस की दुकानें और ऑफ़र", ["खाने-पीने की मशहूर जगहें", "बनारसी साड़ी और हस्तशिल्प", "अपना बिज़नेस जोड़ने की सुविधा"]],
+  community: ["My Banaras", "📍", "बनारस वालों की कहानियाँ", ["फ़ोटो और कहानियाँ साझा करें", "शहर से जुड़े पोल", "मोहल्ले की ख़बरें"]],
+  explore: ["Explore Banaras", "🧭", "मंदिर, घाट और शहर की जानकारी", ["मंदिर और घाट गाइड", "खाना, ख़रीदारी और संस्कृति", "लाइव दर्शन और यात्रा जानकारी"]],
+};
+function comingSoonScreen(r) {
+  const [title, emoji, tagline, points] = SOON[r];
+  return `<div class="screen">${header(title, r !== "explore")}
+    <div class="media" style="height:170px;border-radius:22px">${scene("dusk")}<div class="shade"></div>
+      <span style="position:absolute;inset:0;display:grid;place-items:center;font-size:52px">${emoji}</span></div>
+    <div style="text-align:center"><div style="font-size:27px;font-weight:800;color:var(--saffron)">जल्द आ रहा है</div>
+      <div style="color:var(--ink-soft);font-size:16px">${tagline}</div></div>
+    <div class="tile" style="padding:16px;display:flex;flex-direction:column;gap:8px"><b>इसमें क्या होगा</b>
+      ${points.map((p) => `<div style="display:flex;gap:10px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:var(--saffron);flex:none"></span><span style="color:var(--ink-soft)">${p}</span></div>`).join("")}</div>
+    <div class="muted small">तब तक</div>
+    <div class="qgrid">
+      <a class="card qtile" style="min-height:96px" href="#news"><span class="e">📰</span><b>ताज़ा खबरें</b></a>
+      <a class="card qtile" style="min-height:96px" href="#panchang"><span class="e">🌞</span><b>आज का पंचांग</b></a>
+    </div>
+  </div>`;
+}
+
 const SCREENS = { home: homeScreen, news: newsScreen, panchang: panchangScreen, explore: exploreScreen, more: moreScreen, year: yearScreen,
   events: eventsScreen, business: businessScreen, community: communityScreen, check: checkScreen };
 function render() {
@@ -777,7 +805,7 @@ function render() {
   const tab = PARENT_TAB[r] || r;
   $("#tabs").innerHTML = TABS.map(([id, l]) => `<a href="#${id}" class="${tab === id ? "on" : ""}" ${tab === id ? 'aria-current="page"' : ""}>${icon(id)}${l}</a>`).join("");
   if (!S.feed) return;
-  $("#app").innerHTML = SCREENS[r]();
+  $("#app").innerHTML = FEATURES[r] === false ? comingSoonScreen(r) : SCREENS[r]();
   drawAll();
 }
 function modal(html) { const m = $("#modal"); m.innerHTML = `<div class="modal-bg" data-act="close-modal"><div class="modal" role="dialog" aria-modal="true">${html}</div></div>`; m.hidden = false; }
