@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-10T07:15:48+05:30",
-  "date": "2026-11-10",
+  "generated_at": "2026-11-11T05:12:18+05:30",
+  "date": "2026-11-11",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
-  "vara": "Tuesday (Mangalavara)",
-  "vara_hi": "मंगलवार",
+  "vara": "Wednesday (Budhavara)",
+  "vara_hi": "बुधवार",
   "lunar_month": {
     "purnimanta": "Kartika",
     "purnimanta_hi": "कार्तिक",
@@ -16,83 +16,83 @@
   },
   "tithi": [
     {
-      "name": "Pratipada",
-      "name_hi": "प्रतिपदा",
-      "paksha": "Shukla",
-      "ends_at": "2026-11-10T14:00:00+05:30"
-    },
-    {
       "name": "Dwitiya",
       "name_hi": "द्वितीया",
+      "paksha": "Shukla",
+      "ends_at": "2026-11-11T15:53:00+05:30"
+    },
+    {
+      "name": "Tritiya",
+      "name_hi": "तृतीया",
       "paksha": "Shukla",
       "ends_at": null
     }
   ],
   "nakshatra": [
     {
-      "name": "Vishakha",
-      "name_hi": "विशाखा",
-      "ends_at": "2026-11-10T09:19:00+05:30"
-    },
-    {
       "name": "Anuradha",
       "name_hi": "अनुराधा",
+      "ends_at": "2026-11-11T11:38:00+05:30"
+    },
+    {
+      "name": "Jyeshtha",
+      "name_hi": "ज्येष्ठा",
       "ends_at": null
     }
   ],
   "yoga": [
     {
-      "name": "Shobhana",
-      "name_hi": "शोभन",
-      "ends_at": "2026-11-11T03:09:00+05:30"
-    },
-    {
       "name": "Atiganda",
       "name_hi": "अतिगण्ड",
+      "ends_at": "2026-11-12T03:40:00+05:30"
+    },
+    {
+      "name": "Sukarma",
+      "name_hi": "सुकर्मा",
       "ends_at": null
     }
   ],
   "karana": [
     {
-      "name": "Bava",
-      "name_hi": "बव",
-      "ends_at": "2026-11-10T14:00:00+05:30"
-    },
-    {
-      "name": "Balava",
-      "name_hi": "बालव",
-      "ends_at": "2026-11-11T02:54:00+05:30"
-    },
-    {
       "name": "Kaulava",
       "name_hi": "कौलव",
+      "ends_at": "2026-11-11T15:53:00+05:30"
+    },
+    {
+      "name": "Taitila",
+      "name_hi": "तैतिल",
+      "ends_at": "2026-11-12T04:59:00+05:30"
+    },
+    {
+      "name": "Garaja",
+      "name_hi": "गर",
       "ends_at": null
     }
   ],
-  "sunrise": "2026-11-10T06:11:00+05:30",
-  "sunset": "2026-11-10T17:12:00+05:30",
-  "moonrise": "2026-11-10T07:01:00+05:30",
-  "moonset": "2026-11-10T17:41:00+05:30",
+  "sunrise": "2026-11-11T06:12:00+05:30",
+  "sunset": "2026-11-11T17:11:00+05:30",
+  "moonrise": "2026-11-11T07:58:00+05:30",
+  "moonset": "2026-11-11T18:28:00+05:30",
   "rahu_kaal": {
-    "start": "2026-11-10T14:27:00+05:30",
-    "end": "2026-11-10T15:49:00+05:30"
+    "start": "2026-11-11T11:41:00+05:30",
+    "end": "2026-11-11T13:04:00+05:30"
   },
   "yamaganda_kaal": {
-    "start": "2026-11-10T08:56:00+05:30",
-    "end": "2026-11-10T10:19:00+05:30"
+    "start": "2026-11-11T07:34:00+05:30",
+    "end": "2026-11-11T08:57:00+05:30"
   },
   "gulika_kaal": {
-    "start": "2026-11-10T11:41:00+05:30",
-    "end": "2026-11-10T13:04:00+05:30"
+    "start": "2026-11-11T10:19:00+05:30",
+    "end": "2026-11-11T11:41:00+05:30"
   },
   "abhijit_muhurat": {
-    "start": "2026-11-10T11:19:00+05:30",
-    "end": "2026-11-10T12:03:00+05:30"
+    "start": "2026-11-11T11:19:00+05:30",
+    "end": "2026-11-11T12:03:00+05:30"
   },
   "festivals_and_vrats": [
     {
-      "name": "Govardhan Puja",
-      "name_hi": "गोवर्धन पूजा",
+      "name": "Bhai Dooj",
+      "name_hi": "भाई दूज",
       "type": "tyohar"
     }
   ],

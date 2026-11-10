@@ -1,29 +1,16 @@
 {
-  "generated_at": "2026-11-10T07:15:48+05:30",
+  "generated_at": "2026-11-11T05:12:18+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-10",
-    "end": "2026-12-24"
+    "start": "2026-11-11",
+    "end": "2026-12-25"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "govardhan-puja-2026-11-10",
-      "name": "Govardhan Puja",
-      "name_hi": "गोवर्धन पूजा",
-      "type": "tyohar",
-      "date": "2026-11-10",
-      "tithi": "Pratipada",
-      "paksha": "Shukla",
-      "month": "Kartika",
-      "description": "Annakut offering to Krishna.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "bhai-dooj-2026-11-11",
       "name": "Bhai Dooj",
