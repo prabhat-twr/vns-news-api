@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-12T06:28:50+05:30",
+  "generated_at": "2026-11-13T05:21:41+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-12",
-    "end": "2026-12-26"
+    "start": "2026-11-13",
+    "end": "2026-12-27"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
