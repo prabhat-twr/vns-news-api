@@ -1,29 +1,16 @@
 {
-  "generated_at": "2026-11-13T05:21:41+05:30",
+  "generated_at": "2026-11-14T05:21:35+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-13",
-    "end": "2026-12-27"
+    "start": "2026-11-14",
+    "end": "2026-12-28"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "vinayaka-chaturthi-2026-11-13",
-      "name": "Vinayaka Chaturthi",
-      "name_hi": "विनायक चतुर्थी",
-      "type": "vrat",
-      "date": "2026-11-13",
-      "tithi": "Chaturthi",
-      "paksha": "Shukla",
-      "month": "Kartika",
-      "description": "Monthly Ganesha vrat.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "chhath-puja-sandhya-arghya-2026-11-15",
       "name": "Chhath Puja (Sandhya Arghya)",
