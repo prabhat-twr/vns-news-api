@@ -1,29 +1,16 @@
 {
-  "generated_at": "2026-11-15T04:14:01+05:30",
+  "generated_at": "2026-11-16T04:39:44+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-15",
-    "end": "2026-12-29"
+    "start": "2026-11-16",
+    "end": "2026-12-30"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "chhath-puja-sandhya-arghya-2026-11-15",
-      "name": "Chhath Puja (Sandhya Arghya)",
-      "name_hi": "छठ पूजा (संध्या अर्घ्य)",
-      "type": "both",
-      "date": "2026-11-15",
-      "tithi": "Shashthi",
-      "paksha": "Shukla",
-      "month": "Kartika",
-      "description": "Evening offering to the setting Sun at the ghats.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "dev-uthani-ekadashi-prabodhini-2026-11-21",
       "name": "Dev Uthani Ekadashi (Prabodhini)",
