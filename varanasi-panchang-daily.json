@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-18T06:47:57+05:30",
-  "date": "2026-11-18",
+  "generated_at": "2026-11-19T06:13:46+05:30",
+  "date": "2026-11-19",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
-  "vara": "Wednesday (Budhavara)",
-  "vara_hi": "बुधवार",
+  "vara": "Thursday (Guruvara)",
+  "vara_hi": "गुरुवार",
   "lunar_month": {
     "purnimanta": "Kartika",
     "purnimanta_hi": "कार्तिक",
@@ -19,15 +19,16 @@
       "name": "Navami",
       "name_hi": "नवमी",
       "paksha": "Shukla",
+      "ends_at": "2026-11-19T07:06:00+05:30"
+    },
+    {
+      "name": "Dashami",
+      "name_hi": "दशमी",
+      "paksha": "Shukla",
       "ends_at": null
     }
   ],
   "nakshatra": [
-    {
-      "name": "Shatabhisha",
-      "name_hi": "शतभिषा",
-      "ends_at": "2026-11-19T06:10:00+05:30"
-    },
     {
       "name": "Purva Bhadrapada",
       "name_hi": "पूर्वा भाद्रपद",
@@ -36,47 +37,52 @@
   ],
   "yoga": [
     {
-      "name": "Dhruva",
-      "name_hi": "ध्रुव",
-      "ends_at": "2026-11-18T08:05:00+05:30"
-    },
-    {
       "name": "Vyaghata",
       "name_hi": "व्याघात",
+      "ends_at": "2026-11-19T07:42:00+05:30"
+    },
+    {
+      "name": "Harshana",
+      "name_hi": "हर्षण",
       "ends_at": null
     }
   ],
   "karana": [
     {
-      "name": "Balava",
-      "name_hi": "बालव",
-      "ends_at": "2026-11-18T18:42:00+05:30"
-    },
-    {
       "name": "Kaulava",
       "name_hi": "कौलव",
+      "ends_at": "2026-11-19T07:06:00+05:30"
+    },
+    {
+      "name": "Taitila",
+      "name_hi": "तैतिल",
+      "ends_at": "2026-11-19T19:18:00+05:30"
+    },
+    {
+      "name": "Garaja",
+      "name_hi": "गर",
       "ends_at": null
     }
   ],
-  "sunrise": "2026-11-18T06:17:00+05:30",
-  "sunset": "2026-11-18T17:09:00+05:30",
-  "moonrise": "2026-11-18T12:52:00+05:30",
-  "moonset": "2026-11-19T00:43:00+05:30",
+  "sunrise": "2026-11-19T06:17:00+05:30",
+  "sunset": "2026-11-19T17:08:00+05:30",
+  "moonrise": "2026-11-19T13:23:00+05:30",
+  "moonset": "2026-11-20T01:38:00+05:30",
   "rahu_kaal": {
-    "start": "2026-11-18T11:43:00+05:30",
-    "end": "2026-11-18T13:04:00+05:30"
+    "start": "2026-11-19T13:04:00+05:30",
+    "end": "2026-11-19T14:26:00+05:30"
   },
   "yamaganda_kaal": {
-    "start": "2026-11-18T07:38:00+05:30",
-    "end": "2026-11-18T09:00:00+05:30"
+    "start": "2026-11-19T06:17:00+05:30",
+    "end": "2026-11-19T07:39:00+05:30"
   },
   "gulika_kaal": {
-    "start": "2026-11-18T10:21:00+05:30",
-    "end": "2026-11-18T11:43:00+05:30"
+    "start": "2026-11-19T09:00:00+05:30",
+    "end": "2026-11-19T10:21:00+05:30"
   },
   "abhijit_muhurat": {
-    "start": "2026-11-18T11:21:00+05:30",
-    "end": "2026-11-18T12:04:00+05:30"
+    "start": "2026-11-19T11:21:00+05:30",
+    "end": "2026-11-19T12:05:00+05:30"
   },
   "festivals_and_vrats": [],
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
