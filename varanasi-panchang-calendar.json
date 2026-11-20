@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-19T06:13:46+05:30",
+  "generated_at": "2026-11-20T06:24:15+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-19",
-    "end": "2027-01-02"
+    "start": "2026-11-20",
+    "end": "2027-01-03"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
@@ -190,6 +190,19 @@
       "paksha": "Krishna",
       "month": "Pausha",
       "description": "Ganesha fast broken at moonrise.",
+      "date_confidence": "calculated",
+      "source_url": null
+    },
+    {
+      "id": "saphala-ekadashi-2027-01-03",
+      "name": "Saphala Ekadashi",
+      "name_hi": "सफला एकादशी",
+      "type": "vrat",
+      "date": "2027-01-03",
+      "tithi": "Ekadashi",
+      "paksha": "Krishna",
+      "month": "Pausha",
+      "description": "Ekadashi fast dedicated to Lord Vishnu.",
       "date_confidence": "calculated",
       "source_url": null
     }
