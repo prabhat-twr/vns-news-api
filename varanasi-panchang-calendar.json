@@ -1,29 +1,16 @@
 {
-  "generated_at": "2026-11-21T05:41:27+05:30",
+  "generated_at": "2026-11-22T05:04:44+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-21",
-    "end": "2027-01-04"
+    "start": "2026-11-22",
+    "end": "2027-01-05"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "dev-uthani-ekadashi-prabodhini-2026-11-21",
-      "name": "Dev Uthani Ekadashi (Prabodhini)",
-      "name_hi": "देवउठनी एकादशी",
-      "type": "vrat",
-      "date": "2026-11-21",
-      "tithi": "Ekadashi",
-      "paksha": "Shukla",
-      "month": "Kartika",
-      "description": "Ekadashi fast dedicated to Lord Vishnu.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "ravi-pradosh-vrat-2026-11-22",
       "name": "Ravi Pradosh Vrat",
@@ -216,6 +203,19 @@
       "paksha": "Krishna",
       "month": "Pausha",
       "description": "Evening worship of Shiva during pradosh kaal.",
+      "date_confidence": "calculated",
+      "source_url": null
+    },
+    {
+      "id": "masik-shivaratri-2027-01-05",
+      "name": "Masik Shivaratri",
+      "name_hi": "मासिक शिवरात्रि",
+      "type": "vrat",
+      "date": "2027-01-05",
+      "tithi": "Chaturdashi",
+      "paksha": "Krishna",
+      "month": "Pausha",
+      "description": "Monthly night of Shiva.",
       "date_confidence": "calculated",
       "source_url": null
     }
