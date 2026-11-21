@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-20T06:24:15+05:30",
-  "date": "2026-11-20",
+  "generated_at": "2026-11-21T05:41:27+05:30",
+  "date": "2026-11-21",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
-  "vara": "Friday (Shukravara)",
-  "vara_hi": "शुक्रवार",
+  "vara": "Saturday (Shanivara)",
+  "vara_hi": "शनिवार",
   "lunar_month": {
     "purnimanta": "Kartika",
     "purnimanta_hi": "कार्तिक",
@@ -16,85 +16,102 @@
   },
   "tithi": [
     {
-      "name": "Dashami",
-      "name_hi": "दशमी",
-      "paksha": "Shukla",
-      "ends_at": "2026-11-20T07:16:00+05:30"
-    },
-    {
       "name": "Ekadashi",
       "name_hi": "एकादशी",
+      "paksha": "Shukla",
+      "ends_at": "2026-11-21T06:32:00+05:30"
+    },
+    {
+      "name": "Dwadashi",
+      "name_hi": "द्वादशी",
+      "paksha": "Shukla",
+      "ends_at": "2026-11-22T04:57:00+05:30"
+    },
+    {
+      "name": "Trayodashi",
+      "name_hi": "त्रयोदशी",
       "paksha": "Shukla",
       "ends_at": null
     }
   ],
   "nakshatra": [
     {
-      "name": "Purva Bhadrapada",
-      "name_hi": "पूर्वा भाद्रपद",
-      "ends_at": "2026-11-20T06:56:00+05:30"
-    },
-    {
       "name": "Uttara Bhadrapada",
       "name_hi": "उत्तरा भाद्रपद",
+      "ends_at": "2026-11-21T06:50:00+05:30"
+    },
+    {
+      "name": "Revati",
+      "name_hi": "रेवती",
+      "ends_at": "2026-11-22T05:54:00+05:30"
+    },
+    {
+      "name": "Ashwini",
+      "name_hi": "अश्विनी",
       "ends_at": null
     }
   ],
   "yoga": [
     {
-      "name": "Harshana",
-      "name_hi": "हर्षण",
-      "ends_at": "2026-11-20T06:39:00+05:30"
-    },
-    {
-      "name": "Vajra",
-      "name_hi": "वज्र",
-      "ends_at": "2026-11-21T04:55:00+05:30"
-    },
-    {
       "name": "Siddhi",
       "name_hi": "सिद्धि",
+      "ends_at": "2026-11-22T02:30:00+05:30"
+    },
+    {
+      "name": "Vyatipata",
+      "name_hi": "व्यतीपात",
       "ends_at": null
     }
   ],
   "karana": [
     {
-      "name": "Garaja",
-      "name_hi": "गर",
-      "ends_at": "2026-11-20T07:16:00+05:30"
-    },
-    {
-      "name": "Vanija",
-      "name_hi": "वणिज",
-      "ends_at": "2026-11-20T19:00:00+05:30"
-    },
-    {
       "name": "Vishti",
       "name_hi": "विष्टि",
+      "ends_at": "2026-11-21T06:32:00+05:30"
+    },
+    {
+      "name": "Bava",
+      "name_hi": "बव",
+      "ends_at": "2026-11-21T17:50:00+05:30"
+    },
+    {
+      "name": "Balava",
+      "name_hi": "बालव",
+      "ends_at": "2026-11-22T04:57:00+05:30"
+    },
+    {
+      "name": "Kaulava",
+      "name_hi": "कौलव",
       "ends_at": null
     }
   ],
-  "sunrise": "2026-11-20T06:18:00+05:30",
-  "sunset": "2026-11-20T17:08:00+05:30",
-  "moonrise": "2026-11-20T13:55:00+05:30",
-  "moonset": "2026-11-21T02:36:00+05:30",
+  "sunrise": "2026-11-21T06:19:00+05:30",
+  "sunset": "2026-11-21T17:08:00+05:30",
+  "moonrise": "2026-11-21T14:29:00+05:30",
+  "moonset": "2026-11-22T03:36:00+05:30",
   "rahu_kaal": {
-    "start": "2026-11-20T10:22:00+05:30",
-    "end": "2026-11-20T11:43:00+05:30"
+    "start": "2026-11-21T09:01:00+05:30",
+    "end": "2026-11-21T10:22:00+05:30"
   },
   "yamaganda_kaal": {
-    "start": "2026-11-20T14:26:00+05:30",
-    "end": "2026-11-20T15:47:00+05:30"
+    "start": "2026-11-21T13:04:00+05:30",
+    "end": "2026-11-21T14:26:00+05:30"
   },
   "gulika_kaal": {
-    "start": "2026-11-20T07:39:00+05:30",
-    "end": "2026-11-20T09:01:00+05:30"
+    "start": "2026-11-21T06:19:00+05:30",
+    "end": "2026-11-21T07:40:00+05:30"
   },
   "abhijit_muhurat": {
-    "start": "2026-11-20T11:21:00+05:30",
-    "end": "2026-11-20T12:05:00+05:30"
+    "start": "2026-11-21T11:22:00+05:30",
+    "end": "2026-11-21T12:05:00+05:30"
   },
-  "festivals_and_vrats": [],
+  "festivals_and_vrats": [
+    {
+      "name": "Dev Uthani Ekadashi (Prabodhini)",
+      "name_hi": "देवउठनी एकादशी",
+      "type": "vrat"
+    }
+  ],
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "data_source": "calculated",
   "confidence": "calculated",
