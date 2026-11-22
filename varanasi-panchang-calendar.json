@@ -1,29 +1,16 @@
 {
-  "generated_at": "2026-11-22T05:04:44+05:30",
+  "generated_at": "2026-11-23T05:18:40+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-22",
-    "end": "2027-01-05"
+    "start": "2026-11-23",
+    "end": "2027-01-06"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "ravi-pradosh-vrat-2026-11-22",
-      "name": "Ravi Pradosh Vrat",
-      "name_hi": "रवि प्रदोष व्रत",
-      "type": "vrat",
-      "date": "2026-11-22",
-      "tithi": "Trayodashi",
-      "paksha": "Shukla",
-      "month": "Kartika",
-      "description": "Evening worship of Shiva during pradosh kaal.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "dev-deepawali-2026-11-24",
       "name": "Dev Deepawali",
