@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-23T05:18:40+05:30",
+  "generated_at": "2026-11-24T09:34:46+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-23",
-    "end": "2027-01-06"
+    "start": "2026-11-24",
+    "end": "2027-01-07"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
@@ -203,6 +203,19 @@
       "paksha": "Krishna",
       "month": "Pausha",
       "description": "Monthly night of Shiva.",
+      "date_confidence": "calculated",
+      "source_url": null
+    },
+    {
+      "id": "pausha-amavasya-2027-01-07",
+      "name": "Pausha Amavasya",
+      "name_hi": "पौष अमावस्या",
+      "type": "vrat",
+      "date": "2027-01-07",
+      "tithi": "Amavasya",
+      "paksha": "Krishna",
+      "month": "Pausha",
+      "description": "New moon; day for tarpan and Ganga snan.",
       "date_confidence": "calculated",
       "source_url": null
     }
