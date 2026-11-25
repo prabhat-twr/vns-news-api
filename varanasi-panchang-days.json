@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T09:34:46+05:30",
+  "generated_at": "2026-11-25T08:16:21+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
@@ -7,99 +7,6 @@
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "days": [
-    {
-      "date": "2026-11-24",
-      "vara": "Tuesday (Mangalavara)",
-      "vara_hi": "मंगलवार",
-      "lunar_month": {
-        "purnimanta": "Kartika",
-        "purnimanta_hi": "कार्तिक",
-        "amanta": "Kartika",
-        "adhik": false
-      },
-      "tithi": [
-        {
-          "name": "Purnima",
-          "name_hi": "पूर्णिमा",
-          "paksha": "Shukla",
-          "ends_at": "2026-11-24T20:23:00+05:30"
-        },
-        {
-          "name": "Pratipada",
-          "name_hi": "प्रतिपदा",
-          "paksha": "Krishna",
-          "ends_at": null
-        }
-      ],
-      "nakshatra": [
-        {
-          "name": "Krittika",
-          "name_hi": "कृत्तिका",
-          "ends_at": "2026-11-24T23:25:00+05:30"
-        },
-        {
-          "name": "Rohini",
-          "name_hi": "रोहिणी",
-          "ends_at": null
-        }
-      ],
-      "yoga": [
-        {
-          "name": "Parigha",
-          "name_hi": "परिघ",
-          "ends_at": "2026-11-24T16:05:00+05:30"
-        },
-        {
-          "name": "Shiva",
-          "name_hi": "शिव",
-          "ends_at": null
-        }
-      ],
-      "karana": [
-        {
-          "name": "Vishti",
-          "name_hi": "विष्टि",
-          "ends_at": "2026-11-24T10:05:00+05:30"
-        },
-        {
-          "name": "Bava",
-          "name_hi": "बव",
-          "ends_at": "2026-11-24T20:23:00+05:30"
-        },
-        {
-          "name": "Balava",
-          "name_hi": "बालव",
-          "ends_at": null
-        }
-      ],
-      "sunrise": "2026-11-24T06:21:00+05:30",
-      "sunset": "2026-11-24T17:07:00+05:30",
-      "moonrise": "2026-11-24T16:40:00+05:30",
-      "moonset": null,
-      "rahu_kaal": {
-        "start": "2026-11-24T14:26:00+05:30",
-        "end": "2026-11-24T15:46:00+05:30"
-      },
-      "yamaganda_kaal": {
-        "start": "2026-11-24T09:03:00+05:30",
-        "end": "2026-11-24T10:23:00+05:30"
-      },
-      "gulika_kaal": {
-        "start": "2026-11-24T11:44:00+05:30",
-        "end": "2026-11-24T13:05:00+05:30"
-      },
-      "abhijit_muhurat": {
-        "start": "2026-11-24T11:23:00+05:30",
-        "end": "2026-11-24T12:06:00+05:30"
-      },
-      "festivals_and_vrats": [
-        {
-          "name": "Dev Deepawali",
-          "name_hi": "देव दीपावली",
-          "type": "tyohar"
-        }
-      ]
-    },
     {
       "date": "2026-11-25",
       "vara": "Wednesday (Budhavara)",
@@ -733,6 +640,93 @@
       "abhijit_muhurat": {
         "start": "2026-12-01T11:25:00+05:30",
         "end": "2026-12-01T12:08:00+05:30"
+      },
+      "festivals_and_vrats": []
+    },
+    {
+      "date": "2026-12-02",
+      "vara": "Wednesday (Budhavara)",
+      "vara_hi": "बुधवार",
+      "lunar_month": {
+        "purnimanta": "Margashirsha",
+        "purnimanta_hi": "मार्गशीर्ष",
+        "amanta": "Kartika",
+        "adhik": false
+      },
+      "tithi": [
+        {
+          "name": "Navami",
+          "name_hi": "नवमी",
+          "paksha": "Krishna",
+          "ends_at": "2026-12-02T22:52:00+05:30"
+        },
+        {
+          "name": "Dashami",
+          "name_hi": "दशमी",
+          "paksha": "Krishna",
+          "ends_at": null
+        }
+      ],
+      "nakshatra": [
+        {
+          "name": "Purva Phalguni",
+          "name_hi": "पूर्वा फाल्गुनी",
+          "ends_at": "2026-12-02T08:55:00+05:30"
+        },
+        {
+          "name": "Uttara Phalguni",
+          "name_hi": "उत्तरा फाल्गुनी",
+          "ends_at": null
+        }
+      ],
+      "yoga": [
+        {
+          "name": "Vishkambha",
+          "name_hi": "विष्कुम्भ",
+          "ends_at": "2026-12-02T10:31:00+05:30"
+        },
+        {
+          "name": "Priti",
+          "name_hi": "प्रीति",
+          "ends_at": null
+        }
+      ],
+      "karana": [
+        {
+          "name": "Taitila",
+          "name_hi": "तैतिल",
+          "ends_at": "2026-12-02T10:59:00+05:30"
+        },
+        {
+          "name": "Garaja",
+          "name_hi": "गर",
+          "ends_at": "2026-12-02T22:52:00+05:30"
+        },
+        {
+          "name": "Vanija",
+          "name_hi": "वणिज",
+          "ends_at": null
+        }
+      ],
+      "sunrise": "2026-12-02T06:27:00+05:30",
+      "sunset": "2026-12-02T17:07:00+05:30",
+      "moonrise": "2026-12-03T01:11:00+05:30",
+      "moonset": "2026-12-02T12:44:00+05:30",
+      "rahu_kaal": {
+        "start": "2026-12-02T11:47:00+05:30",
+        "end": "2026-12-02T13:07:00+05:30"
+      },
+      "yamaganda_kaal": {
+        "start": "2026-12-02T07:47:00+05:30",
+        "end": "2026-12-02T09:07:00+05:30"
+      },
+      "gulika_kaal": {
+        "start": "2026-12-02T10:27:00+05:30",
+        "end": "2026-12-02T11:47:00+05:30"
+      },
+      "abhijit_muhurat": {
+        "start": "2026-12-02T11:25:00+05:30",
+        "end": "2026-12-02T12:08:00+05:30"
       },
       "festivals_and_vrats": []
     }

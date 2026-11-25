@@ -1,29 +1,16 @@
 {
-  "generated_at": "2026-11-24T09:34:46+05:30",
+  "generated_at": "2026-11-25T08:16:21+05:30",
   "location": {
     "name": "Varanasi, Uttar Pradesh, India",
     "lat": 25.3176,
     "lng": 82.9739
   },
   "window": {
-    "start": "2026-11-24",
-    "end": "2027-01-07"
+    "start": "2026-11-25",
+    "end": "2027-01-08"
   },
   "calculation_method": "Drik Ganita (JPL DE421 ephemeris, Lahiri ayanamsa)",
   "observances": [
-    {
-      "id": "dev-deepawali-2026-11-24",
-      "name": "Dev Deepawali",
-      "name_hi": "देव दीपावली",
-      "type": "tyohar",
-      "date": "2026-11-24",
-      "tithi": "Purnima",
-      "paksha": "Shukla",
-      "month": "Kartika",
-      "description": "Kashi's ghats are lit with lakhs of diyas on Kartik Purnima.",
-      "date_confidence": "calculated",
-      "source_url": null
-    },
     {
       "id": "sankashti-chaturthi-2026-11-27",
       "name": "Sankashti Chaturthi",
